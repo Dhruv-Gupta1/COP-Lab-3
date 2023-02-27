@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #FF4500;
+    color: white;
+    padding: 10px;
+  }
+  
+  nav {
+    background-color: #FFA07A;
+    color: white;
+    padding: 10px;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  nav li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  section {
+    padding: 10px;
+  }
+  
+  section form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  section form input,
+  section form textarea {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  section form input[type="submit"] {
+    background-color: #FF4500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  #posts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #posts li {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  
+  #posts li h3 {
+    margin-top: 0;
+  }
+  
+  #posts li p.author {
+    font-style: italic;
+  }
+  
+  footer {
+    background-color: #FFA07A;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
