@@ -33,16 +33,16 @@ paths:
       summary: Ask your query
       description: Ask your query
       operationId: askQuery
-      parameters:
-        - name: tags
-          in: query
-          description: Query parameters
-          required: false
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
+      requestBody:
+        description: Query to be added to the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Pet'
+        required: true
       responses:
         '200':
           description: successful operation
@@ -57,7 +57,11 @@ paths:
           description: Invalid question
         '404':
           description: Question not found
-#GET /question/data
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+#/question/{questionId}
   /question/{questionId}:
     get:
       tags:
@@ -66,15 +70,14 @@ paths:
       description: Get all query data
       operationId: getData
       parameters:
-        - name: tags
+        - name: questionId
           in: query
           description: Query data
           required: false
           explode: true
           schema:
-            type: array
-            items:
-              type: string
+            type: string
+            example: "71932"
       responses:
         '200':
           description: successful operation
@@ -87,6 +90,12 @@ paths:
                   $ref: '#/components/schemas/Pet'
         '400':
           description: Invalid data format
+        '404':
+          description: Question not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
 #DELETE
     delete:
       tags:
@@ -95,15 +104,14 @@ paths:
       description: Delete a query
       operationId: deleteQuery
       parameters:
-        - name: tags
+        - name: questionId
           in: query
           description: Query data
           required: false
           explode: true
           schema:
-            type: array
-            items:
-              type: string
+            type: string
+            example: "71932"
       responses:
         '200':
           description: successful operation
@@ -116,22 +124,38 @@ paths:
                   $ref: '#/components/schemas/Pet'
         '400':
           description: Invalid data format
-#/question/title
-  /question/title:
-    get:
+        '404':
+          description: Question not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+#PUT /question/{questionId} 
+    put:
       tags:
         - Question
-      summary: Get the title of the question
-      description: Get the title of the question
-      operationId: getTitles
+      summary: Change question data
+      description: Change question data
+      operationId: changeQuestion
       parameters:
-        - name: title
+        - name: questionId
           in: query
-          description: To get title of question
+          description: Query data
           required: false
           explode: true
           schema:
             type: string
+            example: "71932"
+      requestBody:
+        description: Query to be added to the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Pet'
+        required: true
       responses:
         '200':
           description: successful operation
@@ -143,23 +167,40 @@ paths:
               schema:
                   $ref: '#/components/schemas/Pet'
         '400':
-          description: Invalid title value
-#/question/description
-  /question/description:
-    get:
+          description: Invalid data format
+        '404':
+          description: Question not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+#PUT /question/votes/{questionId} upvote/downvote
+  /question/votes/{questionId}:
+    put:
       tags:
         - Question
-      summary: Get the description of the question
-      description: Get the description of the question
-      operationId: getDescriptions
+      summary: Upvote/Downvote a question
+      description: Upvote/Downvote a question
+      operationId: upvoteQuestion
       parameters:
-        - name: description
+        - name: questionId
           in: query
-          description: To get description of question
+          description: Question id
           required: false
           explode: true
           schema:
             type: string
+            example: "71932"
+      requestBody:
+        description: Query to be added to the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Pet'
+        required: true
       responses:
         '200':
           description: successful operation
@@ -171,25 +212,608 @@ paths:
               schema:
                   $ref: '#/components/schemas/Pet'
         '400':
-          description: Invalid description value
-#/question/answers
-  /question/answers:
+          description: Invalid data format
+        '404':
+          description: Question not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+##
+# /answer Answer POST API
+  /answer/{questionId}:
+    post:
+      tags:
+        - Answer
+      summary: Post your answer
+      description: Post your answer
+      operationId: postAnswer
+      requestBody:
+        description: Answer to be added to the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Pet'
+        required: true
+      parameters:
+        - name: questionId
+          in: query
+          description: Query data
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: "71932"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                  $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid answer
+        '404':
+          description: Answer not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+# /answer/{answerId} Answer GET API
+  /answer/{answerId}:
     get:
       tags:
-        - Question
-      summary: Get all answers
-      description: Get all answers
-      operationId: getAnswers
+        - Answer
+      summary: Get all answer data
+      description: Get all answer data
+      operationId: getData
       parameters:
-        - name: answers
+        - name: answerId
           in: query
-          description: To get all answers
+          description: Answer data
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: "71932"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                  $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid data format
+        '404':
+          description: Answer not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+# /answer DELETE API
+    delete:
+      tags:
+        - Answer
+      summary: Delete an answer
+      description: Delete an answer
+      operationId: deleteAnswer
+      parameters:
+        - name: answerId
+          in: query
+          description: Answer data
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: "71932"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                  $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid data format
+        '404':
+          description: Answer not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+# /answer PUT API
+    put:
+      tags:
+        - Answer
+      summary: Change data of answer
+      description: Change data of answer
+      operationId: changeAnswer
+      parameters:
+        - name: answerId
+          in: query
+          description: Answer data
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: "71932"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                  $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid data format
+        '404':
+          description: Answer not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+# /answer/votes/{answerId} PUT upvote/downvote
+  /answer/votes/{answerId}:
+    put:
+      tags:
+        - Answer
+      summary: Upvote/Downvote an answer
+      description: Upvote/Downvote an answer
+      operationId: upvoteAnswer
+      parameters:
+        - name: answerId
+          in: query
+          description: Answer id
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: "71932"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                  $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid data format
+        '404':
+          description: Answer not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+# /user User POST API
+  /user:
+    post:
+      tags:
+        - User
+      summary: Create user
+      description: Create user
+      operationId: createUser
+      requestBody:
+        description: User to be added to the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Pet'
+        required: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                  $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid data format
+        '404':
+          description: User not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+# /user/{userId} User GET API
+  /user/{userId}:
+    get:
+      tags:
+        - User
+      summary: Get user data
+      description: Get user data
+      operationId: getUserData
+      parameters:
+        - name: userId
+          in: query
+          description: User id
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: "71932"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                  $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid data format
+        '404':
+          description: User not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+# /user/{userId} User DELETE API
+    delete:
+      tags:
+        - User
+      summary: Delete an user
+      description: Delete an user
+      operationId: deleteUser
+      parameters:
+        - name: userId
+          in: query
+          description: User id
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: "71932"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                  $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid data format
+        '404':
+          description: User not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+# /user/{userId} User PUT API
+    put:
+      tags:
+        - User
+      summary: Change data of user
+      description: Change data of user
+      operationId: changeUser
+      parameters:
+        - name: userId
+          in: query
+          description: User id
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: "71932"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                  $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid data format
+        '404':
+          description: User not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+# /user/login User GET API take username password and create user
+  /user/login:
+    get:
+      tags:
+        - User
+      summary: Login user
+      description: Login user
+      operationId: loginUser
+      parameters:
+        - name: username
+          in: query
+          description: Username
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: "kevin"
+        - name: password
+          in: query
+          description: Password
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: "****"
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              schema:
+                type: integer
+                format: int32
+            X-Expires-After:
+              description: date in UTC when token expires
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                  $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid Username/Password
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+# /user/logout User GET API logs out user in active session
+  /user/logout:
+    get:
+      tags:
+        - User
+      summary: Logout user
+      description: Logout user
+      operationId: logoutUser
+      
+      responses:
+        '200':
+          description: successful operation
+    
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                  $ref: '#/components/schemas/Pet'
+        '400':
+          description: Cant logout
+        '404':
+          description: User not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+# /user/signup POST API 
+  /user/signup:
+    post:
+      tags:
+        - User
+      summary: Create user
+      description: Create user
+      operationId: createUser
+      parameters:
+        - name: username
+          in: query
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: "kevin"
+        - name: email
+          in: query
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: "kevin@iitd.ac.in"
+        - name: password
+          in: query
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: "****"
+      requestBody:
+        description: User to be added to the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Pet'
+        required: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                  $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid data format
+        '404':
+          description: User not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+# /tags POST API
+  /tags:
+    post:
+      tags:
+        - Tags
+      summary: Create tag
+      description: Create tag
+      operationId: createTag
+      requestBody:
+        description: Tag to be added to the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Pet'
+        required: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                  $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid data format
+        '404':
+          description: Tag not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+# /tags/{tagId} GET API access tag description
+  /tags/{tagId}:
+    get:
+      tags:
+        - Tags
+      summary: Get tag data
+      description: Get tag data
+      operationId: getTagData
+      parameters:
+        - name: tagId
+          in: query
+          description: Tag id
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: "71932"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                  $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid data format
+        '404':
+          description: Tag not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+# /tags/{tagId} DELETE API delete tag
+    delete:
+      tags:
+        - Tags
+      summary: Delete an tag
+      description: Delete an tag
+      operationId: deleteTag
+      parameters:
+        - name: tagId
+          in: query
+          description: Tag id
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: "71932"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                  $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid data format
+        '404':
+          description: Tag not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+# /search/tags GET API search tags
+  /search/tags:
+    get:
+      tags:
+        - Search
+      summary: Search tags
+      description: Search tags
+      operationId: searchTags
+      parameters:
+        - name: tags
+          in: query
+          description: Tags to search
           required: false
           explode: true
           schema:
             type: array
             items:
               type: string
+            example: ["java", "python"]
+      requestBody:
+        description: search phrase
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Pet'
+        required: true
       responses:
         '200':
           description: successful operation
@@ -201,23 +825,30 @@ paths:
               schema:
                   $ref: '#/components/schemas/Pet'
         '400':
-          description: Invalid answers value
-#/question/user
-  /question/user:
+          description: Invalid data format
+        '404':
+          description: Tag not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets' 
+# /search/{sortId} GET API sort questions
+  /search/{sortId}:
     get:
       tags:
-        - Question
-      summary: Get the user who asked the question
-      description: Get the user who asked the question
-      operationId: getUsers
+        - Search
+      summary: Sort questions
+      description: Sort questions
+      operationId: sortQuestions
       parameters:
-        - name: user
+        - name: sortId
           in: query
-          description: To get user who asked the question
+          description: Sort id
           required: false
           explode: true
           schema:
             type: string
+            example: "popular"
       responses:
         '200':
           description: successful operation
@@ -229,9 +860,15 @@ paths:
               schema:
                   $ref: '#/components/schemas/Pet'
         '400':
-          description: Invalid user value
+          description: Invalid data format
+        '404':
+          description: Tag not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+#
 
-#/
 
 components:
   schemas:
