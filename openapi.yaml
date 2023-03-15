@@ -38,10 +38,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/Question'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/Question'
         required: true
       responses:
         '200':
@@ -49,10 +49,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/Question'          
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Question'
         '400':
           description: Invalid question
         '404':
@@ -84,10 +84,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/Question'          
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Question'
         '400':
           description: Invalid data format
         '404':
@@ -118,10 +118,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/Question'     
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Question'
         '400':
           description: Invalid data format
         '404':
@@ -151,10 +151,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/Question'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/Question'
         required: true
       responses:
         '200':
@@ -162,10 +162,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/Question'  
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Question'
         '400':
           description: Invalid data format
         '404':
@@ -196,10 +196,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/Question'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/Question'
         required: true
       responses:
         '200':
@@ -207,10 +207,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/Question'   
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Question'
         '400':
           description: Invalid data format
         '404':
@@ -233,10 +233,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/Answer'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/Answer'
         required: true
       parameters:
         - name: questionId
@@ -253,10 +253,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/Answer'
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Answer'
         '400':
           description: Invalid answer
         '404':
@@ -288,10 +288,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/Answer'       
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Answer'
         '400':
           description: Invalid data format
         '404':
@@ -322,10 +322,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/Answer'        
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Answer'
         '400':
           description: Invalid data format
         '404':
@@ -356,10 +356,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/Answer'       
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Answer'
         '400':
           description: Invalid data format
         '404':
@@ -391,10 +391,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/Answer'
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Answer'
         '400':
           description: Invalid data format
         '404':
@@ -416,10 +416,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/User'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/User'
         required: true
       responses:
         '200':
@@ -427,10 +427,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/User'          
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/User'
         '400':
           description: Invalid data format
         '404':
@@ -462,10 +462,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/User'        
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/User'
         '400':
           description: Invalid data format
         '404':
@@ -496,10 +496,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/User'         
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/User'
         '400':
           description: Invalid data format
         '404':
@@ -530,10 +530,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/User'    
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/User'
         '400':
           description: Invalid data format
         '404':
@@ -584,10 +584,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/User'         
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/User'
         '400':
           description: Invalid Username/Password
       security:
@@ -610,10 +610,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/User'     
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/User'
         '400':
           description: Cant logout
         '404':
@@ -657,10 +657,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/User'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/User'
         required: true
       responses:
         '200':
@@ -668,10 +668,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/User'     
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/User'
         '400':
           description: Invalid data format
         '404':
@@ -693,10 +693,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/Tag'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/Tag'
         required: true
       responses:
         '200':
@@ -704,10 +704,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/Tag'       
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Tag'
         '400':
           description: Invalid data format
         '404':
@@ -739,10 +739,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/Tag'       
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Tag'
         '400':
           description: Invalid data format
         '404':
@@ -773,10 +773,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/Tag'          
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Tag'
         '400':
           description: Invalid data format
         '404':
@@ -809,10 +809,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/Search'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/Search'
         required: true
       responses:
         '200':
@@ -820,10 +820,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/Search'        
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Search'
         '400':
           description: Invalid data format
         '404':
@@ -855,10 +855,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/Pet'          
+                  $ref: '#/components/schemas/Search'         
             application/xml:
               schema:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/Search'
         '400':
           description: Invalid data format
         '404':
@@ -872,194 +872,173 @@ paths:
 
 components:
   schemas:
-    Order:
+    #question schema
+    Question:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-          example: 10
-        petId:
-          type: integer
-          format: int64
-          example: 198772
-        quantity:
-          type: integer
-          format: int32
-          example: 7
-        shipDate:
+        questionId:
           type: string
-          format: date-time
-        status:
+          example: "71932"
+        Title:
           type: string
-          description: Order Status
-          example: approved
-          enum:
-            - placed
-            - approved
-            - delivered
-        complete:
-          type: boolean
-      xml:
-        name: order
-    Customer:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          example: 100000
-        username:
+          example: "How to create a new file in Java?"
+        Body:
           type: string
-          example: fehguy
-        address:
+          example: "I am trying to create a new file in Java. I am using the following code but it is not working. Can anyone help me?"
+        Tags:
           type: array
-          xml:
-            name: addresses
-            wrapped: true
           items:
-            $ref: '#/components/schemas/Address'
-      xml:
-        name: customer
-    Address:
-      type: object
-      properties:
-        street:
-          type: string
-          example: 437 Lytton
-        city:
-          type: string
-          example: Palo Alto
-        state:
-          type: string
-          example: CA
-        zip:
-          type: string
-          example: '94301'
-      xml:
-        name: address
-    Category:
-      type: object
-      properties:
-        id:
+            type: string
+          example: ["java", "file"]
+        Votes:
           type: integer
-          format: int64
-          example: 1
-        name:
-          type: string
-          example: Dogs
-      xml:
-        name: category
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
           example: 10
-        username:
-          type: string
-          example: theUser
-        firstName:
-          type: string
-          example: John
-        lastName:
-          type: string
-          example: James
-        email:
-          type: string
-          example: john@email.com
-        password:
-          type: string
-          example: '12345'
-        phone:
-          type: string
-          example: '12345'
-        userStatus:
+        AnswerIds:
+          type: array
+          items:
+            type: string
+          example: ["213212", "314132"]
+        NumberOfAnswers:
           type: integer
-          description: User Status
-          format: int32
-          example: 1
-      xml:
-        name: user
+          example: 2
+        CreatedAt:
+          type: string
+          example: "2019-10-10T12:00:00Z"
+        Accepted:
+          type: boolean
+          example: false
+        CreatedBy:
+          type: string
+          example: "Kevin"
+    #
+    Answer:
+      type : object
+      properties:
+        answerId:
+          type: string
+          example: "71932"
+        Body:
+          type: string
+          example: "Here is how to do it..."
+        Votes:
+          type: integer
+          example: 10
+        questionId:
+          type: string
+          example: "71932"
+        CreatedBy:
+          type: string
+          example: "Andrew"
+        CreatedAt:
+          type: string
+          example: "2019-10-10T12:00:00Z"
+    #
     Tag:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        name:
+        tagId:
           type: string
-      xml:
-        name: tag
-    Pet:
-      required:
-        - name
-        - photoUrls
+          example: "71932"
+        Name:
+          type: string
+          example: "java"
+        NumberOfQuestions:
+          type: integer
+          example: 1077
+        description:
+          type: string
+          example: "Java is a general-purpose computer-programming language that is concurrent, class-based, object-oriented, and specifically designed to have as few implementation dependencies as possible."
+    #
+    User:
       type: object
       properties:
-        id:
+        userId:
+          type: string
+          example: "71932"
+        username:
+          type: string
+          example: "Kevin"
+        password:
+          type: string
+          example: "12434kevin@123777"
+        rating:
           type: integer
-          format: int64
-          example: 10
-        name:
-          type: string
-          example: doggie
-        category:
-          $ref: '#/components/schemas/Category'
-        photoUrls:
+          example: 1791
+        QuestionsAsked:
           type: array
-          xml:
-            wrapped: true
-          items:
-            type: string
-            xml:
-              name: photoUrl
-        tags:
+          example: ["71932", "71933"]
+        NumberOfQuestionsAsked:
+          type: integer
+          example: 2
+        AnswersGiven:
           type: array
-          xml:
-            wrapped: true
-          items:
-            $ref: '#/components/schemas/Tag'
-        status:
+          example: ["71932", "71933"]
+        NumberOfAnswersGiven:
+          type: integer
+          example: 2
+        ProfilePicture:
           type: string
-          description: pet status in the store
-          enum:
-            - available
-            - pending
-            - sold
-      xml:
-        name: pet
-    ApiResponse:
+          example: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+        email:
+          type: string
+          example: "kevin@iitd.ac.in" 
+    #
+    Search: 
       type: object
       properties:
-        code:
+        searchId:
+          type: string
+          example: "71932"
+        searchTags:
+          type: array
+          example: ["java", "python"]
+        searchSort:
+          type: string
+          example: "popular"
+        searchResults:
+          type: array
+          example: ["71932", "71933"]
+        NumberOfSearchResults:
           type: integer
-          format: int32
-        type:
-          type: string
-        message:
-          type: string
-      xml:
-        name: '##default'
+          example: 2
+    # 
   requestBodies:
-    Pet:
-      description: Pet object that needs to be added to the store
+    Answer:
+      description: Answers given to a question
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Pet'
+            $ref: '#/components/schemas/Answer'
         application/xml:
           schema:
-            $ref: '#/components/schemas/Pet'
-    UserArray:
-      description: List of user object
+            $ref: '#/components/schemas/Answer'
+    User:
+      description: user object
       content:
         application/json:
           schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/User'
+            $ref: '#/components/schemas/User'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/User'
+    Question:
+      description: question object
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Question'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Question'
+    Tag:
+      description: tag object
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Tag'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Tag'
   securitySchemes:
     ask_auth:
       type: oauth2
