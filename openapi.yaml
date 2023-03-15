@@ -58,9 +58,9 @@ paths:
         '404':
           description: Question not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 #/question/{questionId}
   /question/{questionId}:
     get:
@@ -93,9 +93,9 @@ paths:
         '404':
           description: Question not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 #DELETE
     delete:
       tags:
@@ -127,9 +127,9 @@ paths:
         '404':
           description: Question not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 #PUT /question/{questionId} 
     put:
       tags:
@@ -171,9 +171,9 @@ paths:
         '404':
           description: Question not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 #PUT /question/votes/{questionId} upvote/downvote
   /question/votes/{questionId}:
     put:
@@ -216,9 +216,9 @@ paths:
         '404':
           description: Question not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 ##
 # /answer Answer POST API
   /answer/{questionId}:
@@ -262,9 +262,9 @@ paths:
         '404':
           description: Answer not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 # /answer/{answerId} Answer GET API
   /answer/{answerId}:
     get:
@@ -297,9 +297,9 @@ paths:
         '404':
           description: Answer not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 # /answer DELETE API
     delete:
       tags:
@@ -331,9 +331,9 @@ paths:
         '404':
           description: Answer not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 # /answer PUT API
     put:
       tags:
@@ -365,9 +365,9 @@ paths:
         '404':
           description: Answer not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 # /answer/votes/{answerId} PUT upvote/downvote
   /answer/votes/{answerId}:
     put:
@@ -400,9 +400,9 @@ paths:
         '404':
           description: Answer not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 # /user User POST API
   /user:
     post:
@@ -436,9 +436,9 @@ paths:
         '404':
           description: User not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 # /user/{userId} User GET API
   /user/{userId}:
     get:
@@ -471,9 +471,9 @@ paths:
         '404':
           description: User not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 # /user/{userId} User DELETE API
     delete:
       tags:
@@ -505,9 +505,9 @@ paths:
         '404':
           description: User not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 # /user/{userId} User PUT API
     put:
       tags:
@@ -539,9 +539,9 @@ paths:
         '404':
           description: User not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 # /user/login User GET API take username password and create user
   /user/login:
     get:
@@ -591,9 +591,9 @@ paths:
         '400':
           description: Invalid Username/Password
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 # /user/logout User GET API logs out user in active session
   /user/logout:
     get:
@@ -619,9 +619,9 @@ paths:
         '404':
           description: User not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 # /user/signup POST API 
   /user/signup:
     post:
@@ -677,9 +677,9 @@ paths:
         '404':
           description: User not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 # /tags POST API
   /tags:
     post:
@@ -713,9 +713,9 @@ paths:
         '404':
           description: Tag not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 # /tags/{tagId} GET API access tag description
   /tags/{tagId}:
     get:
@@ -748,9 +748,9 @@ paths:
         '404':
           description: Tag not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 # /tags/{tagId} DELETE API delete tag
     delete:
       tags:
@@ -782,9 +782,9 @@ paths:
         '404':
           description: Tag not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 # /search/tags GET API search tags
   /search/tags:
     get:
@@ -829,9 +829,9 @@ paths:
         '404':
           description: Tag not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets' 
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers' 
 # /search/{sortId} GET API sort questions
   /search/{sortId}:
     get:
@@ -864,9 +864,9 @@ paths:
         '404':
           description: Tag not found
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - ask_auth:
+            - 'write:answers'
+            - 'read:answers'
 #
 
 
@@ -1061,14 +1061,14 @@ components:
             items:
               $ref: '#/components/schemas/User'
   securitySchemes:
-    petstore_auth:
+    ask_auth:
       type: oauth2
       flows:
         implicit:
-          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
+          authorizationUrl: https://queriKorner.swagger.io/oauth/authorize
           scopes:
-            write:pets: modify pets in your account
-            read:pets: read your pets
+            write:answers: modify answers in your account
+            read:answers: read your answers
     api_key:
       type: apiKey
       name: api_key
