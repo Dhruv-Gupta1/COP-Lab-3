@@ -6,19 +6,60 @@ info:
   version: 1.0.11
 
 tags:
-  - name: pet
-    description: Everything about your Pets
-    externalDocs:
-      description: Find out more
-      url: http://swagger.io
-  - name: store
-    description: Access to Petstore orders
-    externalDocs:
-      description: Find out more about our store
-      url: http://swagger.io
+  - name: answer
+    description: post answers to questions
+    
+  - name: question
+    description: ask queries 
+    
   - name: user
-    description: Operations about user
+    description: information about users
+    
+  - name: tags
+    description: description about tags
+    
+  - name: authentication
+    description: verification of user login id and password
+    
+  - name: search
+    description: get answers to your queries
+    
 paths:
+  /question:
+    post:
+      tags:
+        - question
+      summary: Ask a question
+      description: Ask your query
+      operationId: addquestion
+      requestBody:
+        description: Add a new question
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/question'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/question' 
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/question'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/question'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+    
+
+
+
   /pet:
     put:
       tags:
