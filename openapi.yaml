@@ -272,7 +272,7 @@ paths:
         - Answer
       summary: Get all answer data
       description: Get all answer data
-      operationId: getData
+      operationId: getDatafromAnswer
       parameters:
         - name: answerId
           in: query
@@ -629,7 +629,7 @@ paths:
         - User
       summary: Create user
       description: Create user
-      operationId: createUser
+      operationId: SignUpUser
       parameters:
         - name: username
           in: query
@@ -804,16 +804,6 @@ paths:
             items:
               type: string
             example: ["java", "python"]
-      requestBody:
-        description: search phrase
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Search'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Search'
-        required: true
       responses:
         '200':
           description: successful operation
@@ -966,12 +956,16 @@ components:
           example: 1791
         QuestionsAsked:
           type: array
+          items:
+            type: string
           example: ["71932", "71933"]
         NumberOfQuestionsAsked:
           type: integer
           example: 2
         AnswersGiven:
           type: array
+          items:
+            type: string
           example: ["71932", "71933"]
         NumberOfAnswersGiven:
           type: integer
@@ -988,12 +982,16 @@ components:
       properties:
         searchTags:
           type: array
+          items:
+            type: string
           example: ["java", "python"]
         searchSort:
           type: string
           example: "popular"
         searchResults:
           type: array
+          items:
+            type: string
           example: ["71932", "71933"]
         NumberOfSearchResults:
           type: integer
