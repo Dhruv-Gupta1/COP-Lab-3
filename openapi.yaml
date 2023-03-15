@@ -986,9 +986,6 @@ components:
     Search: 
       type: object
       properties:
-        searchId:
-          type: string
-          example: "71932"
         searchTags:
           type: array
           example: ["java", "python"]
