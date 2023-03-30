@@ -1,0 +1,312 @@
+.login-child,
+.login-inner,
+.login-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1512px;
+}
+.login-child {
+  background-color: var(--color-lightcyan);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+  height: 982px;
+}
+.login-inner,
+.login-item {
+  background-color: var(--color-darkslategray);
+  height: 75px;
+}
+.login-inner {
+  top: 10px;
+  left: 355px;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-white);
+  width: 902px;
+  height: 53px;
+}
+.search-here16 {
+  position: absolute;
+  top: 19px;
+  left: 450px;
+  display: inline-block;
+  width: 356px;
+  height: 38px;
+}
+.k20 {
+  font-weight: 700;
+}
+.querikorner20 {
+  position: absolute;
+  top: 19px;
+  left: 9px;
+  color: var(--color-white);
+  display: inline-block;
+  width: 177px;
+  height: 38px;
+  cursor: pointer;
+}
+.login-child1,
+.login-child2 {
+  left: 0;
+  background-color: var(--color-teal);
+  width: 225px;
+}
+.login-child1 {
+  position: absolute;
+  top: 75px;
+  height: 907px;
+}
+.login-child2 {
+  top: 225px;
+  height: 75px;
+}
+.home20,
+.login-child2,
+.login-child3 {
+  position: absolute;
+  cursor: pointer;
+}
+.login-child3 {
+  top: 150px;
+  left: 0;
+  background-color: var(--color-tan);
+  width: 225px;
+  height: 75px;
+}
+.home20 {
+  top: 168px;
+  left: 54px;
+  display: inline-block;
+  text-align: center;
+  width: 117px;
+}
+.login-child4,
+.login-child5,
+.login-child6 {
+  position: absolute;
+  top: 150px;
+  left: 222px;
+  background-color: var(--color-firebrick);
+  width: 3px;
+  height: 75px;
+}
+.login-child5,
+.login-child6 {
+  top: 300px;
+  left: 0;
+  background-color: var(--color-teal);
+  width: 225px;
+  cursor: pointer;
+}
+.login-child6 {
+  top: 375px;
+}
+.globe-icon20 {
+  position: absolute;
+  top: 250px;
+  left: 0;
+  width: 31px;
+  height: 26px;
+  object-fit: cover;
+}
+.questions21 {
+  position: absolute;
+  top: 245px;
+  left: 7px;
+  display: inline-block;
+  color: var(--color-navajowhite);
+  text-align: center;
+  width: 211px;
+  cursor: pointer;
+}
+.tags43 {
+  margin: 0;
+}
+.tags42,
+.users21 {
+  position: absolute;
+  display: inline-block;
+  color: var(--color-navajowhite);
+  text-align: center;
+  cursor: pointer;
+}
+.tags42 {
+  top: 313px;
+  left: 64px;
+  width: 96px;
+  height: 50px;
+}
+.users21 {
+  top: 387px;
+  left: 54px;
+  width: 116px;
+}
+.search-icon20 {
+  position: absolute;
+  top: 13px;
+  left: 375px;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+.login-child7 {
+  position: absolute;
+  top: 10px;
+  left: 1308px;
+  border-radius: var(--br-11xl);
+  background-color: var(--color-tan);
+  width: 173px;
+  height: 53px;
+}
+.login8 {
+  position: absolute;
+  top: 22px;
+  left: 1356px;
+  font-weight: 300;
+  display: inline-block;
+  width: 77px;
+  height: 32px;
+}
+.login-child8,
+.login-child9 {
+  position: absolute;
+  top: 299px;
+  left: 0;
+  width: 225px;
+  height: 2px;
+}
+.login-child9 {
+  top: 373px;
+}
+.component-child41 {
+  position: absolute;
+  height: 12.92%;
+  width: 18.96%;
+  top: 0;
+  right: 40.19%;
+  bottom: 87.08%;
+  left: 40.84%;
+}
+.component-child42,
+.component-child43 {
+  background-color: var(--color-azure-100);
+}
+.component-child42 {
+  position: absolute;
+  height: 80%;
+  width: 100%;
+  top: 20%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.25);
+}
+.component-child43 {
+  top: 36.39%;
+  bottom: 52.92%;
+}
+.component-child43,
+.component-child44,
+.component-child45 {
+  position: absolute;
+  height: 10.69%;
+  width: 85.09%;
+  right: 7.46%;
+  left: 7.46%;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.35);
+  border: 0.6px solid var(--color-gray-200);
+  box-sizing: border-box;
+}
+.component-child44 {
+  top: 78.33%;
+  bottom: 10.97%;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-steelblue);
+}
+.component-child45 {
+  top: 60.56%;
+  bottom: 28.75%;
+  background-color: var(--color-azure-100);
+}
+.log-in,
+.password1,
+.username1 {
+  position: absolute;
+  height: 6.94%;
+  width: 27.07%;
+  top: 28.75%;
+  left: 7.46%;
+  display: inline-block;
+}
+.log-in,
+.password1 {
+  top: 52.92%;
+}
+.log-in {
+  height: 6.67%;
+  width: 36.47%;
+  top: 80.83%;
+  left: 31.77%;
+  color: var(--color-white);
+  text-align: center;
+  cursor: pointer;
+}
+.logoprm-4-icon2 {
+  position: absolute;
+  height: 18.33%;
+  width: 24.15%;
+  top: -2.64%;
+  right: 36.3%;
+  bottom: 84.31%;
+  left: 39.55%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.rectangle-parent35 {
+  position: absolute;
+  top: 105px;
+  left: 554px;
+  width: 617px;
+  height: 720px;
+}
+.dont-have-a {
+  font-weight: 300;
+}
+.dont-have-a-container {
+  position: absolute;
+  top: 864px;
+  left: 635px;
+  display: inline-block;
+  width: 468px;
+  height: 36px;
+  cursor: pointer;
+}
+.logoprm-4-icon3 {
+  position: absolute;
+  height: 4.07%;
+  width: 2.98%;
+  top: 0;
+  right: 85.12%;
+  bottom: 95.93%;
+  left: 11.9%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.login7 {
+  position: relative;
+  background-color: var(--color-saddlebrown);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border: 0.5px solid var(--color-black);
+  box-sizing: border-box;
+  width: 100%;
+  height: 982px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-11xl);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}

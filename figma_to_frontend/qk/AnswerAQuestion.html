@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/AnswerAQuestion.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,600;0,700;0,900;1,200;1,400;1,700&display=swap"
+    />
+  </head>
+  <body>
+    <div class="answer-a-question">
+      <div class="answer-a-question-child"></div>
+      <div class="answer-a-question-item"></div>
+      <div class="answer-a-question-inner"></div>
+      <div class="search-here1">Search here</div>
+      <div class="querikorner1" id="queriKornerText">
+        <i>queri</i><i class="k1">K</i><i>orner</i>
+      </div>
+      <div class="answer-a-question-child1"></div>
+      <div class="answer-a-question-child2" id="rectangle4"></div>
+      <div class="answer-a-question-child3" id="rectangle5"></div>
+      <b class="home1" id="homeText">Home</b>
+      <div class="answer-a-question-child4"></div>
+      <div class="answer-a-question-child5" id="rectangle7"></div>
+      <div class="answer-a-question-child6" id="rectangle8"></div>
+      <img class="globe-icon1" alt="" src="./public/globe@2x.png" /><b
+        class="questions1"
+        id="questionsText"
+        >Questions</b
+      ><b class="tags2" id="tagsText"><p class="tags3">Tags</p></b
+      ><b class="users1" id="usersText">Users</b
+      ><img class="search-icon1" alt="" src="./public/search@2x.png" /><img
+        class="answer-a-question-child7"
+        alt=""
+        src="./public/line-17.svg"
+      /><img
+        class="answer-a-question-child8"
+        alt=""
+        src="./public/line-17.svg"
+      />
+      <div class="your-answer">Your Answer</div>
+      <div class="answer-a-question-child9"></div>
+      <div class="answer-a-question-child10" id="rectangle10"></div>
+      <div class="post-your-answer" id="postYourAnswer">Post your answer</div>
+      <div class="line-div"></div>
+      <div class="does-general-relativity">
+        Does General Relativity really predict black holes?
+      </div>
+      <div class="links">Links</div>
+      <div class="images">Images</div>
+      <div class="text">Text</div>
+      <div class="bold">Bold</div>
+      <i class="italic">Italic</i>
+      <div class="answer-a-question-child11"></div>
+      <div class="ellipse-parent">
+        <img
+          class="group-child"
+          alt=""
+          src="./public/ellipse-27@2x.png"
+          id="ellipseImage"
+        />
+        <div class="group-item" id="rectangle12"></div>
+        <div class="logout" id="logoutText">Logout</div>
+      </div>
+    </div>
+
+    <script>
+      var queriKornerText = document.getElementById("queriKornerText");
+      if (queriKornerText) {
+        queriKornerText.addEventListener("click", function (e) {
+          window.location.href = "./HomeLoggedIn.html";
+        });
+      }
+      
+      var rectangle4 = document.getElementById("rectangle4");
+      if (rectangle4) {
+        rectangle4.addEventListener("click", function (e) {
+          window.location.href = "./QuestionsloggedIn.html";
+        });
+      }
+      
+      var rectangle5 = document.getElementById("rectangle5");
+      if (rectangle5) {
+        rectangle5.addEventListener("click", function (e) {
+          window.location.href = "./HomeLoggedIn.html";
+        });
+      }
+      
+      var homeText = document.getElementById("homeText");
+      if (homeText) {
+        homeText.addEventListener("click", function (e) {
+          window.location.href = "./HomeLoggedIn.html";
+        });
+      }
+      
+      var rectangle7 = document.getElementById("rectangle7");
+      if (rectangle7) {
+        rectangle7.addEventListener("click", function (e) {
+          window.location.href = "./TagsLoggedIn.html";
+        });
+      }
+      
+      var rectangle8 = document.getElementById("rectangle8");
+      if (rectangle8) {
+        rectangle8.addEventListener("click", function (e) {
+          window.location.href = "./UsersLoggedIn.html";
+        });
+      }
+      
+      var questionsText = document.getElementById("questionsText");
+      if (questionsText) {
+        questionsText.addEventListener("click", function (e) {
+          window.location.href = "./QuestionsloggedIn.html";
+        });
+      }
+      
+      var tagsText = document.getElementById("tagsText");
+      if (tagsText) {
+        tagsText.addEventListener("click", function (e) {
+          window.location.href = "./TagsLoggedIn.html";
+        });
+      }
+      
+      var usersText = document.getElementById("usersText");
+      if (usersText) {
+        usersText.addEventListener("click", function (e) {
+          window.location.href = "./UsersLoggedIn.html";
+        });
+      }
+      
+      var rectangle10 = document.getElementById("rectangle10");
+      if (rectangle10) {
+        rectangle10.addEventListener("click", function (e) {
+          window.location.href = "./QuestionsanswerLoggedIn.html";
+        });
+      }
+      
+      var postYourAnswer = document.getElementById("postYourAnswer");
+      if (postYourAnswer) {
+        postYourAnswer.addEventListener("click", function (e) {
+          window.location.href = "./QuestionsanswerLoggedIn.html";
+        });
+      }
+      
+      var ellipseImage = document.getElementById("ellipseImage");
+      if (ellipseImage) {
+        ellipseImage.addEventListener("click", function (e) {
+          window.location.href = "./UserPage.html";
+        });
+      }
+      
+      var rectangle12 = document.getElementById("rectangle12");
+      if (rectangle12) {
+        rectangle12.addEventListener("click", function (e) {
+          window.location.href = "./HomeNewUser.html";
+        });
+      }
+      
+      var logoutText = document.getElementById("logoutText");
+      if (logoutText) {
+        logoutText.addEventListener("click", function (e) {
+          window.location.href = "./HomeNewUser.html";
+        });
+      }
+      </script>
+  </body>
+</html>

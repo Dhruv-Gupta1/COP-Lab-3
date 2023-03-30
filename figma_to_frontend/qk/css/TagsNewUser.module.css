@@ -1,0 +1,477 @@
+.tags-new-user-child,
+.tags-new-user-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-lightcyan);
+  width: 1512px;
+  height: 982px;
+}
+.tags-new-user-item {
+  background-color: var(--color-darkslategray);
+  height: 75px;
+}
+.tags-new-user-inner {
+  position: absolute;
+  top: 10px;
+  left: 355px;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-white);
+  width: 902px;
+  height: 53px;
+}
+.search-here18 {
+  position: absolute;
+  top: 19px;
+  left: 450px;
+  font-size: var(--font-size-11xl);
+  display: inline-block;
+  width: 356px;
+  height: 38px;
+}
+.k22 {
+  font-weight: 700;
+}
+.querikorner22 {
+  position: absolute;
+  top: 19px;
+  left: 9px;
+  font-size: var(--font-size-11xl);
+  color: var(--color-white);
+  display: inline-block;
+  width: 177px;
+  height: 38px;
+  cursor: pointer;
+}
+.tags-new-user-child1 {
+  position: absolute;
+  top: 75px;
+  left: 0;
+  background-color: var(--color-teal);
+  width: 225px;
+  height: 907px;
+}
+.tags-new-user-child2 {
+  top: 225px;
+  left: 0;
+  background-color: var(--color-teal);
+  width: 222px;
+  height: 75px;
+}
+.home22,
+.tags-new-user-child2,
+.tags-new-user-child3 {
+  position: absolute;
+  cursor: pointer;
+}
+.tags-new-user-child3 {
+  top: 150px;
+  left: 0;
+  background-color: var(--color-teal);
+  width: 225px;
+  height: 75px;
+}
+.home22 {
+  top: 168px;
+  left: 54px;
+  font-size: var(--font-size-11xl);
+  display: inline-block;
+  color: var(--color-navajowhite);
+  text-align: center;
+  width: 117px;
+}
+.tags-new-user-child4,
+.tags-new-user-child5 {
+  position: absolute;
+  top: 300px;
+  left: 0;
+  background-color: var(--color-tan);
+  width: 225px;
+  height: 75px;
+}
+.tags-new-user-child5 {
+  top: 375px;
+  background-color: var(--color-teal);
+  cursor: pointer;
+}
+.globe-icon22 {
+  position: absolute;
+  top: 246px;
+  left: 0;
+  width: 31px;
+  height: 26px;
+  object-fit: cover;
+}
+.questions23 {
+  position: absolute;
+  top: 245px;
+  left: 7px;
+  font-size: var(--font-size-11xl);
+  display: inline-block;
+  color: var(--color-navajowhite);
+  text-align: center;
+  width: 211px;
+  cursor: pointer;
+}
+.tags47 {
+  margin: 0;
+}
+.tags46,
+.users24 {
+  position: absolute;
+  font-size: var(--font-size-11xl);
+  display: inline-block;
+  text-align: center;
+}
+.tags46 {
+  top: 313px;
+  left: 64px;
+  width: 96px;
+  height: 50px;
+}
+.users24 {
+  top: 387px;
+  left: 54px;
+  color: var(--color-navajowhite);
+  width: 116px;
+  cursor: pointer;
+}
+.search-icon23 {
+  position: absolute;
+  top: 13px;
+  left: 375px;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+.login10,
+.tags-new-user-child6 {
+  position: absolute;
+  cursor: pointer;
+}
+.tags-new-user-child6 {
+  top: 10px;
+  left: 1308px;
+  border-radius: var(--br-11xl);
+  background-color: var(--color-tan);
+  width: 173px;
+  height: 53px;
+}
+.login10 {
+  top: 22px;
+  left: 1356px;
+  font-size: var(--font-size-11xl);
+  font-weight: 300;
+  display: inline-block;
+  width: 77px;
+  height: 32px;
+}
+.tags-new-user-child7 {
+  position: absolute;
+  top: 299px;
+  left: 0;
+  width: 225px;
+  height: 2px;
+}
+.tags-new-user-child8,
+.tags-new-user-child9 {
+  position: absolute;
+  top: 225px;
+  left: 0;
+  width: 225px;
+  height: 1px;
+}
+.tags-new-user-child9 {
+  top: 373px;
+  height: 2px;
+}
+.tags-new-user-child10 {
+  position: absolute;
+  top: 299px;
+  left: 222px;
+  background-color: var(--color-firebrick);
+  width: 3px;
+  height: 75px;
+}
+.tags48 {
+  position: absolute;
+  top: 119px;
+  left: 283px;
+  font-size: var(--font-size-31xl);
+  font-weight: 600;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
+}
+.tags-new-user-child11 {
+  position: absolute;
+  top: 205px;
+  left: 259px;
+  border-radius: var(--br-8xs);
+  background-color: var(--color-azure);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+  border: 0.5px solid var(--color-gray-400);
+  box-sizing: border-box;
+  width: 232px;
+  height: 39px;
+}
+.search-tag1 {
+  position: absolute;
+  top: 209px;
+  left: 310px;
+  text-align: center;
+}
+.search-icon24 {
+  position: absolute;
+  top: 209px;
+  left: 268px;
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+}
+.tags-new-user-child12,
+.tags-new-user-child13,
+.tags-new-user-child14 {
+  top: 210px;
+  background-color: var(--color-azure);
+  border: 0.5px solid var(--color-black);
+  box-sizing: border-box;
+  height: 39px;
+}
+.tags-new-user-child12 {
+  position: absolute;
+  left: 1264px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+  width: 114px;
+}
+.tags-new-user-child13,
+.tags-new-user-child14 {
+  width: 107px;
+}
+.tags-new-user-child13 {
+  position: absolute;
+  left: 1157px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+}
+.tags-new-user-child14 {
+  left: 1050px;
+}
+.tags-lelo-child24,
+.tags-lelo-child25,
+.tags-new-user-child14 {
+  position: absolute;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+}
+.tags-lelo-child24 {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-gainsboro);
+  border: 0.5px solid var(--color-black);
+  box-sizing: border-box;
+}
+.tags-lelo-child25 {
+  height: 15.72%;
+  width: 47.68%;
+  top: 3.93%;
+  right: 48.5%;
+  bottom: 80.35%;
+  left: 3.81%;
+  border-radius: var(--br-8xs);
+  background-color: var(--color-steelblue);
+}
+.javascript13 {
+  position: absolute;
+  top: 5.24%;
+  left: 9.81%;
+}
+.for-questions-about13 {
+  position: absolute;
+  height: 61.14%;
+  width: 86.92%;
+  top: 30.57%;
+  left: 5.45%;
+  font-size: var(--font-size-xl);
+  display: inline-block;
+}
+.tags-lelo13 {
+  position: absolute;
+  top: 300px;
+  left: 261px;
+  width: 367px;
+  height: 229px;
+}
+.tags-lelo15,
+.tags-lelo16,
+.tags-lelo17,
+.tags-lelo18,
+.tags-lelo19 {
+  position: absolute;
+  top: 623px;
+  left: 1089px;
+  width: 367px;
+  height: 229px;
+}
+.tags-lelo16,
+.tags-lelo17,
+.tags-lelo18,
+.tags-lelo19 {
+  left: 675px;
+}
+.tags-lelo17,
+.tags-lelo18,
+.tags-lelo19 {
+  left: 261px;
+}
+.tags-lelo18,
+.tags-lelo19 {
+  top: 301px;
+  left: 1089px;
+}
+.tags-lelo19 {
+  top: 299px;
+  left: 675px;
+}
+.next-page-des-child46 {
+  position: absolute;
+  height: 62.5%;
+  width: 12.54%;
+  top: 29.69%;
+  right: 87.46%;
+  bottom: 7.81%;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.div132 {
+  position: absolute;
+  top: 37.5%;
+  left: 4.39%;
+  font-weight: 300;
+}
+.next-page-des-child47 {
+  position: absolute;
+  height: 62.5%;
+  width: 12.54%;
+  top: 29.69%;
+  right: 54.23%;
+  bottom: 7.81%;
+  left: 33.23%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.div133 {
+  position: absolute;
+  top: 37.5%;
+  left: 36.99%;
+  font-weight: 300;
+}
+.next-page-des-child48 {
+  position: absolute;
+  height: 62.5%;
+  width: 12.54%;
+  top: 29.69%;
+  right: 70.85%;
+  bottom: 7.81%;
+  left: 16.61%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.div134,
+.div135 {
+  position: absolute;
+}
+.div134 {
+  top: 37.5%;
+  left: 21%;
+  font-weight: 300;
+}
+.div135 {
+  height: 68.75%;
+  width: 21.94%;
+  top: 0;
+  left: 52.35%;
+  font-size: var(--font-size-29xl);
+  text-align: left;
+  display: inline-block;
+}
+.next-page-des-child49 {
+  position: absolute;
+  height: 62.5%;
+  width: 30.09%;
+  top: 29.69%;
+  right: 0;
+  bottom: 7.81%;
+  left: 69.91%;
+  border-radius: var(--br-21xl);
+  background-color: var(--color-gainsboro);
+  border: 0.5px solid var(--color-black);
+  box-sizing: border-box;
+}
+.next12 {
+  position: absolute;
+  height: 62.5%;
+  width: 22.57%;
+  top: 37.5%;
+  left: 74.29%;
+  display: inline-block;
+}
+.next-page-des12 {
+  position: absolute;
+  top: 903px;
+  left: 1104px;
+  width: 319px;
+  height: 64px;
+  text-align: center;
+}
+.logoprm-3-icon17 {
+  position: absolute;
+  height: 4.07%;
+  width: 2.98%;
+  top: 0;
+  right: 85.12%;
+  bottom: 95.93%;
+  left: 11.9%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.name1,
+.new1,
+.popular1 {
+  position: absolute;
+  top: 215px;
+  left: 1065px;
+  display: inline-block;
+  width: 92px;
+  height: 28px;
+}
+.new1,
+.popular1 {
+  left: 1179px;
+  width: 90px;
+  height: 24px;
+}
+.popular1 {
+  top: 217px;
+  left: 1278px;
+  width: 89px;
+  height: 25px;
+}
+.tags-new-user {
+  position: relative;
+  background-color: var(--color-saddlebrown);
+  width: 100%;
+  height: 982px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-5xl);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}

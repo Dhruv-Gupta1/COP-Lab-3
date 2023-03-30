@@ -1,0 +1,550 @@
+.search-question-page-2logged-child,
+.search-question-page-2logged-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-lightcyan);
+  width: 1512px;
+  height: 982px;
+}
+.search-question-page-2logged-item {
+  background-color: var(--color-darkslategray);
+  height: 75px;
+}
+.search-question-page-2logged-inner {
+  position: absolute;
+  top: 10px;
+  left: 355px;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-white);
+  width: 902px;
+  height: 53px;
+}
+.what-is-string4 {
+  position: absolute;
+  top: 19px;
+  left: 450px;
+  text-align: left;
+  display: inline-block;
+  width: 356px;
+  height: 38px;
+}
+.k11 {
+  font-weight: 700;
+}
+.querikorner11 {
+  position: absolute;
+  top: 19px;
+  left: 9px;
+  color: var(--color-white);
+  text-align: left;
+  display: inline-block;
+  width: 177px;
+  height: 38px;
+  text-shadow: 0.6000000238418579px 0.6000000238418579px 2px #fff;
+  cursor: pointer;
+}
+.search-question-page-2logged-child1 {
+  position: absolute;
+  top: 75px;
+  left: 0;
+  background-color: var(--color-teal);
+  width: 225px;
+  height: 907px;
+}
+.search-question-page-2logged-child2,
+.search-question-page-2logged-child3 {
+  position: absolute;
+  top: 225px;
+  left: 0;
+  background-color: var(--color-teal);
+  width: 225px;
+  height: 75px;
+  cursor: pointer;
+}
+.search-question-page-2logged-child3 {
+  top: 150px;
+}
+.home11 {
+  position: absolute;
+  top: 168px;
+  left: 54px;
+  display: inline-block;
+  color: var(--color-navajowhite);
+  width: 117px;
+  cursor: pointer;
+}
+.search-question-page-2logged-child4 {
+  position: absolute;
+  top: 150px;
+  left: 222px;
+  background-color: var(--color-teal);
+  width: 3px;
+  height: 75px;
+}
+.search-question-page-2logged-child5,
+.search-question-page-2logged-child6 {
+  position: absolute;
+  top: 300px;
+  left: 0;
+  background-color: var(--color-teal);
+  width: 225px;
+  height: 75px;
+  cursor: pointer;
+}
+.search-question-page-2logged-child6 {
+  top: 375px;
+}
+.globe-icon11 {
+  position: absolute;
+  top: 246px;
+  left: 0;
+  width: 31px;
+  height: 26px;
+  object-fit: cover;
+}
+.questions11 {
+  position: absolute;
+  top: 245px;
+  left: 7px;
+  display: inline-block;
+  color: var(--color-navajowhite);
+  width: 211px;
+  cursor: pointer;
+}
+.tags24 {
+  margin: 0;
+}
+.tags23,
+.users12 {
+  position: absolute;
+  display: inline-block;
+  color: var(--color-navajowhite);
+  cursor: pointer;
+}
+.tags23 {
+  top: 313px;
+  left: 64px;
+  width: 96px;
+  height: 50px;
+}
+.users12 {
+  top: 387px;
+  left: 54px;
+  width: 116px;
+}
+.search-icon13 {
+  position: absolute;
+  top: 13px;
+  left: 375px;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+.search-question-page-2logged-child7 {
+  position: absolute;
+  top: 299px;
+  left: 0;
+  width: 225px;
+  height: 2px;
+}
+.search-question-page-2logged-child8,
+.search-question-page-2logged-child9 {
+  position: absolute;
+  top: 223px;
+  left: 0;
+  width: 225px;
+  height: 2px;
+}
+.search-question-page-2logged-child9 {
+  top: 373px;
+}
+.search-question-page-2logged-child10 {
+  position: absolute;
+  top: 226px;
+  left: 224.5px;
+  border-top: 1px solid var(--color-black);
+  box-sizing: border-box;
+  width: 1288px;
+  height: 1px;
+}
+.search-question-page-2logged-child11 {
+  position: absolute;
+  top: 1103px;
+  left: 237.5px;
+  width: 1215px;
+  height: 168px;
+}
+.group-child88,
+.question-box15 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1218px;
+  height: 165px;
+}
+.group-child88 {
+  height: 100%;
+  width: 100%;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-gray-500);
+}
+.what-is-string5 {
+  position: absolute;
+  height: 63.03%;
+  width: 85.88%;
+  top: 9.09%;
+  left: 11.99%;
+  font-size: var(--font-size-23xl);
+  color: var(--color-steelblue-100);
+  text-align: left;
+  display: inline-block;
+}
+.group-child89,
+.group-child90 {
+  position: absolute;
+  height: 21.21%;
+  width: 11.49%;
+  top: 70.91%;
+  right: 76.44%;
+  bottom: 7.88%;
+  left: 12.07%;
+  border-radius: var(--br-mini);
+  background-color: var(--color-gainsboro-100);
+}
+.group-child90 {
+  right: 61.58%;
+  left: 26.93%;
+}
+.answer19,
+.java3,
+.string1,
+.vote15 {
+  position: absolute;
+  height: 14.55%;
+  width: 8.37%;
+  top: 73.94%;
+  left: 13.71%;
+  display: inline-block;
+}
+.answer19,
+.string1,
+.vote15 {
+  height: 13.94%;
+  width: 8.87%;
+  top: 74.55%;
+  left: 28.33%;
+}
+.answer19,
+.vote15 {
+  height: 33.33%;
+  width: 9.52%;
+  top: 15.15%;
+  left: 0.49%;
+  font-size: var(--font-size-5xl);
+  font-weight: 600;
+  color: var(--color-darkslateblue);
+  text-align: right;
+}
+.answer19 {
+  height: 27.27%;
+  top: 61.21%;
+  color: var(--color-darkseagreen);
+}
+.group-child91 {
+  position: absolute;
+  height: 73.34%;
+  width: 0.08%;
+  top: 8.78%;
+  right: 89.04%;
+  bottom: 17.87%;
+  left: 10.88%;
+  border-right: 1px solid var(--color-black);
+  box-sizing: border-box;
+}
+.question-box-parent12 {
+  position: absolute;
+  top: 763px;
+  left: 260px;
+  width: 1218px;
+  height: 165px;
+  font-size: var(--font-size-xl);
+}
+.string-theory7 {
+  height: 14.55%;
+  width: 8.37%;
+  top: 73.94%;
+  left: 13.71%;
+  font-size: var(--font-size-base);
+}
+.answer20,
+.quantum7,
+.string-theory7,
+.vote16 {
+  position: absolute;
+  display: inline-block;
+}
+.quantum7 {
+  height: 13.94%;
+  width: 8.87%;
+  top: 74.55%;
+  left: 28.33%;
+  font-size: var(--font-size-xl);
+}
+.answer20,
+.vote16 {
+  height: 33.33%;
+  width: 9.52%;
+  top: 15.15%;
+  left: 0.49%;
+  font-weight: 600;
+  color: var(--color-darkslateblue);
+  text-align: right;
+}
+.answer20 {
+  height: 27.27%;
+  top: 61.21%;
+  color: var(--color-darkseagreen);
+}
+.question-box-parent13 {
+  position: absolute;
+  top: 585px;
+  left: 260px;
+  width: 1218px;
+  height: 165px;
+  font-size: var(--font-size-5xl);
+}
+.group-child97 {
+  position: absolute;
+  height: 21.21%;
+  width: 10.84%;
+  top: 70.91%;
+  right: 45.89%;
+  bottom: 7.88%;
+  left: 43.27%;
+  border-radius: var(--br-mini);
+  background-color: var(--color-gainsboro-100);
+}
+.string-theory8 {
+  position: absolute;
+  height: 14.55%;
+  width: 8.95%;
+  top: 73.94%;
+  left: 44.58%;
+  font-size: var(--font-size-base);
+  display: inline-block;
+}
+.question-box-parent14,
+.question-box-parent15 {
+  position: absolute;
+  top: 405px;
+  left: 260px;
+  width: 1218px;
+  height: 165px;
+  font-size: var(--font-size-xl);
+}
+.question-box-parent15 {
+  top: 233px;
+}
+.div76,
+.next-page-des-child18 {
+  position: absolute;
+  cursor: pointer;
+}
+.next-page-des-child18 {
+  height: 62.5%;
+  width: 12.54%;
+  top: 29.69%;
+  right: 87.46%;
+  bottom: 7.81%;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.div76 {
+  top: 37.5%;
+  left: 4.39%;
+  font-weight: 300;
+}
+.next-page-des-child19 {
+  position: absolute;
+  height: 62.5%;
+  width: 12.54%;
+  top: 29.69%;
+  right: 54.23%;
+  bottom: 7.81%;
+  left: 33.23%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.div77 {
+  position: absolute;
+  top: 37.5%;
+  left: 36.99%;
+  font-weight: 300;
+}
+.next-page-des-child20 {
+  position: absolute;
+  height: 62.5%;
+  width: 12.54%;
+  top: 29.69%;
+  right: 70.85%;
+  bottom: 7.81%;
+  left: 16.61%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.div78,
+.div79 {
+  position: absolute;
+}
+.div78 {
+  top: 37.5%;
+  left: 21%;
+  font-weight: 300;
+}
+.div79 {
+  height: 68.75%;
+  width: 21.94%;
+  top: 0;
+  left: 52.35%;
+  font-size: var(--font-size-29xl);
+  text-align: left;
+  display: inline-block;
+}
+.next-page-des-child21 {
+  position: absolute;
+  height: 62.5%;
+  width: 30.09%;
+  top: 29.69%;
+  right: 0;
+  bottom: 7.81%;
+  left: 69.91%;
+  border-radius: var(--br-21xl);
+  background-color: var(--color-gainsboro);
+  border: 0.5px solid var(--color-black);
+  box-sizing: border-box;
+}
+.next5 {
+  position: absolute;
+  height: 62.5%;
+  width: 22.57%;
+  top: 37.5%;
+  left: 74.29%;
+  display: inline-block;
+}
+.next-page-des5 {
+  position: absolute;
+  top: 915px;
+  left: 1136px;
+  width: 319px;
+  height: 64px;
+  font-size: var(--font-size-5xl);
+}
+.search-question-page-2logged-child12 {
+  position: absolute;
+  height: 4.07%;
+  width: 6.35%;
+  top: 95.11%;
+  right: 25.6%;
+  bottom: 0.81%;
+  left: 68.06%;
+  border-radius: var(--br-21xl);
+  background-color: var(--color-gainsboro);
+  border: 0.5px solid var(--color-black);
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.prev,
+.results {
+  position: absolute;
+  display: inline-block;
+}
+.prev {
+  height: 4.07%;
+  width: 4.76%;
+  top: 95.62%;
+  left: 68.98%;
+  font-size: var(--font-size-5xl);
+  cursor: pointer;
+}
+.results {
+  top: 108px;
+  left: 266px;
+  font-size: var(--font-size-51xl);
+  text-align: left;
+  width: 409px;
+  height: 80px;
+}
+.group-child106 {
+  top: 0;
+  left: 0;
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+}
+.group-child106,
+.group-child107,
+.logout8 {
+  position: absolute;
+  cursor: pointer;
+}
+.group-child107 {
+  top: 11px;
+  left: 94px;
+  border-radius: var(--br-11xl);
+  background-color: var(--color-tan);
+  width: 90px;
+  height: 46px;
+}
+.logout8 {
+  top: 25px;
+  left: 114px;
+}
+.ellipse-parent6 {
+  position: absolute;
+  top: 5px;
+  left: 1328px;
+  width: 184px;
+  height: 70px;
+  text-align: left;
+  font-size: var(--font-size-mini);
+}
+.logoprm-3-icon7 {
+  position: absolute;
+  height: 4.07%;
+  width: 2.98%;
+  top: 0;
+  right: 85.12%;
+  bottom: 95.93%;
+  left: 11.9%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.topological1 {
+  position: absolute;
+  top: 357px;
+  left: 801px;
+  font-size: var(--font-size-xl);
+  display: inline-block;
+  width: 105px;
+  height: 22px;
+}
+.search-question-page-2logged {
+  position: relative;
+  background-color: var(--color-saddlebrown);
+  width: 100%;
+  height: 982px;
+  overflow: hidden;
+  text-align: center;
+  font-size: var(--font-size-11xl);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}
