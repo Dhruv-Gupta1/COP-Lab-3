@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+        <title>{{ title }} - My Website</title>
+    {% else %}
+        <title>My Website</title>
+    {% endif %}
+</head>
+<body>
+    <h1>Base Template</h1>
+    {% block content %}
+        <p>This is the base template</p>
+    {% endblock %}
+    <!--  A button that links to login.html -->
+    <a href="{{ url_for('login') }}">Login</a>
+    <a href="{{ url_for('signup') }}">Signup</a>
+    <a href="{{ url_for('tags') }}">Tags</a>
+    <a href="{{ url_for('base') }}">Base</a>
+</body>
+</html>

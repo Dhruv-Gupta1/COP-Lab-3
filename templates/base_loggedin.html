@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+        <title>{{ title }} - My Website</title>
+    {% else %}
+        <title>My Website</title>
+    {% endif %}
+</head>
+<body>
+    <h1>Base Template</h1>
+    {% block content %}
+        <p>This is the logged-in base template</p>
+    {% endblock %}
+    {% set var = "username" %}
+    <!--  A button that links to login.html -->
+    <a href="{{ url_for('tags') }}">{{ username }}<a>
+    <a href="{{ url_for('base') }}">Logout</a>
+    <a href="{{ url_for('tags2',username = username) }}">Tags</a>
+    <a href="{{ url_for('base_loggedin',username=username) }}">Base</a>
+</body>
+</html>
