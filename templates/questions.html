@@ -7,15 +7,13 @@
 
 {% for question in questions %}
     <div class="question">
-        <h4>{{ question[1] }}</h4>
+        <a href="{{ url_for('quesdetail',QuesId=question[0])}}">{{ question[1] }}</a>
         <p>{{ question[2] }}</p>
         <p>{{ question[3] }}</p>
         <p>{{ question[4] }}</p>
-        <p id="result">{{ question[5] }}</p>
+        <p>{{ question[7] }}</p>
+        <p>{{ question[11] }}</p>
         
-        
-        
-
 {% endfor %}
 
 {% endblock %}

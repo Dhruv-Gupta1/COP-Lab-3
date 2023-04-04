@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+
+{% block title %}Question{% endblock %}
+{% block content %}
+
+<h2>Title :{{ details[0][6] }}</h2>
+<h3>Description :{{ details[0][7] }}</h3>
+<h3>score :{{ details[0][8] }}</h3>
+<h3>Tags :{{ details[0][9] }}</h3>
+
+<!-- WHat if no answer? -->
+{% for answer in details %}
+<p>Answer :{{ answer[1] }}</p>
+<p>Score :{{ answer[2] }}</p>
+<p>QuesId :{{ answer[3] }}</p>
+<p>UserId :{{ answer[4] }}</p>
+<p>UserName :{{ answer[12] }}</p>
+<p>User Rating :{{ answer[16] }}</p>
+{% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,45 @@
+
+{% extends "base_loggedin.html" %}
+
+{% block title %}Question{% endblock %}
+{% block content %}
+<h2>Title :{{ details[0][6] }}</h2>
+<h3>Description :{{ details[0][7] }}</h3>
+<h3>score :{{ details[0][8] }}</h3>
+<h3>Tags :{{ details[0][9] }}</h3>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Upvote</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Downvote</button>
+
+
+<!-- WHat if no answer? -->
+{% for answer in details %}
+<p>Answer :{{ answer[1] }}</p>
+<p>Score :{{ answer[2] }}</p>
+<p>AnsId :{{ answer[3] }}</p>
+<p>UserId :{{ answer[4] }}</p>
+<p>UserName :{{ answer[12] }}</p>
+<p>User Rating :{{ answer[16] }}</p>
+<button type="button" class="btn btn-primary" onclick= "upvoteAnswer({{ answer[3] }})">Upvote</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Downvote</button>
+
+
+
+<!-- "{{ url_for('upvoteanswer',AnsId=answer[3],QuesId=details[0][5]) }}" -->
+{% endfor %}
+
+
+<script>
+    function upvoteAnswer(AnsId) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/upvoteanswer/' + AnsId);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          window.location.href = xhr.responseText; // redirect to the returned URL
+        }
+      };
+      xhr.send();
+    }
+    </script>
+
+
+{% endblock %}

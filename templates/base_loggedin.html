@@ -17,10 +17,11 @@
     {% endblock %}
     {% set var = "username" %}
     <!--  A button that links to login.html -->
-    <a href="{{ url_for('tags') }}">{{ username }}<a>
+    <a href="{{ url_for('myprofile',username=username) }}">{{ username }}<a>
     <a href="{{ url_for('base') }}">Logout</a>
     <a href="{{ url_for('tags2',username = username) }}">Tags</a>
     <a href="{{ url_for('base_loggedin',username=username) }}">Base</a>
     <a href="{{ url_for('questions2',username=username) }}">Questions</a>
+    <a href="{{ url_for('users2',username=username)}}">Users</a>
 </body>
 </html>
