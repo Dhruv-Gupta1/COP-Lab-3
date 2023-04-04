@@ -1,5 +1,5 @@
 
-{% extends "base.html" %}
+{% extends "base_loggedin.html" %}
 
 {% block title %}Questions{% endblock %}
 
@@ -11,11 +11,8 @@
         <p>{{ question[2] }}</p>
         <p>{{ question[3] }}</p>
         <p>{{ question[4] }}</p>
-        <p id="result">{{ question[5] }}</p>
         
-        
-        
-
+    </div>
 {% endfor %}
 
 {% endblock %}
