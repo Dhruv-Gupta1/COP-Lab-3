@@ -49,6 +49,7 @@ def tags2(username):
             sort="TagId"
         cur.execute("SELECT * FROM tags ORDER BY "+sort)
         tags = cur.fetchall()
+        cur.close()
         return render_template('tags_loggedin.html', tags=tags,username=username)
     return render_template('tags_loggedin.html',username=username)
 
@@ -64,6 +65,7 @@ def tags():
             
         cur.execute("SELECT * FROM tags ORDER BY "+sort)
         tags = cur.fetchall()
+        cur.close()
         return render_template('tags.html', tags=tags)
     return render_template('tags.html')
 
@@ -88,6 +90,7 @@ def questions():
         cur = mysql.connection.cursor()
         cur.execute("SELECT q.*,u.* FROM questions q INNER JOIN users u ON q.UserId=u.UserId;")
         questions = cur.fetchall()
+        cur.close()
         return render_template('questions.html', questions=questions)
     return render_template('questions.html')
 
@@ -97,6 +100,7 @@ def questions2(username):
         cur = mysql.connection.cursor()
         cur.execute("SELECT q.*,u.* FROM questions q INNER JOIN users u ON q.UserId=u.UserId;")
         questions = cur.fetchall()
+        cur.close()
         return render_template('questions_loggedin.html', questions=questions,username=username)
     return render_template('questions_loggedin.html',username=username)
 
@@ -106,6 +110,7 @@ def users():
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM users")
         users = cur.fetchall()
+        cur.close()
         return render_template('users.html', users=users)
     return render_template('users.html')
 
@@ -115,6 +120,7 @@ def users2(username):
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM users")
         users = cur.fetchall()
+        cur.close()
         return render_template('users_loggedin.html', users=users,username=username)
     return render_template('users_loggedin.html',username=username)
 
@@ -124,6 +130,7 @@ def myprofile(username):
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM users WHERE UserName = %s", (username,))
         details = cur.fetchall()
+        cur.close()
         return render_template('myprofile.html', details=details,username=username)
     return render_template('myprofile.html',username=username)
     
@@ -135,6 +142,7 @@ def quesdetail(QuesId):
         var = "SELECT a.*,q.* FROM questions q INNER JOIN answers a ON q.QuesId = a.QuesId WHERE q.QuesId="
         cur.execute(var + str(QuesId) + ";")
         details = cur.fetchall()
+        cur.close()
         return render_template('quesdetail.html', details=details)
     return render_template('quesdetail.html')
 
@@ -145,6 +153,7 @@ def quesdetail2(QuesId,username):
         var = "SELECT a.*,q.*,u.* FROM questions q JOIN answers a ON q.QuesId = a.QuesId  JOIN users u ON u.UserId=a.UserId WHERE q.QuesId="
         cur.execute(var + str(QuesId) + ";")
         details = cur.fetchall()
+        cur.close()
         return render_template('quesdetail_loggedin.html', details=details,username=username)
     return render_template('quesdetail_loggedin.html',username=username)
 
