@@ -1,0 +1,23 @@
+{% extends "base_loggedin.html" %}
+
+{% block title %}Ask a Question{% endblock %}
+
+{% block content %}
+
+<h1>Ask A question</h1>
+<form id="ask-form" method="POST" action="/ask">
+    <label for="QuesTitle">Give a title to your question:</label>
+    <input type="text" id="QuesTitle" name="QuesTitle" required/>
+    <br>
+    <label for="QuesDesc">Give your detail Description:</label>
+    <input type="text" id="QuesDesc" name="QuesDesc" required/>
+    <br>
+    <label for="QuesTags">Select Tags:</label>
+    <select name="QuesTags" id = "QuesTags" multiple>
+        <option value="php">php</option>
+        <option value="mysql">mysql</option>
+    </select>
+    <button type="submit">Ask</button>
+  </form>
+
+{% endblock %}

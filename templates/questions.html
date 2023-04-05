@@ -1,13 +1,20 @@
-
+{% if session.loggedin  %}
+{% extends "base_loggedin.html" %}
+{% else %}
 {% extends "base.html" %}
+{% endif %}
 
 {% block title %}Questions{% endblock %}
 
 {% block content %}
 
+<h1>Questions</h1>
+<a href="/questions/QuesTitle" class="btn btn-primary">Sort by Title</a>
+<a href="/questions/QuesScore" class="btn btn-primary">Sort by Q Score</a>
+
 {% for question in questions %}
     <div class="question">
-        <a href="{{ url_for('quesdetail',QuesId=question[0])}}">{{ question[1] }}</a>
+        <a href="{{ url_for('quesdetail',id=question[0])}}">{{ question[1] }}</a>
         <p>{{ question[2] }}</p>
         <p>{{ question[3] }}</p>
         <p>{{ question[4] }}</p>

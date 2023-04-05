@@ -1,9 +1,14 @@
+{% if session.loggedin  %}
+{% extends "base_loggedin.html" %}
+{% else %}
 {% extends "base.html" %}
-
-{% block title %}Login{% endblock %}
+{% endif %}
 
 {% block content %}
 
+<h1>Users</h1>
+<a href="/users/Rating" class="btn btn-primary">Sort by score</a>
+<a href="/users/UserName" class="btn btn-primary">Sort by name</a>
 
 {% for user in users %}
     <div class="users">
@@ -11,7 +16,6 @@
         <p>{{ user[2] }}</p>
         <p>{{ user[3] }}</p>
         <p>{{ user[5] }}</p>
-        
     </div>
 {% endfor %}
     

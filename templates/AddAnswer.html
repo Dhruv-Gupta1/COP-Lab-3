@@ -1,0 +1,16 @@
+{%  extends "base_loggedin.html" %}
+
+{%  block title %}Add Answer{%  endblock %}
+
+{%  block content %}
+
+<h1> Add a Answer </h1>
+
+<form id="add-answer-form" method="POST" action="/answer/{{id}}">
+        <label for="AnsDesc">Give your detail Description:</label>
+        <input type="text" id="AnsDesc" name="AnsDesc" required/>
+        <br>
+        <button type="submit">Add Answer</button>
+</form>
+
+{% endblock %}

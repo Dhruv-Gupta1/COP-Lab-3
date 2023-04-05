@@ -1,8 +1,12 @@
-from flask import Flask, render_template,url_for,request,jsonify
+from flask import Flask, render_template,url_for,request,jsonify,session,redirect,json
 from flask_mysqldb import MySQL
 import yaml
+import re
+import base64
 
 app = Flask(__name__, static_folder='static')
+
+app.secret_key = "Sakata-Gintoki"
 
 db = yaml.load(open('db.yaml'),Loader=yaml.FullLoader)
 app.config['MYSQL_HOST'] = db['mysql_host']
@@ -12,173 +16,179 @@ app.config['MYSQL_DB'] = db['mysql_db']
 
 mysql = MySQL(app)
 
-@app.route('/')
-def base():
-    return render_template('base.html')
 
-@app.route('/<string:username>')
-def base_loggedin(username):
-    return render_template('base_loggedin.html',username=username)
-
-@app.route('/login', methods=['GET'])
+@app.route('/login', methods=['GET','POST'])
 def login():
-    if request.method == 'GET':
-        username = request.args.get('username')
-        password = request.args.get('password')
-        cur = mysql.connection.cursor()
-        sql = "SELECT * FROM users WHERE UserName = %s AND UserPass = %s"
-        val = (username, password)
-        cur.execute(sql, val)
-        result = cur.fetchone()
-        mysql.connection.commit()
-        cur.close()
-        if result!=None:
-            return render_template('base_loggedin.html',username=username)
+    msg=''
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+        username = request.form['username']
+        password = request.form['password']
+        cursor = mysql.connection.cursor()
+        cursor.execute('SELECT * FROM users WHERE UserName = % s AND UserPass = % s', (username, password, ))
+        account = cursor.fetchone()
+        if account:
+            session['loggedin'] = True
+            session['id'] = account[0]
+            session['username'] = account[1]
+            session['image'] = account[4]
+            return redirect(url_for('base'))
         else:
-            return render_template('login.html')
-    else:
-        return render_template('login.html')
-    
-
-@app.route('/tags2/<string:username>',methods=['GET'])
-def tags2(username):
-    if request.method == 'GET':
-        cur = mysql.connection.cursor()
-        sort = request.args.get('sort')
-        if sort==None:
-            sort="TagId"
-        cur.execute("SELECT * FROM tags ORDER BY "+sort)
-        tags = cur.fetchall()
-        cur.close()
-        return render_template('tags_loggedin.html', tags=tags,username=username)
-    return render_template('tags_loggedin.html',username=username)
-
-
-@app.route('/tags',methods=['GET'])
-def tags():
-    if request.method == 'GET':
-        cur = mysql.connection.cursor()
-
-        sort = request.args.get('sort')
-        if sort==None:
-            sort="TagId"
-            
-        cur.execute("SELECT * FROM tags ORDER BY "+sort)
-        tags = cur.fetchall()
-        cur.close()
-        return render_template('tags.html', tags=tags)
-    return render_template('tags.html')
-
-
+            msg = 'Incorrect username / password !'
+            return render_template('login.html', msg=msg)
+    return render_template('login.html', msg=msg)
 
 @app.route('/signup', methods=['GET','POST'])
 def signup():
-    if request.method == 'POST':
+    msg=''
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
         username = request.form.get('username')
         password = request.form.get('password')
         email = request.form.get('email')
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO users(UserName,UserEmail,UserPass) VALUES (%s, %s, %s)", (username,email,password))
-        mysql.connection.commit()
-        cur.close()
-        return render_template('base_loggedin.html',username=username)
-    return render_template('signup.html')
-
-@app.route('/questions',methods=['GET'])
-def questions():
-    if request.method == 'GET':
-        cur = mysql.connection.cursor()
-        cur.execute("SELECT q.*,u.* FROM questions q INNER JOIN users u ON q.UserId=u.UserId;")
-        questions = cur.fetchall()
-        cur.close()
-        return render_template('questions.html', questions=questions)
-    return render_template('questions.html')
-
-@app.route('/questions2/<string:username>',methods=['GET'])
-def questions2(username):
-    if request.method == 'GET':
-        cur = mysql.connection.cursor()
-        cur.execute("SELECT q.*,u.* FROM questions q INNER JOIN users u ON q.UserId=u.UserId;")
-        questions = cur.fetchall()
-        cur.close()
-        return render_template('questions_loggedin.html', questions=questions,username=username)
-    return render_template('questions_loggedin.html',username=username)
-
-@app.route('/users',methods=['GET'])
-def users():
-    if request.method == 'GET':
-        cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM users")
-        users = cur.fetchall()
-        cur.close()
-        return render_template('users.html', users=users)
-    return render_template('users.html')
-
-@app.route('/users2/<string:username>',methods=['GET'])
-def users2(username):
-    if request.method == 'GET':
-        cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM users")
-        users = cur.fetchall()
-        cur.close()
-        return render_template('users_loggedin.html', users=users,username=username)
-    return render_template('users_loggedin.html',username=username)
-
-@app.route('/myprofile/<string:username>',methods=['GET'])
-def myprofile(username):
-    if request.method == 'GET':
-        cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM users WHERE UserName = %s", (username,))
-        details = cur.fetchall()
+        cnt = cur.fetchone()
         cur.close()
-        return render_template('myprofile.html', details=details,username=username)
-    return render_template('myprofile.html',username=username)
-    
-    
-@app.route('/question/<int:QuesId>',methods=['GET'])
-def quesdetail(QuesId):
-    if request.method == "GET":
-        cur = mysql.connection.cursor()
-        var = "SELECT a.*,q.* FROM questions q INNER JOIN answers a ON q.QuesId = a.QuesId WHERE q.QuesId="
-        cur.execute(var + str(QuesId) + ";")
-        details = cur.fetchall()
-        cur.close()
-        return render_template('quesdetail.html', details=details)
-    return render_template('quesdetail.html')
+        if cnt:
+            msg = 'Account already exists !'
+        elif not username or not password or not email:
+            msg = 'Please fill out the form !' 
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            msg = 'Invalid email address !'
+        elif not re.match(r'[A-Za-z0-9]+', username):
+            msg = 'Username must contain only characters and numbers !'
+        else:
+            cur = mysql.connection.cursor()
+            cur.execute("INSERT INTO users(UserName,UserEmail,UserPass) VALUES (%s, %s, %s)", (username,email,password))
+            cur.execute('SELECT * FROM users WHERE UserName = % s AND UserPass = % s', (username, password, ))
+            account = cur.fetchone()
+            mysql.connection.commit()
+            cur.close()
+            session['loggedin'] = True
+            session['id'] = account[0]
+            session['username'] = account[1]
+            session['image'] = account[4]
+            return redirect(url_for('base'))
+    elif request.method == 'POST':
+        msg='Please fill out the form !'
+    return render_template('signup.html', msg=msg)
 
-@app.route('/question2/<int:QuesId>/<string:username>',methods=['GET'])
-def quesdetail2(QuesId,username):
-    if request.method == "GET":
+@app.route('/logout')
+def logout():
+    session.pop('loggedin', None)
+    session.pop('id', None)
+    session.pop('username', None)
+    session.pop('image', None)
+    return redirect(url_for('base'))
+
+@app.route('/')
+def base():
+    if 'loggedin' in session:
+        return render_template('base_loggedin.html')
+    return render_template('base.html')
+
+@app.route('/tags/<string:sort>',methods=['GET'])
+def tags(sort):
+    if request.method == 'GET':
+        cur = mysql.connection.cursor() 
+        cur.execute("SELECT * FROM tags ORDER BY "+sort)
+        tags = cur.fetchall()
+        cur.close()
+        if 'loggedin' in session:
+            return render_template('tags.html',tags=tags)
+        else:
+            return render_template('tags.html',tags=tags)
+            
+        
+    return render_template('tags.html')
+
+@app.route('/questions/<string:sort>',methods=['GET'])
+def questions(sort):
+    if request.method == 'GET':
+        cur = mysql.connection.cursor() 
+        cur.execute("SELECT * FROM questions ORDER BY "+sort + " DESC")
+        questions = cur.fetchall()
+        cur.close()
+        if 'loggedin' in session:
+            return render_template('questions.html',questions=questions)
+        else:
+            return render_template('questions.html',questions=questions)
+
+@app.route('/users/<string:sort>',methods=['GET'])
+def users(sort):
+    if request.method == 'GET':
+        cur = mysql.connection.cursor() 
+        cur.execute("SELECT * FROM users ORDER BY "+sort + " DESC")
+        users = cur.fetchall()
+        cur.close()
+        if 'loggedin' in session:
+            return render_template('users.html',users=users)
+        else:
+            return render_template('users.html',users=users)
+
+@app.route('/myprofile',methods=['GET','POST'])
+def myprofile():
+    if request.method == 'GET':
+        if 'loggedin' in session:
+            cur = mysql.connection.cursor() 
+            cur.execute("SELECT * FROM users WHERE UserID = %s",(session['id'],))
+            details = cur.fetchone()
+            cur.close()
+            return render_template('myprofile.html',details=details)
+        else:
+            return redirect(url_for('base'))
+
+@app.route('/question/<int:id>',methods=['GET','POST'])
+def quesdetail(id):
+    if request.method == 'GET':
         cur = mysql.connection.cursor()
         var = "SELECT a.*,q.*,u.* FROM questions q JOIN answers a ON q.QuesId = a.QuesId  JOIN users u ON u.UserId=a.UserId WHERE q.QuesId="
-        cur.execute(var + str(QuesId) + ";")
+        cur.execute(var + str(id) + ";")
         details = cur.fetchall()
         cur.close()
-        return render_template('quesdetail_loggedin.html', details=details,username=username)
-    return render_template('quesdetail_loggedin.html',username=username)
-
-@app.route('/upvoteanswer/<int:AnsId>',methods=['GET'])
-def upvoteanswer(AnsId):
-    if request.method == "GET":
-        cur = mysql.connection.cursor()
-        cur.execute("UPDATE answers SET  AnsScore = AnsScore + 1 WHERE AnsId = %s", (AnsId,))
-        mysql.connection.commit()
-        cur.close()
-        return ""
-    return ""
+        return render_template('quesdetail.html',details=details)
+    return render_template('quesdetail.html')
 
 
-# @app.route('/',methods=['GET'])
-# def get_data(id):
-#     if request.method == "GET":
+
+@app.route('/ask',methods=['GET','POST'])
+def ask():
+    if request.method == 'POST' and 'QuesTitle' in request.form and 'QuesDesc' in request.form and 'QuesTags' in request.form:
+        if 'loggedin' in session:
+            QuesTitle = request.form.get('QuesTitle')
+            QuesDesc = request.form.get('QuesDesc')
+            QuesTags = request.form.getlist('QuesTags')
+            
+            cur = mysql.connection.cursor()
+            cur.execute("INSERT INTO questions(QuesTitle,QuesDesc,QuesTags,QuesScore,UserId) VALUES (%s, %s, %s, %s, %s)", (QuesTitle,QuesDesc,json.dumps(QuesTags),0,session['id'],))
+            mysql.connection.commit()
+            cur.close()
+            return redirect(url_for('ask'))
+    return render_template('AskQuery.html')
+
+@app.route('/answer/<int:id>',methods=['GET','POST'])
+def answer(id):
+    if request.method == 'POST' and 'AnsDesc' in request.form:
+        if 'loggedin' in session:
+            AnsDesc = request.form.get('AnsDesc')
+            cur = mysql.connection.cursor()
+            cur.execute("INSERT INTO answers(AnsDesc,AnsScore,QuesId,UserId) VALUES (%s, %s, %s, %s)", (AnsDesc,0,id,session['id'],))
+            mysql.connection.commit()
+            cur.close()
+            return redirect(url_for('quesdetail',id=id))
+    return render_template('AddAnswer.html',id=id)
+        
+
+# @app.route('/image',methods=['POST'])
+# def upload_image():
+#     if request.method == 'POST':
+#         image_data = request.files['image'].read()
 #         cur = mysql.connection.cursor()
-#         cur.execute("SELECT UserName FROM users WHERE UserId = %s", (id,))
-#         user_details = cur.fetchall()
+#         encoded_data = base64.b64encode(image_data)
+#         UserId = session['id']
+#         sql = "UPDATE users SET UserImg = %s WHERE UserId = %s"
+#         val = (encoded_data,UserId,)
+#         cur.execute(sql, val)
+#         cur.connection.commit()
 #         cur.close()
-#         return jsonify(user_details)
-#     return "YES"
-
-
-
 if __name__ == "__main__":
     app.run(debug=True,port=8034)

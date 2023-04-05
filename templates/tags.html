@@ -1,16 +1,23 @@
+{% if session.loggedin  %}
+{% extends "base_loggedin.html" %}
+{% else %}
 {% extends "base.html" %}
+{% endif %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Tags{% endblock %}
 
 {% block content %}
 
     <h1>Tags</h1>
-    <form id="login-form" method="GET" action="/tags">
+    <a href="/tags/TagName" class="btn btn-primary">Sort Alphabetically</a>
+    <a href="/tags/QCount" class="btn btn-primary">Sort by Q Count</a>
+    <a href="/tags/TagId" class="btn btn-primary">Sort by Tag Id</a>  
+    <!-- <form id="login-form" method="GET" action="/tags">
         <label for="sort">Sort:</label>
         <input type="sort" id="sort" name="sort" />
         <br>
         <button type="submit">Enter</button>
-      </form>
+      </form> -->
     <table>
 		{% for tag in tags %}
 		<tr>

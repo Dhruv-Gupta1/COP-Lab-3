@@ -36,14 +36,12 @@
     {% block content %}
         <p>This is the base template</p>
     {% endblock %}
-    <!--  A button that links to login.html -->
-    <a href="{{ url_for('login') }}">Login</a>
-    <a href="{{ url_for('signup') }}">Signup</a>
-    <a href="{{ url_for('tags') }}">Tags</a>
-    <a href="{{ url_for('base') }}">Base</a>
-    <a href="{{ url_for('questions') }}">Questions</a>
-    <a href="{{ url_for('users')}}">Users</a>
 
+    <a href="/signup" class="btn btn-primary">Sign up</a>
+    <a href="/login" class="btn btn-primary">Login</a>
+    <a href="/tags/TagName" class="btn btn-primary">Tags</a>
+    <a href="/questions/QuesScore" class="btn btn-primary">Questions</a>
+    <a href="/users/UserId" class="btn btn-primary">Users</a>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
