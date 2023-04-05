@@ -1,3 +1,4 @@
+
 {% if session.loggedin  %}
 {% extends "base_loggedin.html" %}
 {% else %}
@@ -7,7 +8,9 @@
 {% block title %}Tags{% endblock %}
 
 {% block content %}
-    <!-- This is tags.html -->
+
+
+  <!-- This is tags page -->
     <h1>Tags</h1>
     <a href="/tags/TagName" class="btn btn-primary">Sort Alphabetically</a>
     <a href="/tags/QCount" class="btn btn-primary">Sort by Q Count</a>
