@@ -1,4 +1,4 @@
-.user-description{
+.tag-description{
     width: 75% !important;
     background-color: #E3F1EE !important;
     /* background-blend-mode: luminosity; */
@@ -15,4 +15,14 @@
     gap: 10px;
     column-gap: 0px !important;
     width: 1300px !important;
+}
+
+#tag-button:hover{
+    background-color:#116466;
+    color: #FFCB9A;
+}
+
+#tag-button{
+    background-color:rgb(104, 207, 238);
+    color:black;
 }

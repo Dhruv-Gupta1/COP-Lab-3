@@ -1,6 +1,7 @@
 #sample-card{
     width:86.5% !important;
-    
+    background-color:#E3F1EE;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) !important;
 }
 
 
@@ -16,4 +17,17 @@
 #new{
     overflow-y: scroll;
     height: 80%;
+}
+
+#vote-button{
+    background-color: rgb(64,133,88);
+}
+
+#answer-button{
+    background-color: rgb(64,133,88);
+}
+
+#user-name{
+    background-color: rgb(158,144,255);
+    color: white;
 }
