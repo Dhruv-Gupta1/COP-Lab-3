@@ -1,0 +1,30 @@
+
+
+
+
+ #signup-form{
+    margin-left:-4% !important;
+    margin-top: -3% !important;
+}
+
+#cardy{
+    background-color: #2C3531 !important;
+}
+
+#username{
+    width:100% !important;
+}
+
+#email{
+    width:100% !important;
+}
+
+#password{
+    width:100% !important;
+}
+
+#message{
+    color: red !important;
+    font-weight: bold;
+    font-size: large;
+}

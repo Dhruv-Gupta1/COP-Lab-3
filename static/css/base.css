@@ -1,10 +1,86 @@
-.leftover{
-    position: absolute;
-    top: 75px;
-    left: 300px;
+.form-control{
+    width:800px !important;
+}
+
+.navbar{
+    position: fixed;
     width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 15px;
-    box-sizing: border-box;
+    background-color: #2C3531!important;
+    /* height:56px; */
+}
+
+@media (max-width: 768px) {
+    .navbar{
+        background-color: #2C3531!important;
+    }
+}
+
+#Logo{
+    position: relative;
+    padding-left: 70px;
+    padding-right: 76px;
+    margin-top: 0% !important;
+}
+
+#login{
+    margin-left: 200px;
+}
+#SignUp{
+    margin-left: 20px;
+}
+
+.col-auto{
+    background-color: #116466 !important;
+}
+
+.col{
+    background-color: #D9D9D9 !important;
+}
+
+
+
+
+.sidebar {
+    position: fixed;
+    background-color: #116466;
+    width: 200px;
+    height: 100%;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    padding-top: 20px;
+  }
+  
+  .button {
+    font-weight: bold;
+    background-color: #116466;
+    border: none;
+    color: #D9B08C;
+    padding: 15px 32px;
+    text-align: left;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #D9B08C;
+    color: black;
+  }
+  
+  .content {
+    position: fixed;
+    top:56px;
+    width:100%;
+    height: 100%;
+    margin-left: 200px;
+    padding: 20px;
+    background-color: #D1E8E2;
+  }
+  
+  
+#searchy{
+    padding-left:50px !important;
 }

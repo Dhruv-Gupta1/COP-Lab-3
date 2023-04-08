@@ -1,3 +1,4 @@
+<link rel ="stylesheet" href = "{{ url_for('static', filename='css/questions.css') }}">
 {% if session.loggedin  %}
 {% extends "base_loggedin.html" %}
 {% else %}
@@ -12,15 +13,48 @@
 <a href="/questions/QuesTitle" class="btn btn-primary">Sort by Title</a>
 <a href="/questions/QuesScore" class="btn btn-primary">Sort by Q Score</a>
 
-{% for question in questions %}
-    <div class="question">
-        <a href="{{ url_for('quesdetail',id=question[0])}}">{{ question[1] }}</a>
-        <p>{{ question[2] }}</p>
-        <p>{{ question[3] }}</p>
-        <p>{{ question[4] }}</p>
-        <p>{{ question[7] }}</p>
-        <p>{{ question[11] }}</p>
-        
-{% endfor %}
+<div id="space"></div>
 
+      
+
+<div id="new">
+{% for question in questions %}
+
+
+
+         <div class="card mb-3" id="sample-card">
+            <div class="row g-0" id="samp">
+              <div class="col-md-2">
+                <div class="d-flex flex-column align-items-center">
+                  <button type="button" class="btn btn-secondary mb-1">
+                    <span class="votes">{{ question[3] }}</span>
+                    <span class="text-views ms-1">Votes</span>
+                  </button>
+                  <button type="button" class="btn btn-secondary mb-1">
+                    
+                    <span class="answers">0</span>
+                    <span class="answers-text me-1">Answers</span>
+                  </button>
+                  <a href="#" class="username">{{ question[7] }}</a>
+                </div>
+              </div>
+              <div class="col-md-10">
+                <div class="card-body">
+                  <h5 class="card-title"><a href="{{ url_for('quesdetail',id=question[0])}}">{{ question[1] }}</a></h5>
+                  <p class="card-text">{{ question[2] }}</p>
+                  <div class="mt-3">
+                    {% for tag1 in question[4] %}
+                    <span class="badge bg-primary">{{ tag1 }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+{% endfor %}
+        </div>
 {% endblock %}

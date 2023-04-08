@@ -59,8 +59,8 @@ CREATE TABLE IF NOT EXISTS answers (
     AnsScore INT NOT NULL,
     UserId INT NOT NULL,
     QuesId INT NOT NULL,
-    FOREIGN KEY (UserId) REFERENCES Users(UserId),
-    FOREIGN KEY (QuesId) REFERENCES Questions(QuesId),
+    FOREIGN KEY (UserId) REFERENCES users(UserId),
+    FOREIGN KEY (QuesId) REFERENCES questions(QuesId),
     PRIMARY KEY (AnsId)
 );
 

@@ -16,7 +16,6 @@ app.config['MYSQL_DB'] = db['mysql_db']
 
 mysql = MySQL(app)
 
-
 @app.route('/login', methods=['GET','POST'])
 def login():
     msg=''
@@ -105,13 +104,20 @@ def tags(sort):
 def questions(sort):
     if request.method == 'GET':
         cur = mysql.connection.cursor() 
-        cur.execute("SELECT * FROM questions ORDER BY "+sort + " DESC")
+        # cur.execute("SELECT * FROM questions ORDER BY "+sort + " DESC")
+        cur.execute("SELECT q.*,u.* FROM questions q JOIN users u WHERE q.UserId=u.UserId ORDER BY "+sort+ " DESC")
         questions = cur.fetchall()
+        new_questions = []
+        for question in questions:
+            question_tags = json.loads(question[4])
+            new_question = question[:4] + (question_tags,) + question[5:]
+            new_questions.append(new_question)
+        
         cur.close()
         if 'loggedin' in session:
-            return render_template('questions.html',questions=questions)
+            return render_template('questions.html',questions=new_questions)
         else:
-            return render_template('questions.html',questions=questions)
+            return render_template('questions.html',questions=new_questions)
 
 @app.route('/users/<string:sort>',methods=['GET'])
 def users(sort):
