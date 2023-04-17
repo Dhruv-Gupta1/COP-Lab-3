@@ -1,0 +1,6 @@
+__pycache__
+.DS_Store
+test/__pycache__
+test/.coverage
+db.yaml
+env
