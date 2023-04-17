@@ -7,5 +7,12 @@ site:
 	source env/bin/activate && python3 app.py
 
 create_env:
-	python3 -m venv env
-	source env/bin/activate && pip install -r requirements.txt
+	source env/bin/activate
+
+install:
+	pip install flask 
+	pip install flask_mysqldb
+	pip install pyyaml
+	pip install requests
+	pip install pytest
+	pip install coverage
