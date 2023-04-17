@@ -6,27 +6,59 @@
 {% endif %}
 
 {% block content %}
-<!-- This is users.html -->
+
 <h1>Users</h1>
 <a href="/users/Rating" class="btn btn-primary">Sort by score</a>
 <a href="/users/UserName" class="btn btn-primary">Sort by name</a>
 
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+    <div class="user-description" style="background-color: #f9f9f9; padding: 10px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); width: calc(25% - 30px);">
+      <div style="float: left; margin-right: 10px;">
+        <img src="https://via.placeholder.com/70x70" alt="User photo">
+      </div>
+      <div style="float: left;">
+        <p style="margin: 0; font-size: 20px;">John Doe</p>
+        <p style="margin: 0; margin-top: 5px;">Rating: 4.5 stars</p>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+    <div class="user-description" style="background-color: #f9f9f9; padding: 10px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); width: calc(25% - 30px);">
+      <div style="float: left; margin-right: 10px;">
+        <img src="https://via.placeholder.com/70x70" alt="User photo">
+      </div>
+      <div style="float: left;">
+        <p style="margin: 0; font-size: 20px;">Jane Smith</p>
+        <p style="margin: 0; margin-top: 5px;">Rating: 4 stars</p>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+    <div class="user-description" style="background-color: #f9f9f9; padding: 10px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); width: calc(25% - 30px);">
+      <div style="float: left; margin-right: 10px;">
+        <img src="https://via.placeholder.com/70x70" alt="User photo">
+      </div>
+      <div style="float: left;">
+        <p style="margin: 0; font-size: 20px;">Bob Johnson</p>
+        <p style="margin: 0; margin-top: 5px;">Rating: 3.5 stars</p>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+    <div class="user-description" style="background-color: #f9f9f9; padding: 10px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); width: calc(25% - 25px); margin-top: 20px;">
+      <div style="float: left; margin-right: 10px;">
+        <img src="https://via.placeholder.com/70x70" alt="User photo">
+      </div>
+      <div style="float: left;">
+        <p style="margin: 0; font-size: 20px;">Sarah Lee</p>
+        <p style="margin: 0; margin-top: 5px;">Rating: 4.2 stars</p>
+      </div>
+    </div>
 <div id="new">
 {% for user in users %}
-
-<div class="user-description">
-  <div style="float: left; margin-right: 10px;">
-    <img src="https://via.placeholder.com/150x150" alt="User photo">
-  </div>
-  <div style="float: left;">
-    <p style="margin: 0; font-size: 20px;">{{ user[1] }}</p>
-    <p style="margin: 0; margin-top: 10px;">Rating: {{ user[5] }}</p>
-  </div>
-  <div style="clear: both;"></div>
-</div>
-
-
-
+    <div class="users">
+        <h4>{{ user[1] }}</h4>
+        <p>{{ user[2] }}</p>
+        <p>{{ user[3] }}</p>
+        <p>{{ user[5] }}</p>
+    </div>
 {% endfor %}
 <div>
     
