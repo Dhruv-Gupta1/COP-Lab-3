@@ -148,10 +148,16 @@ def quesdetail(id):
     if request.method == 'GET':
         cur = mysql.connection.cursor()
         var = "SELECT a.*,q.*,u.* FROM questions q JOIN answers a ON q.QuesId = a.QuesId  JOIN users u ON u.UserId=a.UserId WHERE q.QuesId="
+        
         cur.execute(var + str(id) + ";")
         details = cur.fetchall()
+        
+        
+        var2 = "SELECT q.* FROM questions q WHERE q.QuesId="
+        cur.execute(var2 + str(id) + ";")
+        question = cur.fetchall()
         cur.close()
-        return render_template('quesdetail.html',details=details)
+        return render_template('quesdetail.html',question=question,details=details)
     return render_template('quesdetail.html')
 
 

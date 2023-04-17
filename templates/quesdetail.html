@@ -7,10 +7,10 @@
 {% block title %}Question{% endblock %}
 {% block content %}
 
-<h2>Title :{{ details[0][6] }}</h2>
-<h3>Description :{{ details[0][7] }}</h3>
-<h3>score :{{ details[0][8] }}</h3>
-<h3>Tags :{{ details[0][9] }}</h3>
+<h2>Title :{{ question[0] }}</h2>
+<h3>Description :{{ question[1] }}</h3>
+<h3>score :{{ question[2] }}</h3>
+<h3>Tags :{{ question[3] }}</h3>
 
 <!-- WHat if no answer? -->
 {% for answer in details %}
