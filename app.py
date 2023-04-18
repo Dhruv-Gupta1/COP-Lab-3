@@ -3,6 +3,9 @@ from flask_mysqldb import MySQL
 import yaml
 import re
 import base64
+import spacy
+
+nlp = spacy.load("en_core_web_md")
 
 app = Flask(__name__, static_folder='static')
 
@@ -15,6 +18,9 @@ app.config['MYSQL_PASSWORD'] = db['mysql_password']
 app.config['MYSQL_DB'] = db['mysql_db']
 
 mysql = MySQL(app)
+
+
+
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -188,7 +194,44 @@ def answer(id):
             cur.close()
             return redirect(url_for('quesdetail',id=id))
     return render_template('AddAnswer.html',id=id)
+
+# @app.route('/search', methods=['GET', 'POST'])
+# def search():
+#     if request.method == 'GET' and 'q' in request.form:
+#         nlp = spacy.load('en_core_web_sm')
+#         search =  request.args.get('q')
+#         doc = nlp(search)
+#         relevant_words = [token.text for token in doc if not token.is_stop and not token.is_punct]
+#         cur = mysql.connection.cursor()
+#         sql = "SELECT question FROM questions WHERE MATCH (question) AGAINST (%s) ORDER BY "
+#         for word in relevant_words:
+#             sql += "CASE WHEN question LIKE '% " + word + " %' THEN 1 WHEN question LIKE '% " + word + "' THEN 2 WHEN question LIKE '" + word + " %' THEN 3 ELSE 4 END, "
+#         sql += "MATCH (question) AGAINST (%s) DESC"
+#         cur.execute(sql, [search] + relevant_words + [search])
+#         questions = [row[0] for row in cur.fetchall()]
+#         cur.close()
+#         return render_template('search.html', questions=questions)
+#     return render_template('search.html',questions=[])
         
+@app.route('/search', methods =['GET','POST'])
+def search():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * from questions")
+    questons = cur.fetchall()
+    cur.close()
+    def get_lemmas(doc):
+        return [token.lemma_ for token in doc]
+    spacy.tokens.Doc.set_extension("lemmas", getter=get_lemmas, force=True)
+    preprocessed_questions = [nlp(" ".join([token.lemma_.lower() for token in nlp(q[1]) if not token.is_stop])) for q in questons]
+    if request.method == 'GET':
+        query =  request.args.get('q')
+        preprocessed_query = nlp(" ".join([token.lemma_.lower() for token in nlp(query) if not token.is_stop]))
+        similarity_scores = [preprocessed_query.similarity(q) for q in preprocessed_questions]
+        ranked_questions = [questons[i] for i in sorted(range(len(similarity_scores)), key=lambda k: similarity_scores[k], reverse=True)]
+
+        questions = [q for q in ranked_questions[:3]]
+        return render_template('search.html', ques_list=questions)
+    return render_template('search.html',ques_list=[])   
 
 # @app.route('/image',methods=['POST'])
 # def upload_image():

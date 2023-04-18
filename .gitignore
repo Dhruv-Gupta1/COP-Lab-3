@@ -4,3 +4,4 @@ test/__pycache__
 test/.coverage
 db.yaml
 env
+.cph

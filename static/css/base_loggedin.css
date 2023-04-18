@@ -4,8 +4,24 @@
 }
 
 .container {
-    max-height: 700px;
+    max-height: 750px;
     overflow-y: scroll;
+}
+
+.pages{
+    margin-top: -1px;
+    padding-left: 850px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.answeruser {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 90%;
+    background-color:#E3F1EE;
 }
 
 /* #searchy{

@@ -7,10 +7,41 @@
 {% block title %}Question{% endblock %}
 {% block content %}
 
-<h2>Title :{{ details[0][6] }}</h2>
-<h3>Description :{{ details[0][7] }}</h3>
-<h3>score :{{ details[0][8] }}</h3>
-<h3>Tags :{{ details[0][9] }}</h3>
+<div class="container">
+    <div class="des">
+        <h2>Title :{{ question[0][1] }}</h2>
+        <h3>Description :{{ question[0][2] }}</h3>
+        <h3>score :{{ question[0][3] }}</h3>
+        <h3>Tags :{{ question[0][4] }}</h3>
+    </div>
+    {% for answer in details %}
+        <div class="answeruser">
+            <h1>UserName: {{ answer[12] }}</h1>
+            <h2>UserId: {{ answer[4] }}</h2>
+            <h3>User Rating: {{ answer[16] }}</h3>
+            <h4>Answer: {{ answer[1] }}</h4>
+            <p>Score: {{ answer[2] }}</p>
+            <p>QuesId: {{ answer[3] }}</p>
+        </div>
+    {% endfor %}
+    <a href="{{ url_for('answer',id=question[0][0])}}"> Add a answer</a>
+</div>
+
+<div class="pages">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+        </li>
+        </ul>
+    </nav>
+</div>
 
 <!-- WHat if no answer? -->
 
