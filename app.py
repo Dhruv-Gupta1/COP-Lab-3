@@ -154,7 +154,6 @@ def quesdetail(id):
     if request.method == 'GET':
         cur = mysql.connection.cursor()
         var = "SELECT a.*,q.*,u.* FROM questions q JOIN answers a ON q.QuesId = a.QuesId  JOIN users u ON u.UserId=a.UserId WHERE q.QuesId="
-        
         cur.execute(var + str(id) + ";")
         details = cur.fetchall()
         
@@ -229,8 +228,14 @@ def search():
         similarity_scores = [preprocessed_query.similarity(q) for q in preprocessed_questions]
         ranked_questions = [questons[i] for i in sorted(range(len(similarity_scores)), key=lambda k: similarity_scores[k], reverse=True)]
 
-        questions = [q for q in ranked_questions[:3]]
-        return render_template('search.html', ques_list=questions)
+        questions = [q for q in ranked_questions[:5]]
+        
+        new_questions = []
+        for question in questions:
+            question_tags = json.loads(question[4])
+            new_question = question[:4] + (question_tags,) + question[5:]
+            new_questions.append(new_question)
+        return render_template('search.html', ques_list=new_questions)
     return render_template('search.html',ques_list=[])   
 
 # @app.route('/image',methods=['POST'])

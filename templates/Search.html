@@ -1,26 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% block content %}
-    <h1>Heading</h1>
+<link rel ="stylesheet" href = "{{ url_for('static', filename='css/questions.css') }}">
+{% if session.loggedin  %}
+{% extends "base_loggedin.html" %}
+{% else %}
+{% extends "base.html" %}
+{% endif %}
 
-    
+{% block title %}Search{% endblock %}
+
+    {% block content %}
+    <h1>Heading</h1>   
     {% for question in ques_list %}
-   <h1>{{ question[3] }}</h1>
-    <h2>{{ question[7] }}</h2>
-    <h2>{{ question[1] }}</h2>
-    <h2>{{ question[2] }}</h2>
-    {% for tag1 in question[4] %}
-        {{ tag1 }}
-    {% endfor %}
+        <div class="card mb-3" id="sample-card">
+            <div class="row g-0" id="samp">
+              <div class="col-md-2">
+                <div class="d-flex flex-column align-items-center">
+                  <button type="button" id = "vote-button" class="btn btn-secondary mb-1">
+                    <span class="votes">{{ question[3] }}</span>
+                    <span class="text-views ms-1">Votes</span>
+                  </button>
+                  <button type="button" id = "answer-button" class="btn btn-secondary mb-1">
+                    
+                    <span class="answers">0</span>
+                    <span class="answers-text me-1">Answers</span>
+                  </button>
+                  <button type="button" id ="user-name"  class="btn btn-info">{{ question[7] }}</a>
+                </div>
+              </div>
+              <div class="col-md-10">
+                <div class="card-body">
+                  <h5 class="card-title"><a href="{{ url_for('quesdetail',id=question[0])}}">{{ question[1] }}</a></h5>
+                  <p class="card-text">{{ question[2] }}</p>
+                  <div class="mt-3">
+                    {% for tag1 in question[4] %}
+                    <span class="badge bg-primary">{{ tag1 }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 {% endfor %}
 {% endblock %}
-</body>
-</html>
-
