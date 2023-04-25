@@ -12,14 +12,15 @@
 
 
   <!-- This is tags.html -->
-    <h1>Tags</h1>
-    <a href="/tags/TagName" class="btn btn-primary">Sort Alphabetically</a>
-    <a href="/tags/QCount" class="btn btn-primary">Sort by Q Count</a>
-    <a href="/tags/TagId" class="btn btn-primary">Sort by Tag Id</a>  
+    <h1>Tags
+    <a href="/tags/TagName" id="btn1" class="btn btn-primary">Sort Alphabetically </a>
+    <a href="/tags/QCount" id="btn2" class="btn btn-primary">Sort by Q Count</a>
+    <a href="/tags/TagId" id="btn3" class="btn btn-primary">Sort by Tag Id</a> 
+    </h1> 
     <table>
     <div id="new">
+    
 		{% for tag in tags %}
-
     <div class="tag-description">
       <div style="float: left; margin-right: 10px;">
       </div>

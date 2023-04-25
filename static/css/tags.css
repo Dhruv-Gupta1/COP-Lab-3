@@ -8,7 +8,7 @@
 
 #new{
     overflow-y: scroll;
-    height: 80%;
+    height: 89%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -25,4 +25,20 @@
 #tag-button{
     background-color:rgb(104, 207, 238);
     color:black;
+}
+
+#btn1{
+    background-color: rgb(238, 245, 244);
+    color:rgb(41, 93, 207);
+    margin-left: 700px;
+    /* font-weight: bold; */
+}
+#btn2{
+    background-color: rgb(238, 245, 244);
+    color:rgb(41, 93, 207);
+    /* font-weight: bold; */
+}
+#btn3{
+    background-color: rgb(238, 245, 244);
+    color:rgb(41, 93, 207);
 }

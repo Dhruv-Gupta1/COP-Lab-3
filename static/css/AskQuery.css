@@ -1,0 +1,42 @@
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding-left: 0px !important;
+  }
+  
+  
+  .query-card {
+    border: none;
+    background-color: black;
+    border-radius: 10px !important;
+    border-left: -10px !important;
+    width: 87%;
+    box-shadow: 100px 100px 100px #888888 !important;
+  }
+  
+  .section-card {
+    border: none;
+    background-color: red ;
+    border-radius: 10px !important;
+    border-left: -100px !important;
+    width: 87%;
+    box-shadow: 100px 100px 100px #888888 !important;
+    /* box-shadow: 90% !important; */
+  }
+
+  #txt_box{
+    width: 100% !important;
+  }
+  
+  .specific {
+    font-size: 15px;
+    color: #888;
+  }
+
+  .input-height {
+    height: 200px;
+  }
+
+  #crd1{
+    
+  }
