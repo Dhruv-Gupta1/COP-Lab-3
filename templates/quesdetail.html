@@ -16,6 +16,8 @@
     </div>
     {% for answer in details %}
         <div class="answeruser">
+            <a href="{{ url_for('upvoteAns',id=answer[0])}}">Upvote</a>
+            <a href="{{ url_for('downvoteAns',id=answer[0])}}">Downvote</a>
             <h1>UserName: {{ answer[12] }}</h1>
             <h2>UserId: {{ answer[4] }}</h2>
             <h3>User Rating: {{ answer[16] }}</h3>
@@ -44,6 +46,7 @@
 </div>
 
 <!-- WHat if no answer? -->
+
 
 
 {% endblock %}

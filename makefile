@@ -16,3 +16,6 @@ install:
 	pip install requests
 	pip install pytest
 	pip install coverage
+	pip install spacy
+	pip install flask_bcrypt
+	

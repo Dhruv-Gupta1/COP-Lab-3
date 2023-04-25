@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS users (
     Userid INT NOT NULL AUTO_INCREMENT,
     UserName VARCHAR(50) NOT NULL,
     UserEmail VARCHAR(50) NOT NULL,
-    UserPass VARCHAR(30) NOT NULL,
+    UserPass VARCHAR(200) NOT NULL,
     UserImg LONGBLOB,
     Rating INT DEFAULT 0,
     PRIMARY KEY (Userid)
@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS questions (
     QuesId INT NOT NULL AUTO_INCREMENT,
     QuesTitle VARCHAR(50) NOT NULL,
     QuesDesc VARCHAR(5000) NOT NULL,
+    CreationTime DATETIME ,
     QuesScore INT NOT NULL,
     QuesTags JSON,
     UserId INT,
@@ -58,7 +59,9 @@ CREATE TABLE IF NOT EXISTS answers (
     AnsDesc VARCHAR(5000) NOT NULL,
     AnsScore INT NOT NULL,
     UserId INT NOT NULL,
+    CreationTime DATETIME ,
     QuesId INT NOT NULL,
+
     FOREIGN KEY (UserId) REFERENCES users(UserId),
     FOREIGN KEY (QuesId) REFERENCES questions(QuesId),
     PRIMARY KEY (AnsId)
@@ -75,3 +78,14 @@ INSERT INTO answers (AnsDesc,AnsScore,UserId,QuesId) VALUES ('nine','250',1,3);
 -- INSERT INTO answers (AnsDesc,AnsScore,UserId,QuesId) VALUES ('PHP is a server-side scripting language designed for web development but also used as a general-purpose programming language. Java is a general-purpose programming language that is class-based, object-oriented, and designed to have as few implementation dependencies as possible.As of 2019, Java was one of the most popular programming languages in use according to GitHub, particularly for client-server web applications, with a reported 9 million developers.','120',3,2);
 
 -- INSERT INTO answers (AnsDesc,AnsScore,UserId,QuesId) VALUES ('It is intended to let application developers "write once, run anywhere" (WORA), meaning that compiled Java code can run on all platforms that support Java without the need for recompilation. Java applications are typically compiled to bytecode that can run on any Java virtual machine (JVM) regardless of the underlying computer architecture. The syntax of Java is similar to C and C++, but has fewer low-level facilities than either of them.','23',1,2);
+
+
+CREATE TABLE IF NOT EXISTS votes (
+    VoteId INT NOT NULL AUTO_INCREMENT,
+    UserId INT NOT NULL,
+    AnsId INT NOT NULL,
+    State INT NOT NULL,
+    PRIMARY KEY (VoteId)
+);
+
+INSERT INTO votes (UserId,AnsId,State) VALUES (1,1,1);

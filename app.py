@@ -1,4 +1,5 @@
 from flask import Flask, render_template,url_for,request,jsonify,session,redirect,json
+from flask_bcrypt import Bcrypt
 from flask_mysqldb import MySQL
 import yaml
 import re
@@ -8,6 +9,8 @@ import spacy
 nlp = spacy.load("en_core_web_md")
 
 app = Flask(__name__, static_folder='static')
+
+bcrypt = Bcrypt(app)
 
 app.secret_key = "Sakata-Gintoki"
 
@@ -29,9 +32,9 @@ def login():
         username = request.form['username']
         password = request.form['password']
         cursor = mysql.connection.cursor()
-        cursor.execute('SELECT * FROM users WHERE UserName = % s AND UserPass = % s', (username, password, ))
+        cursor.execute('SELECT * FROM users WHERE UserName = % s', (username,))
         account = cursor.fetchone()
-        if account:
+        if account and bcrypt.check_password_hash(account[3],password):
             session['loggedin'] = True
             session['id'] = account[0]
             session['username'] = account[1]
@@ -63,7 +66,8 @@ def signup():
             msg = 'Username must contain only characters and numbers !'
         else:
             cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO users(UserName,UserEmail,UserPass) VALUES (%s, %s, %s)", (username,email,password))
+            password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
+            cur.execute("INSERT INTO users(UserName,UserEmail,UserPass) VALUES (%s, %s, %s)", (username,email,password_hash))
             cur.execute('SELECT * FROM users WHERE UserName = % s AND UserPass = % s', (username, password, ))
             account = cur.fetchone()
             mysql.connection.commit()
@@ -88,7 +92,13 @@ def logout():
 @app.route('/')
 def base():
     if 'loggedin' in session:
-        return render_template('base_loggedin.html')
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM questions ORDER BY QuesScore DESC")
+        questions = cur.fetchall()
+        cur.execute("SELECT * FROM answers ORDER BY AnsScore DESC")
+        answers = cur.fetchall()
+        cur.close()
+        return render_template('base_loggedin.html',questions=questions,answers = answers)
     return render_template('base.html')
 
 @app.route('/tags/<string:sort>',methods=['GET'])
@@ -156,8 +166,6 @@ def quesdetail(id):
         var = "SELECT a.*,q.*,u.* FROM questions q JOIN answers a ON q.QuesId = a.QuesId  JOIN users u ON u.UserId=a.UserId WHERE q.QuesId="
         cur.execute(var + str(id) + ";")
         details = cur.fetchall()
-        
-        
         var2 = "SELECT q.* FROM questions q WHERE q.QuesId="
         cur.execute(var2 + str(id) + ";")
         question = cur.fetchall()
@@ -193,6 +201,75 @@ def answer(id):
             cur.close()
             return redirect(url_for('quesdetail',id=id))
     return render_template('AddAnswer.html',id=id)
+
+
+@app.route('/upvoteAns/<int:id>',methods=['GET','POST'])
+def upvoteAns(id):
+    if request.method == 'GET':
+        if 'loggedin' in session:
+            cur = mysql.connection.cursor()
+            cur.execute("SELECT * FROM votes WHERE AnsId = %s AND UserId = %s",(id,session['id'],))
+            states = cur.fetchone()
+            if states is None:
+                cur.execute("SELECT * FROM answers WHERE AnsId = %s",(id,))
+                details = cur.fetchone()
+                cur.execute("UPDATE answers SET AnsScore = %s WHERE AnsId = %s",(details[2]+1,id,))
+                cur.execute("INSERT INTO votes(AnsId,UserId,State) VALUES (%s, %s, %s)", (id,session['id'],1,))
+                mysql.connection.commit()
+                cur.close()
+                return redirect(url_for('quesdetail',id=details[4]))
+            elif states[3] == 1:
+                cur.execute("SELECT * FROM answers WHERE AnsId = %s",(id,))
+                details = cur.fetchone()
+                cur.execute("UPDATE answers SET AnsScore = %s WHERE AnsId = %s",(details[2]-1,id,))
+                cur.execute("DELETE FROM votes WHERE AnsId = %s AND UserId = %s",(id,session['id'],))
+                mysql.connection.commit()
+                cur.close()
+                return redirect(url_for('quesdetail',id=details[4])) 
+            elif states[3] == 2:
+                cur.execute("SELECT * FROM answers WHERE AnsId = %s",(id,))
+                details = cur.fetchone()
+                cur.execute("UPDATE answers SET AnsScore = %s WHERE AnsId = %s",(details[2]+2,id,))
+                cur.execute("UPDATE votes SET State = %s WHERE AnsId = %s AND UserId = %s",(1,id,session['id'],))
+                mysql.connection.commit()
+                cur.close()
+                return redirect(url_for('quesdetail',id=details[4]))
+    return (redirect(url_for('login')))
+
+@app.route('/downvoteAns/<int:id>',methods=['GET','POST'])
+def downvoteAns(id):
+    if request.method == 'GET':
+        if 'loggedin' in session:
+            cur = mysql.connection.cursor()
+            cur.execute("SELECT * FROM votes WHERE AnsId = %s AND UserId = %s",(id,session['id'],))
+            states = cur.fetchone()
+            if states is None:
+                cur.execute("SELECT * FROM answers WHERE AnsId = %s",(id,))
+                details = cur.fetchone()
+                cur.execute("UPDATE answers SET AnsScore = %s WHERE AnsId = %s",(details[2]-1,id,))
+                cur.execute("INSERT INTO votes(AnsId,UserId,State) VALUES (%s, %s, %s)", (id,session['id'],2,))
+                mysql.connection.commit()
+                cur.close()
+                return redirect(url_for('quesdetail',id=details[4]))
+            elif states[3] == 2:
+                cur.execute("SELECT * FROM answers WHERE AnsId = %s",(id,))
+                details = cur.fetchone()
+                cur.execute("UPDATE answers SET AnsScore = %s WHERE AnsId = %s",(details[2]+1,id,))
+                cur.execute("DELETE FROM votes WHERE AnsId = %s AND UserId = %s",(id,session['id'],))
+                mysql.connection.commit()
+                cur.close()
+                return redirect(url_for('quesdetail',id=details[4])) 
+            elif states[3] == 1:
+                cur.execute("SELECT * FROM answers WHERE AnsId = %s",(id,))
+                details = cur.fetchone()
+                cur.execute("UPDATE answers SET AnsScore = %s WHERE AnsId = %s",(details[2]-2,id,))
+                cur.execute("UPDATE votes SET State = %s WHERE AnsId = %s AND UserId = %s",(2,id,session['id'],))
+                mysql.connection.commit()
+                cur.close()
+                return redirect(url_for('quesdetail',id=details[4]))
+    return (redirect(url_for('login')))
+
+
 
 # @app.route('/search', methods=['GET', 'POST'])
 # def search():
