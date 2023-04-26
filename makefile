@@ -18,4 +18,3 @@ install:
 	pip install coverage
 	pip install spacy
 	pip install flask_bcrypt
-	

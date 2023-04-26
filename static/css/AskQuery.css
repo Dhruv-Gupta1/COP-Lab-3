@@ -24,9 +24,17 @@
     /* box-shadow: 90% !important; */
   }
 
-  #txt_box{
+
+
+  #QuesTitle{
     width: 100% !important;
   }
+
+
+  #QuesDesc{
+    width: 100% !important;
+  }
+
   
   .specific {
     font-size: 15px;

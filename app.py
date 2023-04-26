@@ -125,7 +125,7 @@ def questions(sort):
         questions = cur.fetchall()
         new_questions = []
         for question in questions:
-            question_tags = json.loads(question[4])
+            question_tags = json.loads(question[5])
             new_question = question[:4] + (question_tags,) + question[5:]
             new_questions.append(new_question)
         
@@ -217,7 +217,7 @@ def upvoteAns(id):
                 cur.execute("INSERT INTO votes(AnsId,UserId,State) VALUES (%s, %s, %s)", (id,session['id'],1,))
                 mysql.connection.commit()
                 cur.close()
-                return redirect(url_for('quesdetail',id=details[4]))
+                return redirect(url_for('quesdetail',id=details[5]))
             elif states[3] == 1:
                 cur.execute("SELECT * FROM answers WHERE AnsId = %s",(id,))
                 details = cur.fetchone()
@@ -225,7 +225,7 @@ def upvoteAns(id):
                 cur.execute("DELETE FROM votes WHERE AnsId = %s AND UserId = %s",(id,session['id'],))
                 mysql.connection.commit()
                 cur.close()
-                return redirect(url_for('quesdetail',id=details[4])) 
+                return redirect(url_for('quesdetail',id=details[5])) 
             elif states[3] == 2:
                 cur.execute("SELECT * FROM answers WHERE AnsId = %s",(id,))
                 details = cur.fetchone()
@@ -233,7 +233,7 @@ def upvoteAns(id):
                 cur.execute("UPDATE votes SET State = %s WHERE AnsId = %s AND UserId = %s",(1,id,session['id'],))
                 mysql.connection.commit()
                 cur.close()
-                return redirect(url_for('quesdetail',id=details[4]))
+                return redirect(url_for('quesdetail',id=details[5]))
     return (redirect(url_for('login')))
 
 @app.route('/downvoteAns/<int:id>',methods=['GET','POST'])
@@ -250,7 +250,7 @@ def downvoteAns(id):
                 cur.execute("INSERT INTO votes(AnsId,UserId,State) VALUES (%s, %s, %s)", (id,session['id'],2,))
                 mysql.connection.commit()
                 cur.close()
-                return redirect(url_for('quesdetail',id=details[4]))
+                return redirect(url_for('quesdetail',id=details[5]))
             elif states[3] == 2:
                 cur.execute("SELECT * FROM answers WHERE AnsId = %s",(id,))
                 details = cur.fetchone()
@@ -258,7 +258,7 @@ def downvoteAns(id):
                 cur.execute("DELETE FROM votes WHERE AnsId = %s AND UserId = %s",(id,session['id'],))
                 mysql.connection.commit()
                 cur.close()
-                return redirect(url_for('quesdetail',id=details[4])) 
+                return redirect(url_for('quesdetail',id=details[5])) 
             elif states[3] == 1:
                 cur.execute("SELECT * FROM answers WHERE AnsId = %s",(id,))
                 details = cur.fetchone()
@@ -266,7 +266,7 @@ def downvoteAns(id):
                 cur.execute("UPDATE votes SET State = %s WHERE AnsId = %s AND UserId = %s",(2,id,session['id'],))
                 mysql.connection.commit()
                 cur.close()
-                return redirect(url_for('quesdetail',id=details[4]))
+                return redirect(url_for('quesdetail',id=details[5]))
     return (redirect(url_for('login')))
 
 
@@ -314,6 +314,10 @@ def search():
             new_questions.append(new_question)
         return render_template('search.html', ques_list=new_questions)
     return render_template('search.html',ques_list=[])   
+
+
+
+
 
 # @app.route('/image',methods=['POST'])
 # def upload_image():

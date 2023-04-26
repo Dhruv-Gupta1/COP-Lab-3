@@ -19,17 +19,14 @@
     <div class="card query-card w-100 mx-auto -card  shadow">
       
           <div class="card-body">
+            <form id="ask-form" method="POST" action="/ask">
             <h3 class="card-title">Title</h3>
             <p class="card-text specific">Be specific and imagine you're asking a question to another person
               .</p>
-            <input type="text" class="form-control  shadow " placeholder="Your T" id="txt_box" >
+            <input type="text" class="form-control  shadow " placeholder="Your T" id="QuesTitle" name="QuesTitle" required/>
           </div>
         </div>
       </div>
-    
-
-
-   
         
         <div class="card section-card shadow mb-4">
       <div class="card query-card w-100 mx-auto -card shadow">
@@ -37,7 +34,7 @@
             <div class="card-body">
               <h3 class="card-title">Problems and description</h3>
               <p class="card-text specific">Introduce the problem and expand on what you put in the title..</p>
-              <input type="text" class="form-control  shadow input-height" placeholder="Your T" style="resize: none;" id="txt_box">
+              <input type="text" class="form-control  shadow input-height" placeholder="Your T" style="resize: none;" id="QuesDesc" name="QuesDesc" required/>
             </div>
           </div>
         </div>
@@ -46,6 +43,10 @@
         <div class="card section-card shadow mb-4">
           <div class="card query-card w-100 mx-auto -card shadow">
             <div class="card-body">
+              <select name="QuesTags" id = "QuesTags" multiple>
+                <option value="php">php</option>
+                <option value="mysql">mysql</option>
+            </select>
               <h3 class="card-title">Tags</h3>
               <p class="card-text specific">Add up to 5 tags to describe what your question is about. Start typing to see suggestions.</p>
               <div class="input-group">
@@ -61,24 +62,16 @@
             </div>
           </div>
         </div>
-
-            <button type="button" class="btn btn-primary">POST</button>
+            <button type="submit" class="btn btn-primary">POST</button>
+        </form>
       </div> 
 
-    <form id="ask-form" method="POST" action="/ask">
-      <label for="QuesTitle">Give a title to your question:</label>
-      <input type="text" id="QuesTitle" name="QuesTitle" required/>
-      <br>
-      <label for="QuesDesc">Give your detail Description:</label>
-      <input type="text" id="QuesDesc" name="QuesDesc" required/>
-      <br>
-      <label for="QuesTags">Select Tags:</label>
-      <select name="QuesTags" id = "QuesTags" multiple>
-          <option value="php">php</option>
-          <option value="mysql">mysql</option>
-      </select>
-      <button type="submit">Ask</button>
-    </form>
+
+
+
+
+
+
 
 
     <script>
