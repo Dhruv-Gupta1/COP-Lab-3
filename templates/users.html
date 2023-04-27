@@ -1,38 +1,59 @@
-<link rel ="stylesheet" href = "{{ url_for('static', filename='css/users.css') }}">
-{% if session.loggedin  %}
-{% extends "base_loggedin.html" %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/users.css') }}">
+
+{% if session.loggedin %}
+  {% extends "base_loggedin.html" %}
 {% else %}
-{% extends "base.html" %}
+  {% extends "base.html" %}
 {% endif %}
 
 {% block content %}
-<!-- This is users.html -->
-<h1>Users
-<a href="/users/Rating" id="btn1" class="btn btn-primary">Sort by score</a>
-<a href="/users/UserName" id="btn2" class="btn btn-primary">Sort by name</a>
-</h1>
+  <h1>Users
+    <a href="{{ url_for('users', sort='Rating') }}" id="btn1" class="btn btn-primary">Sort by score</a>
+    <a href="{{ url_for('users', sort='UserName') }}" id="btn2" class="btn btn-primary">Sort by name</a>
+  </h1>
 
-<div id="new">
-{% for user in users %}
+  {% set page = pagination.page|default(1, true)|int %}
+  {% set per_page = pagination.per_page|default(10, true)|int %}
+  {% set total = pagination.total|default(0, true)|int %}
 
-<div class="user-description ">
-  
-  <div style="float: left; margin-right: 10px;">
-    <img src="{{ user[4] }}" alt="User photo">
+  <div id="new">
+    {% for user in users %}
+      <div class="user-description">
+        <div style="float: left; margin-right: 10px;">
+          <img src="{{ user[4] }}" alt="User photo">
+        </div>
+        <div style="float: left;">
+          <p style="margin: 0; font-size: 30px;">{{ user[1][:8] }}</p>
+          <a href="{{ url_for('otherprofile',UserId=user[0])}}">Link</a>
+          <p style="margin: 0; margin-top: 10px;">Rating: {{ user[7] }}</p>
+        </div>
+        <div style="clear: both;"></div>
+      </div>
+    {% endfor %}
   </div>
-  <div style="float: left;">
-    <!-- <p style="margin: 0; font-size: 30px; ">{{ user[1][:12] }}</p> -->
-    <p style="margin: 0; font-size: 30px; font-family: 'Computer Modern', Roman;">{{ user[1][:8] }}</p>
 
-    <p style="margin: 0; margin-top: 10px;">Rating: {{ user[7] }}</p>
+  <div id="page_change">
+    {% if page > 1 %}
+      <a href="?page={{ page-1 }}&per_page={{ per_page }}">Previous</a>
+    {% endif %}
+
+    {% for p in range(lower, higher) %}
+      {% if p == page %}
+        <a class="active" href="#">{{ p }}</a>
+      {% else %}
+        <a href="?page={{ p }}&per_page={{ per_page }}">{{ p }}</a>
+      {% endif %}
+    {% endfor %}
+
+
+    {% if page < total %}
+      <a href="?page={{ page+1 }}&per_page={{ per_page }}">Next</a>
+    {% endif %}
+
+    <form method="get" action="">
+      <input type="number" name="page" value="{{ page }}" min="1" max="{{ total }}" style="width: 50px;">
+      <input type="hidden" name="per_page" value="{{ per_page }}">
+      <button type="submit">Go</button>
+    </form>
   </div>
-  <div style="clear: both;"></div>
-
-</div>
-
-
-
-{% endfor %}
-<div>
-    
 {% endblock %}

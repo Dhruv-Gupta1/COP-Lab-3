@@ -119,3 +119,9 @@
     white-space: nowrap;
     color: #666;
   }
+
+  #usr_image{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+  }

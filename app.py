@@ -1,6 +1,7 @@
 from flask import Flask, render_template,url_for,request,jsonify,session,redirect,json
 from flask_bcrypt import Bcrypt
 from flask_mysqldb import MySQL
+from flask_paginate import Pagination, get_page_parameter
 import yaml
 import re
 import base64
@@ -137,15 +138,25 @@ def questions(sort):
 
 @app.route('/users/<string:sort>',methods=['GET'])
 def users(sort):
-    if request.method == 'GET':
-        cur = mysql.connection.cursor() 
-        cur.execute("SELECT * FROM users ORDER BY "+sort + " DESC")
-        users = cur.fetchall()
-        cur.close()
-        if 'loggedin' in session:
-            return render_template('users.html',users=users)
-        else:
-            return render_template('users.html',users=users)
+    if(request.method == 'GET'):
+        page = request.args.get('page',1 , type=int)
+    else :
+        page = 1
+    per_page = 24
+    offset = (page - 1) * per_page
+    cur = mysql.connection.cursor() 
+    cur.execute("SELECT COUNT(*) FROM users")
+    total_count = (cur.fetchone()[0]+per_page-1)//per_page
+    lower = max(page-1,1)
+    higher= min(page+1,total_count)+1
+    if sort == 'UserName':
+        cur.execute("SELECT * FROM users ORDER BY "+sort + " ASC LIMIT %s OFFSET %s", (per_page, offset))
+    else:
+        cur.execute("SELECT * FROM users ORDER BY "+sort + " DESC LIMIT %s OFFSET %s", (per_page, offset))
+    users = cur.fetchall()
+    cur.close()
+    pagination = Pagination(page=page, per_page=per_page, total=total_count, css_framework='bootstrap4')
+    return render_template('users.html', users=users, pagination=pagination, sort=sort,lower=lower,higher=higher)
 
 @app.route('/myprofile',methods=['GET','POST'])
 def myprofile():
@@ -270,24 +281,6 @@ def downvoteAns(id):
     return (redirect(url_for('login')))
 
 
-
-# @app.route('/search', methods=['GET', 'POST'])
-# def search():
-#     if request.method == 'GET' and 'q' in request.form:
-#         nlp = spacy.load('en_core_web_sm')
-#         search =  request.args.get('q')
-#         doc = nlp(search)
-#         relevant_words = [token.text for token in doc if not token.is_stop and not token.is_punct]
-#         cur = mysql.connection.cursor()
-#         sql = "SELECT question FROM questions WHERE MATCH (question) AGAINST (%s) ORDER BY "
-#         for word in relevant_words:
-#             sql += "CASE WHEN question LIKE '% " + word + " %' THEN 1 WHEN question LIKE '% " + word + "' THEN 2 WHEN question LIKE '" + word + " %' THEN 3 ELSE 4 END, "
-#         sql += "MATCH (question) AGAINST (%s) DESC"
-#         cur.execute(sql, [search] + relevant_words + [search])
-#         questions = [row[0] for row in cur.fetchall()]
-#         cur.close()
-#         return render_template('search.html', questions=questions)
-#     return render_template('search.html',questions=[])
         
         
 @app.route('/search', methods =['GET','POST'])
@@ -317,20 +310,77 @@ def search():
     return render_template('search.html',ques_list=[])   
 
 
+@app.route('/editprofile',methods=['GET','POST'])
+def editprofile():
+    if request.method == 'POST':
+        ImageLink = request.form.get('ImageLink')
+        about = request.form.get('about')
+        email = request.form.get('email')
+        location = request.form.get('location')
+        cur = mysql.connection.cursor()
+        cur.execute("UPDATE users SET UserAbout = %s, UserEmail = %s, UserLocation = %s, UserImg = %s WHERE UserId = %s",(about, email, location, ImageLink, session['id'],))
+        session['image'] = ImageLink
+        mysql.connection.commit()
+        cur.close()
+        return (redirect(url_for('myprofile')))
+    return (redirect(url_for('myprofile')))
+
+
+@app.route('/profile/<UserId>',methods=['GET','POST'])
+def otherprofile(UserId):
+    if request.method == 'GET':
+        if ('loggedin' in session):
+            if int(UserId)!= int(session['id']):
+                print(UserId,session['id'],"vajgdi")
+                cur = mysql.connection.cursor()
+                cur.execute("SELECT * FROM users WHERE UserId = %s",(UserId,))
+                details = cur.fetchone()
+                cur.close()
+                return render_template('other_profile.html',details=details)
+            else:
+                print(UserId,session['id'],"1693yahid")
+                return (redirect(url_for('myprofile')))
+        else:
+            cur = mysql.connection.cursor()
+            cur.execute("SELECT * FROM users WHERE UserId = %s",(UserId,))
+            details = cur.fetchone()
+            cur.close()
+            return render_template('other_profile.html',details=details)
+    return (redirect(url_for('login')))
+
+
+@app.route('/changepasswd' , methods=['GET','POST'])
+def changepasswd():
+    msg_pd=''
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM users WHERE UserId = %s",(session['id'],))
+    details = cur.fetchone()
+    cur.close()
+    if request.method == 'POST':
+        curr_paswd = request.form.get('password')
+        new_passwd = request.form.get('newpassword')
+        renew_passwd = request.form.get('renewpassword')
+        if new_passwd != renew_passwd:
+            msg_pd = "New passwords do not match"
+            return render_template('myprofile.html',msg_pd=msg_pd, details=details)
+        password_hash = bcrypt.generate_password_hash(curr_paswd).decode('utf-8')
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM users WHERE UserId = %s",(session['id'],))
+        user_details = cur.fetchone()
+        if not bcrypt.check_password_hash(user_details[3],curr_paswd):
+            msg_pd = "Incorrect Password"
+            return render_template('myprofile.html',msg_pd=msg_pd,details=details)
+        cur = mysql.connection.cursor()
+        cur.execute("UPDATE users SET UserPass = %s WHERE UserId = %s",(bcrypt.generate_password_hash(new_passwd).decode('utf-8'),session['id'],))
+        cur.connection.commit()
+        cur.close()
+        msg_pd = "Password Changed Successfully"
+        return render_template('myprofile.html',msg_pd=msg_pd,details=details)
+    return (redirect(url_for('myprofile')))
 
 
 
-# @app.route('/image',methods=['POST'])
-# def upload_image():
-#     if request.method == 'POST':
-#         image_data = request.files['image'].read()
-#         cur = mysql.connection.cursor()
-#         encoded_data = base64.b64encode(image_data)
-#         UserId = session['id']
-#         sql = "UPDATE users SET UserImg = %s WHERE UserId = %s"
-#         val = (encoded_data,UserId,)
-#         cur.execute(sql, val)
-#         cur.connection.commit()
-#         cur.close()
+
+
 if __name__ == "__main__":
     app.run(debug=True,port=8035)

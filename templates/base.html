@@ -23,8 +23,8 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
              <form class="d-flex" action="{{ url_for('search') }}" method="GET">
-                 <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
-                 <button class="btn btn-outline-success" type="submit">Search</button>
+                 <input id="search" class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
+                 <button id="search" class="btn btn-outline-success" type="submit">Search</button>
              </form>
         <li class="nav-item">
             <button class="btn btn-info" id="login" onclick="window.location.href= '/login'"><div class="login">Login</div></button>
