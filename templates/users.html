@@ -7,22 +7,27 @@
 
 {% block content %}
 <!-- This is users.html -->
-<h1>Users</h1>
-<a href="/users/Rating" class="btn btn-primary">Sort by score</a>
-<a href="/users/UserName" class="btn btn-primary">Sort by name</a>
+<h1>Users
+<a href="/users/Rating" id="btn1" class="btn btn-primary">Sort by score</a>
+<a href="/users/UserName" id="btn2" class="btn btn-primary">Sort by name</a>
+</h1>
 
 <div id="new">
 {% for user in users %}
 
-<div class="user-description">
+<div class="user-description ">
+  
   <div style="float: left; margin-right: 10px;">
-    <img src="https://via.placeholder.com/150x150" alt="User photo">
+    <img src="{{ user[4] }}" alt="User photo">
   </div>
   <div style="float: left;">
-    <p style="margin: 0; font-size: 20px;">{{ user[1] }}</p>
-    <p style="margin: 0; margin-top: 10px;">Rating: {{ user[5] }}</p>
+    <!-- <p style="margin: 0; font-size: 30px; ">{{ user[1][:12] }}</p> -->
+    <p style="margin: 0; font-size: 30px; font-family: 'Computer Modern', Roman;">{{ user[1][:8] }}</p>
+
+    <p style="margin: 0; margin-top: 10px;">Rating: {{ user[7] }}</p>
   </div>
   <div style="clear: both;"></div>
+
 </div>
 
 

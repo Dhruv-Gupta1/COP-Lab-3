@@ -31,3 +31,27 @@
     background-color: rgb(158,144,255);
     color: white;
 }
+
+#btn1{
+    background-color: rgb(238, 245, 244);
+    color:rgb(41, 93, 207);
+    margin-left: 700px;
+    /* font-weight: bold; */
+}
+#btn2{
+    background-color: rgb(238, 245, 244);
+    color:rgb(41, 93, 207);
+    /* font-weight: bold; */
+}
+#tag_desc {
+    font-size: 12px;
+    padding: 4px 6px;
+}
+.card-text {
+font-size: 14px;
+}
+.card-title a {
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+}

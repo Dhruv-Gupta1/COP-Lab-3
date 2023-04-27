@@ -1,5 +1,6 @@
 .form-control{
     width:800px !important;
+    overflow-y: scroll !important;
 }
 
 .navbar{

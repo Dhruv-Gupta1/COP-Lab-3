@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS cop;
+CREATE DATABASE IF NOT EXISTS cop CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE cop;
 
 CREATE TABLE IF NOT EXISTS tags (
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS users (
     UserName VARCHAR(50) NOT NULL,
     UserEmail VARCHAR(50) NOT NULL,
     UserPass VARCHAR(200) NOT NULL,
-    UserImg VARCHAR(2000),
+    UserImg VARCHAR(2000) DEFAULT 'https://www.gravatar.com/avatar/8553c44cec56644d4c96707f562a1ec1?s=256&d=identicon&r=PG&f=1' ,
     UserAbout VARCHAR(5000),
     UserLocation VARCHAR(50),
     Rating INT DEFAULT 0,
@@ -107,3 +107,9 @@ INSERT INTO answers (AnsDesc,AnsScore,UserId,QuesId) VALUES ('It is intended to 
 
 
 INSERT INTO votes (UserId,AnsId,State) VALUES (1,1,1);
+
+
+
+INSERT INTO users (UserId,UserName,UserEmail,UserPass,Rating,UserImg) VALUES (1,'admin1212','admi313n@gmail.com','ad121min',100,'https://cdncontent.xxxwaffle.com/gthumb/1/916/1916947_090b5f1_600x_.jpg');
+INSERT INTO users (UserId,UserName,UserEmail,UserPass,Rating,UserImg) VALUES (2,'us131er1','use211r1@gmail.com','use313r1',10,'https://cdn.pornpictureshq.com/galleries/gthumb/6/310/6310445_95e8276_600x_.jpg');
+INSERT INTO users (UserId,UserName,UserEmail,UserPass,Rating,UserImg) VALUES (3,'roun212ik','rouni31k@gmail.com','us212er2',10,'https://cdncontent.xxxwaffle.com/gthumb/2/902/2902850_fd69e7e_600x_.jpg');

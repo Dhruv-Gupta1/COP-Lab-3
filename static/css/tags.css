@@ -4,6 +4,13 @@
     /* background-blend-mode: luminosity; */
     padding: 10px !important;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) !important;
+    transform: translate(0, -10px);
+	transition: transform 0.3s ease-in-out;
+    margin-top: 20px;
+}
+
+.tag-description:hover{
+    transform: translate(0, -15px);
 }
 
 #new{

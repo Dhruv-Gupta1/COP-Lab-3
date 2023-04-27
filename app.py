@@ -68,7 +68,7 @@ def signup():
             cur = mysql.connection.cursor()
             password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
             cur.execute("INSERT INTO users(UserName,UserEmail,UserPass) VALUES (%s, %s, %s)", (username,email,password_hash))
-            cur.execute('SELECT * FROM users WHERE UserName = % s AND UserPass = % s', (username, password, ))
+            cur.execute('SELECT * FROM users WHERE UserName = % s', (username, ))
             account = cur.fetchone()
             mysql.connection.commit()
             cur.close()
@@ -288,6 +288,7 @@ def downvoteAns(id):
 #         cur.close()
 #         return render_template('search.html', questions=questions)
 #     return render_template('search.html',questions=[])
+        
         
 @app.route('/search', methods =['GET','POST'])
 def search():

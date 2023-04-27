@@ -9,10 +9,10 @@
 
 {% block content %}
 <!-- This is questions.html -->
-<h1>Questions</h1>
-<a href="/questions/QuesTitle" class="btn btn-primary">Sort by Title</a>
-<a href="/questions/QuesScore" class="btn btn-primary">Sort by Q Score</a>
-
+<h1>Questions
+<a href="/questions/QuesTitle" id="btn1"  class="btn btn-primary">Sort by Title</a>
+<a href="/questions/QuesScore" id="btn2" class="btn btn-primary">Sort by Q Score</a>
+</h1>
 <div id="space"></div>
 
       
@@ -21,13 +21,12 @@
 {% for question in questions %}
 
 
-
          <div class="card mb-3" id="sample-card">
             <div class="row g-0" id="samp">
               <div class="col-md-2">
                 <div class="d-flex flex-column align-items-center">
                   <button type="button" id = "vote-button" class="btn btn-secondary mb-1">
-                    <span class="votes">{{ question[3] }}</span>
+                    <span class="votes">{{ question[6] }}</span>
                     <span class="text-views ms-1">Votes</span>
                   </button>
                   <button type="button" id = "answer-button" class="btn btn-secondary mb-1">
