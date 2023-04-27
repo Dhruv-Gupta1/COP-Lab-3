@@ -38,9 +38,9 @@
             <div class="d-flex justify-content-start align-items-center">
               <div class="mr-3">
                 <div class="vote-buttons">
-                  <button class="upvote-button"><i class="fa fa-thumbs-up"></i></button>
+                  <button class="upvote-button" id="up" onclick="window.location.href='{{ url_for('QuesUpvote', id=question[0]) }}'"><i  class="fa fa-thumbs-up" id="up" ></i></button>
                   <span class="vote-count">{{ question[4] }}</span>
-                  <button class="downvote-button"><i class="fa fa-thumbs-down"></i></button>
+                  <button class="downvote-button" id="down" onclick="window.location.href='{{ url_for('QuesDownvote', id=question[0]) }}'"><i  class="fa fa-thumbs-down" id="down" ></i></button>
                 </div>
               </div>
               <div class="box">
@@ -100,9 +100,45 @@
             <p>Score: {{ answer[2] }}</p>
         </div>
     {% endfor %}
-    
 </div>
 
+<script>
+    // upvote and downvote
+    // avoid color when both are clicked
+    var upvote = document.getElementById("up");
+    var downvote = document.getElementById("down");
+    var upvote_clicked = false;
+    var downvote_clicked = false;
+    upvote.addEventListener("click", function() {
+        if (upvote_clicked == false && downvote_clicked == false) {
+            upvote.style.color = "green";
+            upvote_clicked = true;
+        } else if (upvote_clicked == false){
+            downvote.style.color = "black";
+            upvote.style.color = "green";
+            upvote_clicked = true;
+        }
+        else {
+            upvote.style.color = "black";
+            upvote_clicked = false;
+        }
+    });
+    downvote.addEventListener("click", function() {
+        if (downvote_clicked == false && upvote_clicked == false) {
+            downvote.style.color = "red";
+            downvote_clicked = true;
+        } else if (downvote_clicked == false){
+            upvote.style.color = "black";
+            downvote.style.color = "red";
+            downvote_clicked = true;
+        }
+        else {
+            downvote.style.color = "black";
+            downvote_clicked = false;
+        }
+    }
+    );
+</script>
 
 <!-- WHat if no answer? -->
 
