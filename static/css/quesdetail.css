@@ -1,0 +1,134 @@
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+    overflow-y: auto !important;
+  }
+
+  .container1 {
+    max-width: 80%;
+    margin: 0 auto;
+    overflow-y: auto !important;
+  }
+  
+  .query-card {
+    border: none;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+  }
+  
+  .section-card {
+    border: none;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+  
+  .specific {
+    font-size: 15px;
+    color: #888;
+  }
+
+  .input-height {
+    height: 200px;
+  }
+.vote-buttons {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    height: 230px; /* adjust height as needed */
+    padding-right: 10px; 
+  }
+  .vote-buttons-1{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    height: 380px; /* adjust height as needed */
+    padding-right: 10px; 
+  }
+  
+  
+  .upvote-button, .downvote-button {
+    background-color:  #f7f7f7;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    margin-bottom: px; /* add spacing between buttons */
+  }
+  
+  .upvote-button:hover, .downvote-button:hover {
+    color: #007bff; /* change color on hover */
+  }
+  
+  .vote-count {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0;
+  }
+  
+  .fa {
+    display: inline-block;
+    font-size: inherit;
+  }
+  
+  .fa-thumbs-up:before {
+    content: "\f164"; /* thumbs up icon */
+  }
+  
+  .fa-thumbs-down:before {
+    content: "\f165"; /* thumbs down icon */
+  }   
+
+  .box{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: top; */
+    min-height: 110px;
+    width:9%;
+    
+
+  }
+  .user-box{
+    display: flex;
+    flex-direction: column;
+    height: 0px;
+  }
+  .low-box {
+    display: flex;
+    flex-direction: row; /* change flex-direction to row */
+    align-items: center;
+    justify-content: space-between; /* add justify-content to space items apart */
+    
+  }
+  .high-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 15px;
+  }
+  
+  .badge {
+    margin-right: 1px;
+  }
+  
+  
+  .user-description {
+    padding-left: 40px;
+    margin-top: 0px;
+    float: right;
+    align-items: right;
+    width: 100px; 
+    height: 75px;
+    justify-content: flex-end;
+    
+}
+.user-description {
+  margin-left: auto; /* add margin-left: auto to shift the user-description to the right */
+}
+
+#ques-image{
+    width:80px;
+    height:80px;
+    object-fit: cover;
+}

@@ -84,7 +84,7 @@ INSERT INTO questions (QuesTitle,QuesDesc,QuesScore,QuesTags,UserId) VALUES ('2+
 
 INSERT INTO questions (QuesTitle,QuesDesc,CreationTime,QuesScore,QuesTags,UserId) VALUES ('2+4=?','six','2008-08-01 20:15:55','40','["addition"]',1);
 
-INSERT INTO questions (QuesTitle,QuesDesc,QuesScore,QuesTags,UserId) VALUES ('2+7=?','twenty-seven','20','["php","addition"]',2);
+INSERT INTO questions (QuesTitle,QuesDesc,QuesScore,QuesTags,QCreationTime,UserId) VALUES ('2+7=?','twenty-seven','20','["php","addition"]',"2008-08-10 13:57:55",1);
 
 
 

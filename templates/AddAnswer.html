@@ -3,14 +3,39 @@
 {%  block title %}Add Answer{%  endblock %}
 
 {%  block content %}
-
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [['$', '$']],
+                    displayMath: [['$$', '$$']]
+                },
+                "HTML-CSS": { preferredFont: "TeX", availableFonts: ["TeX"] },
+                extensions: ["tex2jax.js", "toMathML.js"],
+                jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+                showMathMenu: false
+            });
+        </script>
 <h1> Add a Answer </h1>
-
 <form id="add-answer-form" method="POST" action="/answer/{{id}}">
         <label for="AnsDesc">Give your detail Description:</label>
         <input type="text" id="AnsDesc" name="AnsDesc" required/>
         <br>
         <button type="submit">Add Answer</button>
 </form>
+
+<textarea id="answer" oninput="updatePreview()"></textarea>
+<div id="preview"></div>
+
+<script>
+function updatePreview() {
+        console.log("updatePreview")
+        var answer = document.getElementById("answer").value;
+        var preview = document.getElementById("preview");
+        preview.innerHTML = answer;
+        MathJax.typeset([preview]);
+      }
+</script>
 
 {% endblock %}

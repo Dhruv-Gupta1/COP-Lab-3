@@ -1,3 +1,9 @@
+<link rel ="stylesheet" href = "{{ url_for('static', filename='css/quesdetail.css') }}">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 {% if session.loggedin  %}
 {% extends "base_loggedin.html" %}
 {% else %}
@@ -7,43 +13,96 @@
 {% block title %}Question{% endblock %}
 {% block content %}
 
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [['$', '$']],
+                    displayMath: [['$$', '$$']]
+                },
+                "HTML-CSS": { preferredFont: "TeX", availableFonts: ["TeX"] },
+                extensions: ["tex2jax.js", "toMathML.js"],
+                jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+                showMathMenu: false
+            });
+        </script>
+<a href="{{ url_for('answer',id=question[0])}}"> Add a answer</a>
+
+<div class="container1">
+    <div class="card section-card shadow mb-4" id="ans_card">
+                              
+        <div class="card query-card w-100 mx-auto -card shadow" >
+          <div class="card-body">
+            <div class="d-flex justify-content-start align-items-center">
+              <div class="mr-3">
+                <div class="vote-buttons">
+                  <button class="upvote-button"><i class="fa fa-thumbs-up"></i></button>
+                  <span class="vote-count">{{ question[4] }}</span>
+                  <button class="downvote-button"><i class="fa fa-thumbs-down"></i></button>
+                </div>
+              </div>
+              <div class="box">
+                <a href="{{ url_for('QuesUpvote',id=question[0])}}">Upvote</a>
+                <a href="{{ url_for('QuesDownvote',id=question[0])}}">Downvote</a>
+                <h3 class="card-title">{{ question[1] }}</h3>
+                <p class="card-text specific">{{ question[2] }}
+                  
+                </p>
+                <div class = "low-box">
+                  <div class = "tags">
+                  <div class = "high-box">
+                {% for tag1 in question[5] %}
+                  <span class="badge bg-primary">{{ tag1 }}</span>
+                {% endfor %}
+                </div>
+
+                <p style="margin: 0px; font-family: 'monospace', Courier; font-size: 12px; color: gray;">Submitted {{ question[3] }}</p>
+    
+    
+                </div>
+                <div class="user-description" style="background-color: #f8f8f8; padding: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+                  <div style="display: flex; align-items: center;">
+                    <div style="margin-right: 10px;">
+                      <img src="{{ asker_details[4] }}" id="ques-image" alt="User photo">
+                    </div>
+                    <div>
+                      <p style="margin: 0; font-size: 8px;">{{ asker_details[1] }}</p>
+                      <p style="margin: 0; font-size: 10px;">{{ asker_details[7] }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
 <div class="container">
-    <div class="des">
-        <h2>Title :{{ question[0][1] }}</h2>
-        <h3>Description :{{ question[0][2] }}</h3>
-        <h3>score :{{ question[0][3] }}</h3>
-        <h3>Tags :{{ question[0][4] }}</h3>
-    </div>
     {% for answer in details %}
         <div class="answeruser">
             <a href="{{ url_for('upvoteAns',id=answer[0])}}">Upvote</a>
             <a href="{{ url_for('downvoteAns',id=answer[0])}}">Downvote</a>
-            <h1>UserName: {{ answer[12] }}</h1>
-            <h2>UserId: {{ answer[4] }}</h2>
-            <h3>User Rating: {{ answer[16] }}</h3>
+            <h6>UserName: {{ answer[14] }}</h6>
+            <h7>User Image: {{ answer[17] }}</h7>
+            <h6>User Rating: {{ answer[20] }}</h6>
+            <h6>Ans Time:{{ answer[4] }} </h6>
             <h4>Answer: {{ answer[1] }}</h4>
             <p>Score: {{ answer[2] }}</p>
-            <p>QuesId: {{ answer[3] }}</p>
         </div>
     {% endfor %}
-    <a href="{{ url_for('answer',id=question[0][0])}}"> Add a answer</a>
+    
 </div>
 
-<div class="pages">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-end">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-        </li>
-        </ul>
-    </nav>
-</div>
 
 <!-- WHat if no answer? -->
 

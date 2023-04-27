@@ -2,6 +2,7 @@ from flask import Flask, render_template,url_for,request,jsonify,session,redirec
 from flask_bcrypt import Bcrypt
 from flask_mysqldb import MySQL
 from flask_paginate import Pagination, get_page_parameter
+from datetime import datetime,timedelta
 import yaml
 import re
 import base64
@@ -20,11 +21,29 @@ app.config['MYSQL_HOST'] = db['mysql_host']
 app.config['MYSQL_USER'] = db['mysql_user']
 app.config['MYSQL_PASSWORD'] = db['mysql_password']
 app.config['MYSQL_DB'] = db['mysql_db']
-
 mysql = MySQL(app)
 
 
-
+def time_convert(cur):
+    now = datetime.now()
+    time_diff= now-cur
+    if(time_diff<timedelta(minutes=1)):
+        return 'just now'
+    elif time_diff < timedelta(hours=1):
+        minutes = time_diff.seconds // 60
+        return f'{minutes} minutes ago'
+    elif time_diff < timedelta(days=1):
+        hours = time_diff.seconds // 3600
+        return f'{hours} hours ago'
+    elif time_diff < timedelta(days=30):
+        days = time_diff.days
+        return f'{days} days ago'
+    elif time_diff < timedelta(days=365):
+        months = time_diff.days // 30
+        return f'{months} months ago'
+    else:
+        time = cur.strftime("%b %d, %Y at %H:%M")
+        return f'{time}'
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -123,13 +142,17 @@ def questions(sort):
         cur = mysql.connection.cursor() 
         # cur.execute("SELECT * FROM questions ORDER BY "+sort + " DESC")
         cur.execute("SELECT q.*,u.* FROM questions q JOIN users u WHERE q.UserId=u.UserId ORDER BY "+sort+ " DESC")
+        
+        
         questions = cur.fetchall()
         new_questions = []
         for question in questions:
             question_tags = json.loads(question[5])
-            new_question = question[:4] + (question_tags,) + question[5:]
-            new_questions.append(new_question)
-        
+            qid = question[0]
+            cur.execute("SELECT COUNT(*) FROM answers WHERE QuesId = %s", (qid,))
+            c = cur.fetchone()
+            new_question = question[:5] + (question_tags,) + question[5:14] + (c[0],)
+            new_questions.append(new_question)  
         cur.close()
         if 'loggedin' in session:
             return render_template('questions.html',questions=new_questions)
@@ -179,9 +202,14 @@ def quesdetail(id):
         details = cur.fetchall()
         var2 = "SELECT q.* FROM questions q WHERE q.QuesId="
         cur.execute(var2 + str(id) + ";")
-        question = cur.fetchall()
+        question = cur.fetchone()
+        question_tags = json.loads(question[5])
+        new_question = question[:5] + (question_tags,) + question[6:]
+        new_question1 = new_question[:3] + (time_convert(new_question[3]),) + new_question[4:]
+        cur.execute("SELECT * FROM users WHERE UserId = %s",(question[6],))
+        asker_details = cur.fetchone()
         cur.close()
-        return render_template('quesdetail.html',question=question,details=details)
+        return render_template('quesdetail.html',question=new_question1,details=details,asker_details=asker_details)
     return render_template('quesdetail.html')
 
 
@@ -194,8 +222,11 @@ def ask():
             QuesDesc = request.form.get('QuesDesc')
             QuesTags = request.form.getlist('QuesTags')
             
+            
+            time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO questions(QuesTitle,QuesDesc,QuesTags,QuesScore,UserId) VALUES (%s, %s, %s, %s, %s)", (QuesTitle,QuesDesc,json.dumps(QuesTags),0,session['id'],))
+            cur.execute("INSERT INTO questions(QuesTitle,QuesDesc,QuesTags,QuesScore,UserId,QCreationTime) VALUES (%s, %s, %s, %s, %s, %s)", (QuesTitle,QuesDesc,json.dumps(QuesTags),0,session['id'],time,))
+            
             mysql.connection.commit()
             cur.close()
             return redirect(url_for('ask'))
@@ -207,7 +238,8 @@ def answer(id):
         if 'loggedin' in session:
             AnsDesc = request.form.get('AnsDesc')
             cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO answers(AnsDesc,AnsScore,QuesId,UserId) VALUES (%s, %s, %s, %s)", (AnsDesc,0,id,session['id'],))
+            time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            cur.execute("INSERT INTO answers(AnsDesc,AnsScore,QuesId,UserId,ACreationTime) VALUES (%s, %s, %s, %s, %s)", (AnsDesc,0,id,session['id'],time,))
             mysql.connection.commit()
             cur.close()
             return redirect(url_for('quesdetail',id=id))
@@ -378,9 +410,74 @@ def changepasswd():
         return render_template('myprofile.html',msg_pd=msg_pd,details=details)
     return (redirect(url_for('myprofile')))
 
+@app.route('/QuesUpvote/<id>',methods=['GET','POST'])
+def QuesUpvote(id):
+    if ('loggedin' in session):
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM questionvotes WHERE QuesId = %s AND QUserId = %s",(id,session['id'],))
+        states = cur.fetchone()
+        if states is None:
+            cur.execute("SELECT * FROM questions WHERE QuesId = %s",(id,))
+            details = cur.fetchone()
+            cur.execute("UPDATE questions SET QuesScore = %s WHERE QuesId = %s",(details[4]+1,id,))
+            cur.execute("INSERT INTO questionvotes (QuesId,QUserId,QState) VALUES (%s,%s,%s)",(id,session['id'],1,))
+            mysql.connection.commit()
+            cur.close()
+            return redirect(url_for('quesdetail',id=id))
+        else:
+            if states[3] == 1:
+                cur.execute("SELECT * FROM questions WHERE QuesId = %s",(id,))
+                details = cur.fetchone()
+                cur.execute("UPDATE questions SET QuesScore = %s WHERE QuesId = %s",(details[4]-1,id,))
+                cur.execute("DELETE FROM questionvotes WHERE QuesId = %s AND QUserId = %s",(id,session['id'],))
+                mysql.connection.commit()
+                cur.close()
+                return redirect(url_for('quesdetail',id=id))
+            elif states[3] == 2:
+                print("jadkhbvjg")
+                cur.execute("SELECT * FROM questions WHERE QuesId = %s",(id,))
+                details = cur.fetchone()
+                cur.execute("UPDATE questions SET QuesScore = %s WHERE QuesId = %s",(details[4]+2,id,))
+                cur.execute("UPDATE questionvotes SET QState = %s WHERE QuesId = %s AND QUserId = %s",(1,id,session['id'],))
+                mysql.connection.commit()
+                cur.close()
+                return redirect(url_for('quesdetail',id=id))
+    return (redirect(url_for('login')))
 
+@app.route('/QuesDownvote/<id>',methods=['GET','POST'])
+def QuesDownvote(id):
+    if ('loggedin' in session):
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM questionvotes WHERE QuesId = %s AND QUserId = %s",(id,session['id'],))
+        states = cur.fetchone()
+        if states is None:
+            cur.execute("SELECT * FROM questions WHERE QuesId = %s",(id,))
+            details = cur.fetchone()
+            cur.execute("UPDATE questions SET QuesScore = %s WHERE QuesId = %s",(details[4]-1,id,))
+            cur.execute("INSERT INTO questionvotes (QuesId,QUserId,QState) VALUES (%s,%s,%s)",(id,session['id'],2,))
+            mysql.connection.commit()
+            cur.close()
+            return redirect(url_for('quesdetail',id=id))
+        else:
+            if states[3] == 2:
+                cur.execute("SELECT * FROM questions WHERE QuesId = %s",(id,))
+                details = cur.fetchone()
+                cur.execute("UPDATE questions SET QuesScore = %s WHERE QuesId = %s",(details[4]+1,id,))
+                cur.execute("DELETE FROM questionvotes WHERE QuesId = %s AND QUserId = %s",(id,session['id'],))
+                mysql.connection.commit()
+                cur.close()
+                return redirect(url_for('quesdetail',id=id))
+            elif states[3] == 1:
+                cur.execute("SELECT * FROM questions WHERE QuesId = %s",(id,))
+                details = cur.fetchone()
+                cur.execute("UPDATE questions SET QuesScore = %s WHERE QuesId = %s",(details[4]-2,id,))
+                cur.execute("UPDATE questionvotes SET QState = %s WHERE QuesId = %s AND QUserId = %s",(2,id,session['id'],))
+                mysql.connection.commit()
+                cur.close()
+                return redirect(url_for('quesdetail',id=id))
+    return (redirect(url_for('login')))
 
 
 
 if __name__ == "__main__":
-    app.run(debug=True,port=8035)
+    app.run(debug=True,port=8069)
