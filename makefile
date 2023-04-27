@@ -10,11 +10,4 @@ create_env:
 	source env/bin/activate
 
 install:
-	pip install flask 
-	pip install flask_mysqldb
-	pip install pyyaml
-	pip install requests
-	pip install pytest
-	pip install coverage
-	pip install spacy
-	pip install flask_bcrypt
+	pip install -r requirements.txt

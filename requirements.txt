@@ -1,0 +1,9 @@
+Flask==2.2.3
+Flask_Bcrypt==1.0.1
+Flask_MySQLdb==1.0.1
+flask_paginate==2022.1.8
+PyYAML==6.0
+PyYAML==6.0
+Requests==2.29.0
+spacy==3.5.2
+coverage

@@ -142,7 +142,7 @@ def users(sort):
         page = request.args.get('page',1 , type=int)
     else :
         page = 1
-    per_page = 24
+    per_page = 15
     offset = (page - 1) * per_page
     cur = mysql.connection.cursor() 
     cur.execute("SELECT COUNT(*) FROM users")
