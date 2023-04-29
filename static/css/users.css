@@ -52,8 +52,9 @@
   }
   
 #page_change{
-    margin-left: 1100px !important;
+    margin-left: 1200px !important;
     margin-top: -10px !important;
+
 }
 
 #btn1{
@@ -67,3 +68,4 @@
     color:rgb(41, 93, 207);
     /* font-weight: bold; */
 }
+

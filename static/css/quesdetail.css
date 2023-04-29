@@ -5,7 +5,7 @@
   }
 
   .container1 {
-    max-width: 80%;
+    width: 95% !important;
     margin: 0 auto;
     overflow-y: auto !important;
   }
@@ -86,6 +86,7 @@
     /* align-items: top; */
     min-height: 110px;
     width:9%;
+    width: 85% !important;
     
 
   }
@@ -128,7 +129,17 @@
 }
 
 #ques-image{
-    width:80px;
-    height:80px;
+    width:50px;
+    height:50px;
     object-fit: cover;
+}
+
+#ans_card1{
+  border-color: aliceblue;
+}
+
+
+#dabbbbba{
+  background-color: aliceblue !important;
+  border-color: aliceblue;
 }

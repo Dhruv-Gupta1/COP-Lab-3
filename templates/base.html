@@ -42,6 +42,21 @@
         <head>
             <title>Clickable Sidebar Buttons</title>
         </head>
+
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [['$', '$']],
+                    displayMath: [['$$', '$$']]
+                },
+                "HTML-CSS": { preferredFont: "TeX", availableFonts: ["TeX"] },
+                extensions: ["tex2jax.js", "toMathML.js"],
+                jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+                showMathMenu: false
+            });
+        </script>
         <body>
             <div class="sidebar">
                 <button class="button" onclick="window.location.href='/'">Home</button>
@@ -51,9 +66,84 @@
             </div>
             <div class="content">
                 {% block content %}
-                <h2 id ="welcome_heading"> Welcome to queriKorner </h2>
-                <p id="welcome_para">A place where you can ask questions and get answers from other members of the community.</p>
-                <p id="welcome_para">Take a look at some of the top questions here.</p>
+
+
+
+
+                <div class="container_out ">
+                    <div class="container_inside my-3 ">
+                        <div class="row">
+                            <div class="col-md-8 mb-4">
+                                <h3>Hot Questions</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="box bulging">
+                                            <h5>{{ recent[0][1] }}</h5>
+                                            <p> {{ recent[0][2]|safe }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 ">
+                                        <div class="box bulging">
+                                            <h5>{{ recent[1][1] }}</h5>
+                                            <p>{{ recent[1][2]|safe }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="box bulging">
+                                            <h5>{{ recent[2][1] }}</h5>
+                                            <p>{{ recent[2][2]|safe }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="box bulging">
+                                        <h5>{{ recent[3][1] }}</h5>
+                                        <p>{{ recent[3][2]|safe }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="box scroll-box">
+                                        <h2>Top Tags</h2>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">{{ tags[0][0] }}</li>
+                                            <li class="list-group-item">{{ tags[1][0] }}</li>
+                                            <li class="list-group-item">{{ tags[2][0] }}</li>
+                                            <li class="list-group-item">{{ tags[3][0] }}</li>
+                                            <li class="list-group-item">{{ tags[4][0] }}</li>
+                
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="box scroll-box">
+                                        <h2>Top Users</h2>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">{{ top[0][0] }}</li>
+                                            <li class="list-group-item">{{ top[1][0] }}</li>
+                                            <li class="list-group-item">{{ top[2][0] }}</li>
+                                            <li class="list-group-item">{{ top[3][0] }}</li>
+                                            <li class="list-group-item">{{ top[4][0] }}</li>
+                                            <li class="list-group-item">{{ top[5][0] }}</li>
+                                            <li class="list-group-item">{{ top[6][0] }}</li>
+                                            <li class="list-group-item">{{ top[7][0] }}</li>
+                                            <li class="list-group-item">{{ top[8][0] }}</li>
+                                            <li class="list-group-item">{{ top[9][0] }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+                </div>
+                
+                
 
                 {% endblock %}
             </div>

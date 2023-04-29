@@ -1,3 +1,5 @@
+<link rel ="stylesheet" href = "{{ url_for('static', filename='css/AddAnswer.css') }}">
+
 {%  extends "base_loggedin.html" %}
 
 {%  block title %}Add Answer{%  endblock %}
@@ -17,25 +19,51 @@
                 showMathMenu: false
             });
         </script>
+
 <h1> Add a Answer </h1>
+
 <form id="add-answer-form" method="POST" action="/answer/{{id}}">
         <label for="AnsDesc">Give your detail Description:</label>
-        <input type="text" id="AnsDesc" name="AnsDesc" required/>
+        <div type="text" id="AnsDesc1" name="AnsDesc1" required>Enter your Answer</div>
+  <div id="preview"></div>
+  <input type="hidden" class="form-control  shadow input-height" style="resize: none;" id="AnsDesc" name="AnsDesc" required/>
         <br>
         <button type="submit">Add Answer</button>
 </form>
 
-<textarea id="answer" oninput="updatePreview()"></textarea>
-<div id="preview"></div>
 
-<script>
-function updatePreview() {
-        console.log("updatePreview")
-        var answer = document.getElementById("answer").value;
-        var preview = document.getElementById("preview");
-        preview.innerHTML = answer;
-        MathJax.typeset([preview]);
+
+
+
+
+
+
+
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  
+  
+
+
+  <script>
+    var quill = new Quill('#AnsDesc1', {
+      theme: 'snow'
+    });
+    function updatePreview() {
+      var answer = quill.root.innerHTML;
+      var preview = document.getElementById("preview");
+      preview.innerHTML = answer;
+      MathJax.typeset([preview]);
+      var inputField = document.getElementById("AnsDesc");
+      inputField.value = answer;
+    }
+    quill.on('text-change', function(delta, oldDelta, source) {
+      if (source == 'user') {
+        updatePreview();
       }
-</script>
+    });
+  </script>
+
+
 
 {% endblock %}

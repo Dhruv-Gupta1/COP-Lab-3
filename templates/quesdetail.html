@@ -28,12 +28,21 @@
                 showMathMenu: false
             });
         </script>
-<a href="{{ url_for('answer',id=question[0])}}"> Add a answer</a>
+        <button class="btn btn-info" id="logout" onclick="window.location.href='{{ url_for('answer',id=question[0]) }}'"><div class="login">Add answer</div></button>
+
+
+
+
+
 
 <div class="container1">
-    <div class="card section-card shadow mb-4" id="ans_card">
+
+
+
+
+    <div class="card section-card  mb-4" id="ans_card1">
                               
-        <div class="card query-card w-100 mx-auto -card shadow" >
+        <div class="card query-card w-100 mx-auto -card " id="dabbbbba" > 
           <div class="card-body">
             <div class="d-flex justify-content-start align-items-center">
               <div class="mr-3">
@@ -44,10 +53,10 @@
                 </div>
               </div>
               <div class="box">
-                <a href="{{ url_for('QuesUpvote',id=question[0])}}">Upvote</a>
-                <a href="{{ url_for('QuesDownvote',id=question[0])}}">Downvote</a>
+                <!-- <a href="{{ url_for('QuesUpvote',id=question[0])}}">Upvote</a>
+                <a href="{{ url_for('QuesDownvote',id=question[0])}}">Downvote</a> -->
                 <h3 class="card-title">{{ question[1] }}</h3>
-                <p class="card-text specific">{{ question[2] }}
+                <p class="card-text specific">{{ question[2] | safe }}
                   
                 </p>
                 <div class = "low-box">
@@ -87,21 +96,56 @@
 
 
 
-<div class="container">
-    {% for answer in details %}
-        <div class="answeruser">
-            <a href="{{ url_for('upvoteAns',id=answer[0])}}">Upvote</a>
-            <a href="{{ url_for('downvoteAns',id=answer[0])}}">Downvote</a>
-            <h6>UserName: {{ answer[14] }}</h6>
-            <h7>User Image: {{ answer[17] }}</h7>
-            <h6>User Rating: {{ answer[20] }}</h6>
-            <h6>Ans Time:{{ answer[4] }} </h6>
-            <h4>Answer: {{ answer[1] }}</h4>
-            <p>Score: {{ answer[2] }}</p>
-        </div>
-    {% endfor %}
-</div>
 
+    {% for answer in details %}
+
+        <div class="card section-card mb-4" id="ans_card1">
+                              
+          <div class="card query-card w-100 mx-auto -card " id="dabbbbba" >
+            <div class="card-body">
+              <div class="d-flex justify-content-start align-items-center">
+                <div class="mr-3">
+                  <div class="vote-buttons">
+                    <button class="upvote-button" id="up" onclick="window.location.href='{{ url_for('upvoteAns', id=answer[0]) }}'"><i  class="fa fa-thumbs-up" id="up" ></i></button>
+                    <span class="vote-count">{{ answer[2] }}</span>
+                    <button class="downvote-button" id="down" onclick="window.location.href='{{ url_for('downvoteAns', id=answer[0]) }}'"><i  class="fa fa-thumbs-down" id="down" ></i></button>
+                  </div>
+                </div>
+                <div class="box">
+                  <!-- <a href="{{ url_for('QuesUpvote',id=question[0])}}">Upvote</a>
+                  <a href="{{ url_for('QuesDownvote',id=question[0])}}">Downvote</a> -->
+                  <p class="card-text specific">{{ answer[1] | safe }}
+                    
+                  </p>
+                  <div class = "low-box">
+                    <div class = "tags">
+                    <div class = "high-box">
+                  </div>
+  
+                  <p style="margin: 0px; font-family: 'monospace', Courier; font-size: 12px; color: gray;">Submitted {{ answer[4] }}</p>
+      
+      
+                  </div>
+                  <div class="user-description" style="background-color: #f8f8f8; padding: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+                    <div style="display: flex; align-items: center;">
+                      <div style="margin-right: 10px;">
+                        <img src="{{ answer[17] }}" id="ques-image" alt="User photo">
+                      </div>
+                      <div>
+                        <p style="margin: 0; font-size: 8px;">{{ answer[14] }}</p>
+                        <p style="margin: 0; font-size: 10px;">{{ answer[20] }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+    {% endfor %}
 <script>
     // upvote and downvote
     // avoid color when both are clicked

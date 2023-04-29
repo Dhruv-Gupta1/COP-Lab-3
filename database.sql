@@ -72,9 +72,20 @@ CREATE TABLE IF NOT EXISTS questionvotes (
 
 
 
-INSERT INTO tags (TagName,TagDes,QCount) VALUES ('php','PHP is a server-side scripting language designed for web development but also used as a general-purpose programming language.',10);
-INSERT INTO tags (Tagname,TagDes,QCount) VALUES ('mysql','MySQL is an open-source relational database management system.',10);
+INSERT INTO tags (TagName,TagDes,QCount) VALUES ('php','PHP is a server-side scripting language designed for web development but also used as a general-purpose programming language.',798);
+INSERT INTO tags (Tagname,TagDes,QCount) VALUES ('mysql','MySQL is an open-source relational database management system.',532);
 
+INSERT INTO tags (Tagname,TagDes,QCount) VALUES ('java','Java is a general-purpose programming language that is class-based, object-oriented, and designed to have as few implementation dependencies as possible.',234);
+INSERT INTO tags (Tagname,TagDes,QCount) VALUES ('addition','Addition is one of the four basic operations of arithmetic; the others are subtraction, multiplication and division.',21);
+INSERT INTO tags (Tagname,TagDes,QCount) VALUES ('subtraction','Subtraction is an arithmetic operation that represents the operation of removing objects from a collection.',32);
+INSERT INTO tags (Tagname,TagDes,QCount) VALUES ('multiplication','Multiplication is one of the four elementary mathematical operations of arithmetic, with the others being addition, subtraction and division.',423);
+INSERT INTO tags (Tagname,TagDes,QCount) VALUES ('division','Division is one of the four basic operations of arithmetic, the ways that numbers are combined to make new numbers.',90);
+INSERT INTO tags (Tagname,TagDes,QCount) VALUES ('python','Python is an interpreted, high-level and general-purpose programming language.',17);
+INSERT INTO tags (Tagname,TagDes,QCount) VALUES ('c++','C++ is a general-purpose programming language created by Bjarne Stroustrup as an extension of the C programming language, or "C with Classes".',18);
+INSERT INTO tags (Tagname,TagDes,QCount) VALUES ('c','C is a general-purpose, procedural computer programming language supporting structured programming, lexical variable scope, and recursion, with a static type system.',991);
+INSERT INTO tags (Tagname,TagDes,QCount) VALUES ('javascript','JavaScript, often abbreviated as JS, is a programming language that conforms to the ECMAScript specification.',69);
+INSERT INTO tags (Tagname,TagDes,QCount) VALUES ('html','Hypertext Markup Language is the standard markup language for documents designed to be displayed in a web browser.',111);
+INSERT INTO tags (Tagname,TagDes,QCount) VALUES ('css','Cascading Style Sheets is a style sheet language used for describing the presentation of a document written in a markup language such as HTML.',220);
 
 INSERT INTO users (UserId,UserName,UserEmail,UserPass,Rating) VALUES (1,'admin','admin@gmail.com','admin',100);
 INSERT INTO users (UserId,UserName,UserEmail,UserPass,Rating) VALUES (2,'user1','user1@gmail.com','user1',10);

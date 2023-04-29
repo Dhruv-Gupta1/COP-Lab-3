@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{nlp} \PYG{o}{=} \PYG{n}{spacy}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}en\PYGZus{}core\PYGZus{}web\PYGZus{}md\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

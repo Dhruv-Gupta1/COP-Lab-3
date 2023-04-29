@@ -111,15 +111,21 @@ def logout():
 
 @app.route('/')
 def base():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT TagName FROM tags ORDER BY QCount DESC LIMIT 5")
+    tags = cur.fetchall()
+    cur.execute("SELECT UserName FROM users ORDER BY Rating DESC LIMIT 10")
+    top = cur.fetchall()
+    cur.execute("SELECT * FROM questions ORDER BY QCreationTime DESC LIMIT 4")
+    recent = cur.fetchall()
+    cur.execute("SELECT * FROM questions ORDER BY QuesScore DESC")
+    questions = cur.fetchall()
+    cur.execute("SELECT * FROM answers ORDER BY AnsScore DESC")
+    answers = cur.fetchall()
+    cur.close()
     if 'loggedin' in session:
-        cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM questions ORDER BY QuesScore DESC")
-        questions = cur.fetchall()
-        cur.execute("SELECT * FROM answers ORDER BY AnsScore DESC")
-        answers = cur.fetchall()
-        cur.close()
-        return render_template('base_loggedin.html',questions=questions,answers = answers)
-    return render_template('base.html')
+        return render_template('base_loggedin.html',questions=questions,answers = answers,recent=recent,top=top,tags=tags)
+    return render_template('base.html',recent=recent,top=top,tags=tags)
 
 @app.route('/tags/<string:sort>',methods=['GET'])
 def tags(sort):
@@ -138,12 +144,26 @@ def tags(sort):
 
 @app.route('/questions/<string:sort>',methods=['GET'])
 def questions(sort):
+    # if sort == 'UserName':
+    #     cur.execute("SELECT * FROM users ORDER BY "+sort + " ASC LIMIT %s OFFSET %s", (per_page, offset))
+    # else:
+    #     cur.execute("SELECT * FROM users ORDER BY "+sort + " DESC LIMIT %s OFFSET %s", (per_page, offset))
+    # users = cur.fetchall()
     if request.method == 'GET':
+        page = request.args.get('page',1 , type=int)
+        per_page = 5
+        offset = (page - 1) * per_page
+        
         cur = mysql.connection.cursor() 
+        cur.execute("SELECT COUNT(*) FROM questions")
+        total_count = (cur.fetchone()[0]+per_page-1)//per_page
+        lower = max(page-1,1)
+        higher= min(page+1,total_count)+1
         # cur.execute("SELECT * FROM questions ORDER BY "+sort + " DESC")
-        cur.execute("SELECT q.*,u.* FROM questions q JOIN users u WHERE q.UserId=u.UserId ORDER BY "+sort+ " DESC")
-        
-        
+        if(sort=='QuesTitle'):
+            cur.execute("SELECT q.*,u.* FROM questions q JOIN users u WHERE q.UserId=u.UserId ORDER BY "+sort+ " ASC LIMIT %s OFFSET %s", (per_page, offset))
+        else:
+            cur.execute("SELECT q.*,u.* FROM questions q JOIN users u WHERE q.UserId=u.UserId ORDER BY "+sort+ " DESC LIMIT %s OFFSET %s", (per_page, offset))
         questions = cur.fetchall()
         new_questions = []
         for question in questions:
@@ -155,9 +175,11 @@ def questions(sort):
             new_questions.append(new_question)  
         cur.close()
         if 'loggedin' in session:
-            return render_template('questions.html',questions=new_questions)
+            pagination = Pagination(page=page, per_page=per_page, total=total_count, css_framework='bootstrap4')
+            return render_template('questions.html',questions=new_questions,pagination=pagination,sort=sort,lower=lower,higher=higher)
         else:
-            return render_template('questions.html',questions=new_questions)
+            pagination = Pagination(page=page, per_page=per_page, total=total_count, css_framework='bootstrap4')
+            return render_template('questions.html',questions=new_questions,pagination=pagination,sort=sort,lower=lower,higher=higher)
 
 @app.route('/users/<string:sort>',methods=['GET'])
 def users(sort):
@@ -216,13 +238,11 @@ def quesdetail(id):
 
 @app.route('/ask',methods=['GET','POST'])
 def ask():
-    if request.method == 'POST' and 'QuesTitle' in request.form and 'QuesDesc' in request.form and 'QuesTags' in request.form:
+    if request.method == 'POST' and 'QuesTitle' in request.form and 'QuesTags' in request.form:
         if 'loggedin' in session:
             QuesTitle = request.form.get('QuesTitle')
             QuesDesc = request.form.get('QuesDesc')
             QuesTags = request.form.getlist('QuesTags')
-            
-            
             time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             cur = mysql.connection.cursor()
             cur.execute("INSERT INTO questions(QuesTitle,QuesDesc,QuesTags,QuesScore,UserId,QCreationTime) VALUES (%s, %s, %s, %s, %s, %s)", (QuesTitle,QuesDesc,json.dumps(QuesTags),0,session['id'],time,))
@@ -332,12 +352,18 @@ def search():
         ranked_questions = [questons[i] for i in sorted(range(len(similarity_scores)), key=lambda k: similarity_scores[k], reverse=True)]
 
         questions = [q for q in ranked_questions[:5]]
-        
+        cur = mysql.connection.cursor()
         new_questions = []
         for question in questions:
-            question_tags = json.loads(question[4])
-            new_question = question[:4] + (question_tags,) + question[5:]
-            new_questions.append(new_question)
+            question_tags = json.loads(question[5])
+            cur.execute("SELECT COUNT(*) FROM answers WHERE QuesId = %s", (question[0],))
+            c = cur.fetchone()
+            cur.execute("SELECT * FROM users WHERE UserId = %s", (question[6],))
+            username = cur.fetchone()
+            new_question = question[:5] + (question_tags,) + question[5:14] + (c[0],) + (username[1],)
+            print(new_question)
+            new_questions.append(new_question)  
+        cur.close()
         return render_template('search.html', ques_list=new_questions)
     return render_template('search.html',ques_list=[])   
 

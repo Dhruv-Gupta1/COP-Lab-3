@@ -8,30 +8,48 @@
 {% block title %}Search{% endblock %}
 
     {% block content %}
-    <h1>Heading</h1>   
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                    tex2jax: {
+                        inlineMath: [['$', '$']],
+                        displayMath: [['$$', '$$']]
+                    },
+                    "HTML-CSS": { preferredFont: "TeX", availableFonts: ["TeX"] },
+                    extensions: ["tex2jax.js", "toMathML.js"],
+                    jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+                    showMathMenu: false
+                });
+            </script>
+
+
+
+
+    <h1>Search Results</h1>   
     {% for question in ques_list %}
         <div class="card mb-3" id="sample-card">
             <div class="row g-0" id="samp">
-              <div class="col-md-2">
+              <div class="col-md-2" id="sibox">
                 <div class="d-flex flex-column align-items-center">
-                  <button type="button" id = "vote-button" class="btn btn-secondary mb-1">
-                    <span class="votes">{{ question[3] }}</span>
+                  <button class="button-68 mb-1" id = "vote-button role="button">
+                    <span class="votes">{{ question[4] }}</span>
                     <span class="text-views ms-1">Votes</span>
                   </button>
-                  <button type="button" id = "answer-button" class="btn btn-secondary mb-1">
+                  <button class="button-68 mb-1" id = "answer-button role="button">
                     
-                    <span class="answers">0</span>
+                    <span class="answers">{{ question[8] }}</span>
                     <span class="answers-text me-1">Answers</span>
                   </button>
-                  <button type="button" id ="user-name"  class="btn btn-info">{{ question[7] }}</a>
+                  <button class="button-68 mb-1" id = "answer-button role="button">{{ question[9] }}</a>
                 </div>
               </div>
-              <div class="col-md-10">
+              <div class="col-md-10" id="inbox">
                 <div class="card-body">
-                  <h5 class="card-title"><a href="{{ url_for('quesdetail',id=question[0])}}">{{ question[1] }}</a></h5>
-                  <p class="card-text">{{ question[2] }}</p>
+                  <h5 class="card-title"><a id="texter" href="{{ url_for('quesdetail',id=question[0])}}">{{ question[1] }}</a></h5>
+                  <p class="card-text">{{ question[2]|safe }}</p>
                   <div class="mt-3">
-                    {% for tag1 in question[4] %}
+                    {% for tag1 in question[5] %}
                     <span class="badge bg-primary">{{ tag1 }}</span>
                     {% endfor %}
                   </div>

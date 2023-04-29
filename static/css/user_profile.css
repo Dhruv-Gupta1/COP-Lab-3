@@ -121,7 +121,7 @@
   }
 
   #usr_image{
-    width: 100% !important;
-    height: 100% !important;
+    width: 110px !important;
+    height: 110px !important;
     object-fit: cover;
   }
