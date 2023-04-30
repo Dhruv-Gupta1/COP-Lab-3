@@ -13,7 +13,7 @@ import requests
 import unittest
 
 class TestAPI(unittest.TestCase):
-    ENDPOINT = "http://127.0.0.1:8035/"
+    ENDPOINT = "http://127.0.0.1:8069/"
     def test_base(self):
         response = requests.get(self.ENDPOINT + "")
         self.assertEqual(response.status_code,200)
@@ -49,6 +49,19 @@ class TestAPI(unittest.TestCase):
         self.assertEqual(response.status_code,200)
         self.assertIn(b"<!-- This is login.html -->",response.content)
         print("Test 6 completed")  
+        
+    def test_profile(self):
+        response = requests.get(self.ENDPOINT + "/myprofile")
+        self.assertEqual(response.status_code,200)
+        self.assertIn(b"<!-- This is base.html -->",response.content)
+        print("Test 7 completed")
+
+    def test_ask(self):
+        response = requests.get(self.ENDPOINT + "/ask")
+        self.assertEqual(response.status_code,200)
+        self.assertIn(b"<!-- This is ask.html -->",response.content)
+        print("Test 8 completed")
+
          
     
             
@@ -60,6 +73,7 @@ if __name__ == '__main__':
     tester.test_questions()
     tester.test_users()
     tester.test_login()
+    tester.test_ask()
     
 # python3 test.py
 # python -m coverage run -m unittest

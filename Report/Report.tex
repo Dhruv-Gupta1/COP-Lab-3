@@ -11,6 +11,7 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{minted}
+\usepackage{graphicx}
 \definecolor{LightGray}{gray}{0.9}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 
@@ -32,7 +33,31 @@ Each user has a reputation score calculated based on the votes on their question
 \section{Baadal VM link}
 \section{Site Map}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=13cm]{sitemap.png}
+    \caption[short]{Site Map}
+    \end{figure}
+
+\newpage
+
+
+\begin{itemize}
+    \item \textcolor{red}{\textbf{Home}} \\ This is the home page of the website. It contains the list of recently asked questions which is fetched from question database. It also contains a truncated list of top users and top questions which is fetched from users and questions database.
+    \item 
+\end{itemize}
 \section{ER Diagram}
+
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=11cm]{ERD.png}
+    \caption[short]{ER Diagram}
+    \end{figure}
+
+
+
 
 \section{Github Link}
 
@@ -110,21 +135,49 @@ Spacy is an open-source software library for advanced natural language processin
 \section{Unique Features}
 \subsection{MathJax \& Quill Text Editor}
 We have used MathJax to render mathematical equations in the questions and answers. We have also used Quill text editor to make the text editor more user friendly.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=13cm]{MathJax1.png}
+    \end{figure}
+
+
 \subsection{Password Encryption}
 We have used \textcolor{red}{\mintinline{python}|flask_bcrypt|} to hash passwords and \textcolor{red}{\mintinline{python}|flask_login|} to manage user sessions.
 \section{Challenges}
+\begin{itemize}
+    \item \textbf{Lack of Experience :} None of our team members were familiar with web development and we had to learn everything from scratch. We had to learn HTML, CSS, Javascript, Bootstrap, Flask, MySQL, Figma etc. in a short period of time.
+    \item \textbf{Figma :} We were not able to use figma to make the frontend of the website using figma plugins like locofy and anima . So we started making the frontend design from scratch manually using HTML and CSS and also made use of some components from  bootstrap 5 to make the frontend of the website.
+    \item \textbf{Database :} We were not able to add datetime in mysql database. Then we changed the date time format in csv file and imported it in mysql database. There were some non ascii characters in csv files which were not getting imported in mysql database. We figured out a way to remove those characters from csv files and then imported it in mysql database.
+    \item \textbf{Baadal VM :} We were getting difficulties in downloading various modules and libraries to run our website. We found other alternatives to download those modules and libraries and then we were able to run our website on baadal vm.
+    \item \textbf{bootstrap :} We were not able to place different placeholders and cards of bootstrap properly. We tried different ways to place them properly and finally we were able to place them properly.
+\end{itemize}
 
 \section{Limitations / FutureWork}
-2 fa email verification
-forgot pass 
-search + tagsearch  
-offensive text recognition
-moderator access -- delete users
-edit/delete questions/answers
-comments  
+\begin{itemize}
+    \item \textbf{2 Factor Authentication :} 2 factor authentication can be implemented in our website. A verification code can be sent to the user's email id and the user can enter that code to verify his/her account. This will make the website more secure. Forgot Password functionality can also be provided using the above feature.
+    \item \textbf{Offensive Text recognition :} ML API can be used to recognize offensive text and the user can be warned about the same. The user can be banned from the website if he/she continues to post offensive text.
+    \item \textbf{Moderator Access :} A moderator can be given access to delete users and questions. This will help in maintaining the quality of the website.
+    \item \textbf{Comments :} Comments can be added to the answers and questions. This will help in making the website more interactive.
+    \item \textbf{Edit/Delete Questions/Answers :} The user can be given the option to edit/delete his/her questions and answers. This will help in making the website more user friendly.
+\end{itemize}
 \section{Video Link}
 bvdhvbgafkavn
 \section{Token Distribution}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{S.No.} & \textbf{Team member} & \textbf{Entry No.} & \textbf{Token} \\ \hline
+    1              & Hemang Sidana        & 2021CS10078        & 10             \\ \hline
+    2              & Dhruv Gupta          & 2021CS50125        & 10             \\ \hline
+    3              & Rounik Roushan       & 2021CS10243        & 10             \\ \hline
+    4              & Priyanshu Ranjan     & 2021CS10575        & 10             \\ \hline
+    \end{tabular}
+    \caption{Token Distribution}
+    \label{tab:token-split}
+    \end{table}
 
 
 \end{document}

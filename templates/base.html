@@ -78,25 +78,25 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="box bulging">
-                                            <h5>{{ recent[0][1] }}</h5>
+                                            <a style="text-decoration: none; font-size: larger;"  href="{{ url_for('quesdetail',id=recent[0][0])}}">{{ recent[0][1] }}</a>
                                             <p> {{ recent[0][2]|safe }}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6 ">
                                         <div class="box bulging">
-                                            <h5>{{ recent[1][1] }}</h5>
+                                            <a style="text-decoration: none; font-size: larger;"  href="{{ url_for('quesdetail',id=recent[1][0])}}">{{ recent[1][1] }}</a>
                                             <p>{{ recent[1][2]|safe }}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="box bulging">
-                                            <h5>{{ recent[2][1] }}</h5>
+                                            <a style="text-decoration: none; font-size: larger;"  href="{{ url_for('quesdetail',id=recent[2][0])}}">{{ recent[2][1] }}</a>
                                             <p>{{ recent[2][2]|safe }}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="box bulging">
-                                        <h5>{{ recent[3][1] }}</h5>
+                                            <a style="text-decoration: none; font-size: larger;"  href="{{ url_for('quesdetail',id=recent[3][0])}}">{{ recent[3][1] }}</a>
                                         <p>{{ recent[3][2]|safe }}</p>
                                     </div>
                                 </div>

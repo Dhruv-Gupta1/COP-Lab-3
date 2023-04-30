@@ -361,7 +361,6 @@ def search():
             cur.execute("SELECT * FROM users WHERE UserId = %s", (question[6],))
             username = cur.fetchone()
             new_question = question[:5] + (question_tags,) + question[5:14] + (c[0],) + (username[1],)
-            print(new_question)
             new_questions.append(new_question)  
         cur.close()
         return render_template('search.html', ques_list=new_questions)
@@ -389,14 +388,12 @@ def otherprofile(UserId):
     if request.method == 'GET':
         if ('loggedin' in session):
             if int(UserId)!= int(session['id']):
-                print(UserId,session['id'],"vajgdi")
                 cur = mysql.connection.cursor()
                 cur.execute("SELECT * FROM users WHERE UserId = %s",(UserId,))
                 details = cur.fetchone()
                 cur.close()
                 return render_template('other_profile.html',details=details)
             else:
-                print(UserId,session['id'],"1693yahid")
                 return (redirect(url_for('myprofile')))
         else:
             cur = mysql.connection.cursor()
@@ -460,7 +457,6 @@ def QuesUpvote(id):
                 cur.close()
                 return redirect(url_for('quesdetail',id=id))
             elif states[3] == 2:
-                print("jadkhbvjg")
                 cur.execute("SELECT * FROM questions WHERE QuesId = %s",(id,))
                 details = cur.fetchone()
                 cur.execute("UPDATE questions SET QuesScore = %s WHERE QuesId = %s",(details[4]+2,id,))
@@ -503,6 +499,26 @@ def QuesDownvote(id):
                 return redirect(url_for('quesdetail',id=id))
     return (redirect(url_for('login')))
 
+
+
+@app.route('/TagSearch/<string:TagName>',methods=['GET','POST'])
+def tagsearch(TagName):
+    if request.method == "GET":
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM questions WHERE JSON_CONTAINS(QuesTags, '["+'"'+TagName+'"'+"]', '$')")
+        details = cur.fetchall()
+        new_questions=[]
+        for question in details:
+            question_tags = json.loads(question[5])
+            cur.execute("SELECT COUNT(*) FROM answers WHERE QuesId = %s", (question[0],))
+            c = cur.fetchone()
+            cur.execute("SELECT * FROM users WHERE UserId = %s", (question[6],))
+            username = cur.fetchone()
+            new_question = question[:5] + (question_tags,) + question[5:14] + (c[0],) + (username[1],)
+            new_questions.append(new_question)  
+        cur.close()
+        return render_template('tagsearch.html',ques_list=new_questions)
+    return (redirect(url_for('home')))
 
 
 if __name__ == "__main__":

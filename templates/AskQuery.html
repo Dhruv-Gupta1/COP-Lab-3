@@ -4,8 +4,10 @@
 {% block title %}Ask a Question{% endblock %}
 
 {% block content %}
+<!-- This is ask.html -->
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
                 tex2jax: {
@@ -64,7 +66,7 @@
           <div class="card query-card w-100 mx-auto -card shadow">
             <h3 class="card-title">Tags</h3>
             <div class="card-body">
-              <select name="QuesTags" id = "QuesTags" multiple>
+              <select name="QuesTags" id = "QuesTags1" multiple="multiple">
                 <option value="php">php</option>
                 <option value="mysql">mysql</option>
                 <option value="java">java</option>
@@ -78,9 +80,6 @@
                 <option value="javascript">javascript</option>
                 <option value="html">html</option>
                 <option value="css">css</option>
-
-
-
             </select>
               <!-- 
               <p class="card-text specific">Add up to 5 tags to describe what your question is about. Start typing to see suggestions.</p>
@@ -108,8 +107,11 @@
   
   
 
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#QuesTags1').multiselect();
+});
 
-  <script>
 var quill = new Quill('#q1desc', {
   theme: 'snow'
 });
@@ -129,57 +131,6 @@ quill.on('text-change', function(delta, oldDelta, source) {
     updatePreview();
   }
 });
-const tagDropdown = document.getElementById("tagDropdown");
-const addTagBtn = document.getElementById("addTagBtn");
-const tagContainer = document.getElementById("tagContainer");
-const MAX_TAGS = 5;
-let numTags = 0;
-
-// Add tag to tag container
-function addTag(tagName) {
-  if (numTags < MAX_TAGS) {
-    const tagDiv = document.createElement("div");
-    tagDiv.classList.add("tag");
-    tagDiv.innerText = tagName;
-    
-    const removeBtn = document.createElement("button");
-    removeBtn.classList.add("btn", "btn-danger", "btn-sm");
-    removeBtn.innerText = "X";
-    removeBtn.addEventListener("click", () => {
-      tagDiv.remove();
-      tagDropdown.options.add(new Option(tagName, tagName));
-      numTags--;
-      addTagBtn.disabled = false;
-    });
-    
-    tagDiv.appendChild(removeBtn);
-    tagContainer.appendChild(tagDiv);
-    tagDropdown.options[tagDropdown.selectedIndex].remove();
-    numTags++;
-    if (numTags == MAX_TAGS) {
-      addTagBtn.disabled = true;
-    }
-  }
-}
-
-// Add tag when button is clicked
-addTagBtn.addEventListener("click", () => {
-  const selectedTag = tagDropdown.value;
-  if (selectedTag !== "") {
-    addTag(selectedTag);
-  }
-});
-
-// Add tag when enter key is pressed
-tagDropdown.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    const selectedTag = tagDropdown.value;
-    if (selectedTag !== "") {
-      addTag(selectedTag);
-    }
-  }
-});
-
 </script>
 
 {% endblock %}

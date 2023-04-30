@@ -8,7 +8,6 @@
 {% block title %}Search{% endblock %}
 
     {% block content %}
-    <!-- This is search.html -->
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script type="text/x-mathjax-config">
@@ -23,11 +22,7 @@
                     showMathMenu: false
                 });
             </script>
-
-
-
-
-    <h1>Search Results</h1>   
+    <h1>Search Tag Results</h1>   
     {% for question in ques_list %}
         <div class="card mb-3" id="sample-card">
             <div class="row g-0" id="samp">

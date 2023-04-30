@@ -11,7 +11,7 @@
 {% block content %}
 
 
-  <!-- This is tags.html -->
+<!-- This is tags.html -->
     <h1>Tags
     <a href="/tags/TagName" id="btn1" class="btn btn-primary">Sort Alphabetically </a>
     <a href="/tags/QCount" id="btn2" class="btn btn-primary">Sort by Q Count</a>
@@ -26,7 +26,7 @@
       </div>
       <div style="float: left;">
         <div>
-          <button class="btn btn-outline-light btn-lg px-5" id="tag-button" type="submit">{{ tag[1] }}</button> 
+          <button class="btn btn-outline-light btn-lg px-5" id="tag-button" type="submit" onclick="window.location.href='{{ url_for('tagsearch', TagName=tag[1]) }}'">{{ tag[1] }}</button> 
   <p style="display: inline-block; margin-left: 10px;">{{ tag[3] }} questions</p>
         </div>
         <p style="margin: 0; margin-top: 10px;">{{ tag[2] }}</p>
