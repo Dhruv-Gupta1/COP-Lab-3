@@ -12,9 +12,27 @@
 \usepackage{xcolor}
 \usepackage{minted}
 \usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
 \definecolor{LightGray}{gray}{0.9}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
 \title{COP290 Lab-3}
 \author{Fouriers}
 \date{}
@@ -31,6 +49,10 @@ Users can see their profiles and can edit their details.
 Users can also see top users and top questions.
 Each user has a reputation score calculated based on the votes on their questions and answers.
 \section{Baadal VM link}
+
+We have hosted our website on Baadal VM. The link to our website is
+\href{http://10.17.9.97:8061/}{http://10.17.9.97:8061/}
+
 \section{Site Map}
 
 \begin{figure}[h]
@@ -43,8 +65,8 @@ Each user has a reputation score calculated based on the votes on their question
 
 
 \begin{itemize}
-    \item \textcolor{red}{\textbf{Home}} \\ This is the home page of the website. It contains the list of recently asked questions which is fetched from question database. It also contains a truncated list of top users and top questions which is fetched from users and questions database.
-    \item 
+    \item Here the red arrows represent the flow of the website for a logged in user and the blue arrows represent the flow of the website for any user.
+    \item Additionally user can logout from any page if logged in to go back to home page.
 \end{itemize}
 \section{ER Diagram}
 
@@ -60,6 +82,8 @@ Each user has a reputation score calculated based on the votes on their question
 
 
 \section{Github Link}
+
+
 
 \section{API descriptions}
 
@@ -107,6 +131,38 @@ The following are the APIs that we have implemented in our project:
     
 \end{itemize}
 \section{CI/CD Test Coverage}
+\begin{lstlisting}
+(env) Dhruvs-MacBook-Air:test dhruvgupta$ make coverage
+python3 test.py
+Test 1 completed
+Test 2 completed
+Test 3 completed
+Test 4 completed
+Test 5 completed
+Test 6 completed
+Test 8 completed
+python -m coverage run -m unittest
+Test 8 completed
+.Test 1 completed
+.Test 6 completed
+.Test 3 completed
+.Test 7 completed
+.Test 4 completed
+.Test 2 completed
+.Test 5 completed
+.
+----------------------------------------------------------------------
+Ran 8 tests in 0.058s
+
+OK
+python -m coverage report -m
+Name      Stmts   Miss  Cover   Missing
+---------------------------------------
+test.py      53      8    85%   69-76
+---------------------------------------
+TOTAL        53      8    85%
+\end{lstlisting}
+
 \section{Design decisions}
 
 \begin{itemize}
@@ -144,6 +200,11 @@ We have used MathJax to render mathematical equations in the questions and answe
 
 \subsection{Password Encryption}
 We have used \textcolor{red}{\mintinline{python}|flask_bcrypt|} to hash passwords and \textcolor{red}{\mintinline{python}|flask_login|} to manage user sessions.
+
+
+We have used Bcrypt as a password hashing function.
+At the time of signup , Bcrypt generates a random salt and concatenate it with the password entered by the user. The salt is then stored alongside the hashed password in the database.
+At the time of login , Bcrypt takes two arguments password entered by the user and hashed password retrieved from the database. The salt stored in the hashed password is used to hash the entered password and resulting hash is compared to stored hash.
 \section{Challenges}
 \begin{itemize}
     \item \textbf{Lack of Experience :} None of our team members were familiar with web development and we had to learn everything from scratch. We had to learn HTML, CSS, Javascript, Bootstrap, Flask, MySQL, Figma etc. in a short period of time.
@@ -162,7 +223,7 @@ We have used \textcolor{red}{\mintinline{python}|flask_bcrypt|} to hash password
     \item \textbf{Edit/Delete Questions/Answers :} The user can be given the option to edit/delete his/her questions and answers. This will help in making the website more user friendly.
 \end{itemize}
 \section{Video Link}
-bvdhvbgafkavn
+Here is a link to the video: \url{https://drive.google.com/file/d/1R9tvtAgXhbHHi50Yh8Vy-l3f6PY_ttxj/view?usp=sharing}
 \section{Token Distribution}
 
 \begin{table}[h]
