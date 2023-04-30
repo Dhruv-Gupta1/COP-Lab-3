@@ -254,6 +254,8 @@ def ask():
 
 @app.route('/answer/<int:id>',methods=['GET','POST'])
 def answer(id):
+    if not 'loggedin' in session:
+        return redirect(url_for('login'))
     if request.method == 'POST' and 'AnsDesc' in request.form:
         if 'loggedin' in session:
             AnsDesc = request.form.get('AnsDesc')
@@ -338,7 +340,7 @@ def downvoteAns(id):
 @app.route('/search', methods =['GET','POST'])
 def search():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * from questions")
+    cur.execute("SELECT * from questions LIMIT 300")
     questons = cur.fetchall()
     cur.close()
     def get_lemmas(doc):
@@ -522,4 +524,4 @@ def tagsearch(TagName):
 
 
 if __name__ == "__main__":
-    app.run(debug=True,port=8069)
+    app.run(debug=True, host='0.0.0.0', port=8061)

@@ -124,3 +124,43 @@ INSERT INTO votes (UserId,AnsId,State) VALUES (1,1,1);
 INSERT INTO users (UserId,UserName,UserEmail,UserPass,Rating,UserImg) VALUES (1,'admin1212','admi313n@gmail.com','ad121min',100,'https://cdncontent.xxxwaffle.com/gthumb/1/916/1916947_090b5f1_600x_.jpg');
 INSERT INTO users (UserId,UserName,UserEmail,UserPass,Rating,UserImg) VALUES (2,'us131er1','use211r1@gmail.com','use313r1',10,'https://cdn.pornpictureshq.com/galleries/gthumb/6/310/6310445_95e8276_600x_.jpg');
 INSERT INTO users (UserId,UserName,UserEmail,UserPass,Rating,UserImg) VALUES (3,'roun212ik','rouni31k@gmail.com','us212er2',10,'https://cdncontent.xxxwaffle.com/gthumb/2/902/2902850_fd69e7e_600x_.jpg');
+
+
+LOAD DATA INFILE 'Database/users_baadal.csv' INTO TABLE users FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
+
+
+LOAD DATA INFILE '/var/lib/mysql-files/users_baadal.csv' INTO TABLE users FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
+
+
+LOAD DATA INFILE '/var/lib/mysql-files/users_baadal.csv'
+IGNORE INTO TABLE users
+FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' 
+LINES TERMINATED BY '\n'
+(UserId,UserName,UserEmail,UserPass,UserImg,UserAbout,UserLocation,Rating);
+
+
+LOAD DATA INFILE '/var/lib/mysql-files/questions_baadal.csv'
+IGNORE INTO TABLE questions
+FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' 
+LINES TERMINATED BY '\n'
+(QuesId,QuesTitle,QuesDesc,QCreationTime,QuesScore,@QuesTags,UserId)
+SET QuesTags = JSON_UNQUOTE(@QuesTags);
+
+
+LOAD DATA INFILE '/var/lib/mysql-files/questions_baadal.csv'
+IGNORE INTO TABLE questions
+FIELDS TERMINATED BY ',' 
+LINES TERMINATED BY '\n'
+(QuesId,QuesTitle,QuesDesc,QCreationTime,QuesScore,QuesTags,UserId);
+
+
+mv /home/baadalvm/queriKorner/Database/questions_baadal.csv /var/lib/mysql-files/
+
+INSERT INTO questions (QuesId,QuesTitle,QuesDesc,QCreationTime,QuesScore,QuesTags,UserId) VALUES (889,"SQLStatement.execute() - multiple queries in one statement","<p>I've written a database generation script in <a href=""http://en.wikipedia.org/wiki/SQL"">SQL</a> and want to execute it in my <a href=""http://en.wikipedia.org/wiki/Adobe_Integrated_Runtime"">Adobe AIR</a> application:</p>","2023-04-29 21:13:34",26,'["php"]',1666)
+
+INSERT INTO questions (QuesId,QuesTitle,QuesDesc,QCreationTime,QuesScore,QuesTags,UserId) VALUES (860,"SQLStatement.execute() - multiple queries in one statement","<p>I've written a database generation script in <a href=""http://en.wikipedia.org/wiki/SQL"">SQL</a> and want to execute it in my <a href=""http://en.wikipedia.org/wiki/Adobe_Integrated_Runtime"">Adobe AIR</a> application:</p>",'2008-08-01 13:57:07',26,'["php"]',1666);
+
+
+
+
+INSERT INTO answers (AnsId,AnsDesc,AnsScore,UserId,ACreationTime,QuesId) VALUES (1,"Answer",67,4549416,'2008-08-01 13:57:07',193260)
